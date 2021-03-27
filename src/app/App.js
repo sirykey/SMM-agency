@@ -1,8 +1,9 @@
+import Auth from '../features/auth/Auth'
 
 function App() {
   return (
     <div>
-1
+      <Auth/>
     </div>
   );
 }
