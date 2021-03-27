@@ -1,40 +1,38 @@
 import React from 'react'
 import {
   Avatar, Box, Button,
-  Checkbox,
   Container,
-  CssBaseline,
-  FormControlLabel, Grid, Link,
+  Grid,
   makeStyles,
   TextField,
   Typography
 } from '@material-ui/core'
 import { LockOutlined } from '@material-ui/icons'
 
-function Authorisation (props) {
-  const useStyles = makeStyles((theme) => ({
-    paper: {
-      marginTop:theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-      width: '100%',
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-  }))
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}))
+
+function Authorisation () {
   const classes = useStyles()
   return (
     <Container component='main' maxWidth='xs'>
-      <CssBaseline/>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlined/>
@@ -65,10 +63,6 @@ function Authorisation (props) {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -80,22 +74,14 @@ function Authorisation (props) {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
             </Grid>
           </Grid>
         </form>
       </div>
       <Box mt={8}>
       </Box>
-
-
     </Container>
   )
 }
