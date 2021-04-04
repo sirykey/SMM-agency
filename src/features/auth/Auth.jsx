@@ -75,12 +75,12 @@ function Authorisation() {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs></Grid>
-            <Grid item></Grid>
+            <Grid item xs />
+            <Grid item />
           </Grid>
         </form>
       </div>
-      <Box mt={8}></Box>
+      <Box mt={8} />
     </Container>
   );
 }
