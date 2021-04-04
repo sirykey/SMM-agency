@@ -4,9 +4,9 @@ import React from 'react';
 
 function App() {
   return (
-    <div>
-      <Auth />
-      <CssBaseline />
+    <div className="container">
+      {/*<Auth />*/}
+      {/*<CssBaseline />*/}
     </div>
   );
 }
