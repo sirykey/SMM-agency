@@ -33,6 +33,7 @@ const authSlice = createSlice({
         },
         token: null,
         login: null,
+        password: null
     },
 
     extraReducers: {
