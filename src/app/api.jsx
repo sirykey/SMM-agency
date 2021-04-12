@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL:'https://jsonplaceholder.typicode.com/'
+    baseURL:'http://185.20.226.95/smm/'
 })
