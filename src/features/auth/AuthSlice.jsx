@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchData = createAsyncThunk('auth/fetchData',
     async ({ login, password }, { rejectWithValue }) => {
         try {
-            const response = await api.post('/todos?_limit=15', {
+            const response = await api.post('/login', {
                 data: {
                     login: login,
                     password: password
@@ -33,6 +33,7 @@ const authSlice = createSlice({
         },
         token: null,
         login: null,
+        password: null
     },
 
     extraReducers: {
