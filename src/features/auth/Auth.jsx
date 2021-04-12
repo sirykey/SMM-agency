@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Box,
@@ -10,6 +10,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
+import { useDispatch } from 'react-redux';
+import { fetchData } from './AuthSlice';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,6 +35,19 @@ const useStyles = makeStyles((theme) => ({
 
 function Authorisation() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const handleClick = () => {
+    dispatch(fetchData({ login, password }));
+  };
+  const loginChange = (e) => {
+    setLogin(e.target.value);
+  };
+  const passChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
@@ -48,22 +63,26 @@ function Authorisation() {
             margin="normal"
             required
             fullWidth
+            value={login}
             id="email"
             label="Email Address"
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={loginChange}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
+            value={password}
             name="password"
             label="Password"
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={passChange}
           />
           <Button
             type="submit"
@@ -71,6 +90,7 @@ function Authorisation() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleClick}
           >
             Sign In
           </Button>
