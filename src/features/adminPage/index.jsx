@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.module.css';
+// import styles from './style.module.css';
 
 function Index(props) {
   const admin = {
@@ -7,7 +7,7 @@ function Index(props) {
     surname: 'admin',
   };
   return (
-    <div className={styles.main}>
+    <div>
       {admin.name}
       <br />
       {admin.surname}
