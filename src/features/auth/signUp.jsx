@@ -74,6 +74,17 @@ function SignUp() {
                 name="email"
                 autoComplete="email"
               />
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Login"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
             </Grid>
             <Grid item xs={12}>
               <TextField
