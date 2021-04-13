@@ -1,11 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {api} from "../../app/api";
-import {fetchData} from "../auth/AuthSlice";
 
 export const fetchRegistration = createAsyncThunk('addWorkers/fetchRegistration',
     async ({firstname, surname, email}, {rejectWithValue} ) => {
        try {
-           const response = await api.post('/todos', {
+           const response = await api.post('/users', {
                data: {
                    firstname: firstname,
                    surname: surname,
@@ -24,7 +23,7 @@ export const fetchRegistration = createAsyncThunk('addWorkers/fetchRegistration'
     }
     )
 
-const registrationSlice = createSlice({
+const adminSlice = createSlice({
     name:'addWorkers',
     initialState: {
         loading: false,
@@ -52,10 +51,12 @@ const registrationSlice = createSlice({
             state.email = action.meta.arg.email;
         },
 
-        [fetchData.rejected]: (state, action) => {
+        [fetchRegistration.rejected]: (state, action) => {
             state.error.message = action.payload.message;
             state.error.failed = true;
         }
     }
 
 })
+
+export default adminSlice.reducer;
