@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {api} from "../../app/api";
 
@@ -20,8 +21,10 @@ export const fetchRegistration = createAsyncThunk('addWorkers/fetchRegistration'
        } catch (e) {
            rejectWithValue(e.message)
        }
+
     }
-    )
+  },
+);
 
 const adminSlice = createSlice({
     name:'addWorkers',
@@ -60,3 +63,4 @@ const adminSlice = createSlice({
 })
 
 export default adminSlice.reducer;
+

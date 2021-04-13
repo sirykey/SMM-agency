@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
-import { fetchData } from './AuthSlice';
+import { fetchData } from './authSlice';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,6 +38,7 @@ function Authorisation() {
   const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+
   const handleClick = () => {
     dispatch(fetchData({ login, password }));
   };
