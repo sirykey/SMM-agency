@@ -47,6 +47,7 @@ const authSlice = createSlice({
             state.token = action.payload.token;
             state.loading = false;
             state.login = action.meta.arg.login;
+            state.password = action.meta.arg.password;
         },
 
         [fetchData.rejected]: (state, action) => {
