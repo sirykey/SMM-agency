@@ -20,8 +20,10 @@ export const fetchRegistration = createAsyncThunk('addWorkers/fetchRegistration'
        } catch (e) {
            rejectWithValue(e.message)
        }
+
     }
-    )
+  },
+);
 
 const adminSlice = createSlice({
     name:'addWorkers',
@@ -60,3 +62,4 @@ const adminSlice = createSlice({
 })
 
 export default adminSlice.reducer;
+
