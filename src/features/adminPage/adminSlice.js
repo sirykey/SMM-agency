@@ -31,9 +31,11 @@ const registrationSlice = createSlice({
       failed: false,
       message: null,
     },
-    firstname: null,
+    username: null,
     surname: null,
     email: null,
+    password: null,
+    name: null
   },
 
   extraReducers: {
@@ -45,9 +47,11 @@ const registrationSlice = createSlice({
 
     [fetchRegistration.fulfilled]: (state, action) => {
       state.loading = false;
-      state.firstname = state.meta.arg.firstname;
+      state.name = state.meta.arg.name;
       state.surname = state.meta.arg.surname;
       state.email = action.meta.arg.email;
+      state.password = action.meta.arg.password;
+      state.username = action.meta.arg.username;
     },
 
     [fetchRegistration.rejected]: (state, action) => {

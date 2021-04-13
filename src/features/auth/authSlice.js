@@ -32,7 +32,7 @@ const authSlice = createSlice({
             message: null
         },
         token: null,
-        login: null,
+        username: null,
         password: null
     },
 
@@ -46,7 +46,8 @@ const authSlice = createSlice({
         [fetchData.fulfilled]: (state, action) => {
             state.token = action.payload.token;
             state.loading = false;
-            state.login = action.meta.arg.login;
+            state.username = action.meta.arg.login;
+            state.password = action.meta.arg.password;
         },
 
         [fetchData.rejected]: (state, action) => {
