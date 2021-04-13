@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const token = useSelector((state) => state.token);
+  console.log(token);
   let routes;
   if (token) {
     routes = (
@@ -28,9 +29,9 @@ function App() {
 
   return (
     <div className="container">
-      {routes}
+      {/*{routes}*/}
       {/*<Route path="/registration" component={SignUp} />*/}
-      {/*<Admin />*/}
+      <Admin />
       <CssBaseline />
     </div>
   );
