@@ -20,7 +20,7 @@ export const fetchRegistration = createAsyncThunk(
     } catch (e) {
       rejectWithValue(e.message);
     }
-  },
+  }
 );
 
 const registrationSlice = createSlice({
