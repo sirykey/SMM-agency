@@ -38,6 +38,7 @@ function Authorisation() {
   const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+
   const handleClick = () => {
     dispatch(fetchData({ login, password }));
   };
