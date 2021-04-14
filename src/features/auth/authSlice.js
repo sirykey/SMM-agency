@@ -2,11 +2,11 @@ import { api } from '../../app/api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchData = createAsyncThunk('auth/fetchData',
-    async ({ login, password }, { rejectWithValue }) => {
+    async ({ username, password }, { rejectWithValue }) => {
         try {
             const response = await api.post('/login', {
                 data: {
-                    login: login,
+                    username: username,
                     password: password
                 }
             })
