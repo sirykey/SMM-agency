@@ -3,13 +3,15 @@ import { api } from '../../app/api';
 
 export const fetchRegistration = createAsyncThunk(
   'addWorkers/fetchRegistration',
-  async ({ firstname, surname, email }, { rejectWithValue }) => {
+  async ({ username, name, surname, email, password }, { rejectWithValue }) => {
     try {
       const response = await api.post('/users', {
         data: {
-          firstname: firstname,
+          username: username,
+          name: name,
           surname: surname,
           email: email,
+          password: password
         },
       });
       if (response.data.status === 'success') {
@@ -32,10 +34,10 @@ const registrationSlice = createSlice({
       message: null,
     },
     username: null,
+    name: null,
     surname: null,
     email: null,
-    password: null,
-    name: null
+    password: null
   },
 
   extraReducers: {
