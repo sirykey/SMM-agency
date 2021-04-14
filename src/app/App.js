@@ -6,6 +6,7 @@ import SignUp from '../features/auth/signUp';
 import { Redirect, Route, Switch } from 'react-router';
 import Content from '../features/content/Content';
 import { useSelector } from 'react-redux';
+import Headers from '../features/headers';
 
 function App() {
   const token = useSelector((state) => state.token);
@@ -31,7 +32,9 @@ function App() {
     <div className="container">
       {/*{routes}*/}
       {/*<Route path="/registration" component={SignUp} />*/}
-      <Admin />
+      {/*<Admin />*/}
+      {/*<SignUp />*/}
+      <Headers />
       <CssBaseline />
     </div>
   );
