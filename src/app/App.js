@@ -31,7 +31,8 @@ function App() {
     <div className="container">
       {/*{routes}*/}
       {/*<Route path="/registration" component={SignUp} />*/}
-      <Admin />
+      {/*<Admin />*/}
+      <SignUp />
       <CssBaseline />
     </div>
   );

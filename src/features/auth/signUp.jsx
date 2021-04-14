@@ -68,7 +68,7 @@ function SignUp() {
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign up your worker
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -111,19 +111,19 @@ function SignUp() {
                 value={workerEmail}
                 onChange={workerEmailChange}
               />
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="login"
-                  label="Login"
-                  name="login"
-                  autoComplete="login"
-                  value={login}
-                  onChange={workerLoginChange}
-                />
-              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="login"
+                label="Login"
+                name="login"
+                autoComplete="login"
+                value={login}
+                onChange={workerLoginChange}
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField
