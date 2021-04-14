@@ -38,7 +38,7 @@ const headerSlice = createSlice({
     },
 
     [fetchHeaders.fulfilled]: (state, action) => {
-      state.items = action.payload.items;
+      state.items = action.payload;
       state.loading = false;
     },
 
