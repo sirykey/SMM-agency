@@ -46,7 +46,7 @@ const authSlice = createSlice({
         [fetchData.fulfilled]: (state, action) => {
             state.token = action.payload.token;
             state.loading = false;
-            state.username = action.meta.arg.login;
+            state.username = action.meta.arg.username;
             state.password = action.meta.arg.password;
         },
 
