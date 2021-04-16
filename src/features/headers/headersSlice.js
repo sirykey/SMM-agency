@@ -61,7 +61,7 @@ const headerSlice = createSlice({
     },
 
     [deleteHeader.rejected]: (state, action) => {
-      state.error.message = action.payload.message;
+      state.error.message = action.payload;
       state.error.failed = true;
     },
   }
