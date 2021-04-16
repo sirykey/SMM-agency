@@ -9,19 +9,19 @@ export const fetchData = createAsyncThunk('auth/fetchData',
                     login: login,
                     password: password
                 }
-            })
+            });
 
             if(response.data.status === "success") {
                 return response.data;
             } else {
-                return rejectWithValue(response.data)
+                return rejectWithValue(response.data);
             }
 
         }
         catch (e) {
             return rejectWithValue(e.message);
         }
-    })
+    });
 
 const authSlice = createSlice({
     name: "auth",
@@ -35,6 +35,7 @@ const authSlice = createSlice({
         login: null,
         password: null
     },
+
 
     extraReducers: {
         [fetchData.pending]: (state) => {

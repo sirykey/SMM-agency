@@ -22,7 +22,6 @@ export const fetchRegistration = createAsyncThunk('addWorkers/fetchRegistration'
        }
 
     }
-  },
 );
 
 const adminSlice = createSlice({
