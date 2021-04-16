@@ -8,6 +8,18 @@ export const fetchHeaders = createAsyncThunk('headers/fetchHeaders',
       return response.data
   })
 
+export const deleteHeader = createAsyncThunk(
+  "headers/deleteHeader",
+  async (deletingHeaderId, thunkAPI) => {
+    try {
+      await api.delete(`/posts/${deletingHeaderId}`);
+      return deletingHeaderId;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 const headerSlice = createSlice({
   name: "headers",
   initialState: {
@@ -32,7 +44,26 @@ const headerSlice = createSlice({
     [fetchHeaders.rejected]: (state, action) => {
       state.error.message = action.payload;
       state.error.failed = true;
-    }
+    },
+
+    [deleteHeader.pending]: (state, action) => {
+      const headerId = state.items.findIndex((item) => {
+        return action.meta.arg === item._id;
+      });
+
+      state.items[headerId].deleting = true;
+    },
+
+    [deleteHeader.fulfilled]: (state, action) => {
+      state.items = state.items.filter((item) => {
+        return item._id !== action.payload;
+      });
+    },
+
+    [deleteHeader.rejected]: (state, action) => {
+      state.error.message = action.payload.message;
+      state.error.failed = true;
+    },
   }
 })
 
