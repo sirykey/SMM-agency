@@ -5,13 +5,13 @@ import { deleteHeader } from './headersSlice';
 function Header({ header }) {
   const dispatch = useDispatch();
 
-  const handleDeleteClick = (_id) => {
-    dispatch(deleteHeader(_id));
+  const handleDeleteClick = (deletingHeaderId) => {
+    dispatch(deleteHeader(deletingHeaderId));
   };
   return (
     <div>
       {header.text}
-      <button onClick={handleDeleteClick}>delete</button>
+      <button onClick={() => handleDeleteClick(header._id)}>delete</button>
     </div>
   );
 }
