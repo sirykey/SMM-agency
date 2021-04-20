@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 import Headers from '../features/headers';
 
 function App() {
-  const token = useSelector((state) => state.token);
-  console.log(token);
+  const token = useSelector((state) => state.authSlice.token);
+
   let routes;
   if (token) {
     routes = (
