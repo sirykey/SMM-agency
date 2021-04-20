@@ -2,11 +2,11 @@ import { api } from '../../app/api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchData = createAsyncThunk('auth/fetchData',
-    async ({ login, password }, { rejectWithValue }) => {
+    async ({ username, password }, { rejectWithValue }) => {
         try {
             const response = await api.post('/login', {
                 data: {
-                    login: login,
+                    username: username,
                     password: password
                 }
             });
@@ -32,7 +32,7 @@ const authSlice = createSlice({
             message: null
         },
         token: null,
-        login: null,
+        username: null,
         password: null
     },
 
@@ -47,7 +47,8 @@ const authSlice = createSlice({
         [fetchData.fulfilled]: (state, action) => {
             state.token = action.payload.token;
             state.loading = false;
-            state.login = action.meta.arg.login;
+            state.username = action.meta.arg.username;
+            state.password = action.meta.arg.password;
         },
 
         [fetchData.rejected]: (state, action) => {
