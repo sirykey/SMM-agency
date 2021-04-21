@@ -31,13 +31,9 @@ const authSlice = createSlice({
             failed: false,
             message: null
         },
-<<<<<<< HEAD
-        items: {},
-=======
         token: null,
         username: null,
         role: null
->>>>>>> 2fc22c656a88f6c2d68bca31301ec6e7affb94d4
     },
 
 
@@ -49,17 +45,10 @@ const authSlice = createSlice({
         },
 
         [fetchData.fulfilled]: (state, action) => {
-<<<<<<< HEAD
-            state.items = action.payload;
-            state.loading = true;
-            // state.username = action.meta.arg.username;
-            // state.password = action.meta.arg.password;
-=======
             state.token = action.payload.token;
             state.role = action.payload.role;
             state.loading = false;
             state.username = action.meta.arg.username;
->>>>>>> 2fc22c656a88f6c2d68bca31301ec6e7affb94d4
         },
 
         [fetchData.rejected]: (state, action) => {
