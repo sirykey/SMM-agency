@@ -30,11 +30,11 @@ function App() {
 
   return (
     <div className="container">
-      {/*{routes}*/}
+      {routes}
       {/*<Route path="/registration" component={SignUp} />*/}
       {/*<Admin />*/}
       {/*<SignUp />*/}
-      <Headers />
+      {/*<Headers />*/}
       <CssBaseline />
     </div>
   );
