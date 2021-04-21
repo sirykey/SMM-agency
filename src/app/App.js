@@ -35,8 +35,8 @@ function App() {
       {/*<Route path="/registration" component={SignUp} />*/}
       {/*<Admin />*/}
       {/*<SignUp />*/}
-      {/* <Headers />
-      <CssBaseline /> */}
+      {/*<Headers />*/}
+      <CssBaseline />
     </div>
   );
 }

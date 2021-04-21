@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from './authSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,8 +39,16 @@ function Authorisation() {
   const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleClick = (username, password) => {
-    dispatch(fetchData(username, password));
+  const loading = useSelector((state) => state.authSlice.loading);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(
+      fetchData({
+        username: login,
+        password: password,
+      }),
+    );
   };
   const loginChange = (e) => {
     setLogin(e.target.value);
@@ -87,7 +95,12 @@ function Authorisation() {
             onChange={passChange}
           />
           <Button
+<<<<<<< HEAD
             // type="submit"
+=======
+            disabled={loading}
+            type="submit"
+>>>>>>> 2fc22c656a88f6c2d68bca31301ec6e7affb94d4
             fullWidth
             variant="contained"
             color="primary"
