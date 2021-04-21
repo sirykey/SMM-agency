@@ -36,11 +36,11 @@ const useStyles = makeStyles((theme) => ({
 function Authorisation() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [login, setLogin] = useState('');
+  const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleClick = () => {
-    dispatch(fetchData(login, password));
+  const handleClick = (username, password) => {
+    dispatch(fetchData(username, password));
   };
   const loginChange = (e) => {
     setLogin(e.target.value);
@@ -60,11 +60,12 @@ function Authorisation() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            type = "text"
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            value={login}
+            value={username}
             id="email"
             label="Email Address"
             name="email"
@@ -86,7 +87,7 @@ function Authorisation() {
             onChange={passChange}
           />
           <Button
-            type="submit"
+            // type="submit"
             fullWidth
             variant="contained"
             color="primary"

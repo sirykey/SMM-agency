@@ -12,7 +12,7 @@ export const fetchData = createAsyncThunk('auth/fetchData',
             });
 
             if(response.data.status === "success") {
-                return response.data;
+                console.log(response.data);
             } else {
                 return rejectWithValue(response.data);
             }
@@ -31,9 +31,7 @@ const authSlice = createSlice({
             failed: false,
             message: null
         },
-        token: null,
-        username: null,
-        password: null
+        items: {},
     },
 
 
@@ -45,10 +43,10 @@ const authSlice = createSlice({
         },
 
         [fetchData.fulfilled]: (state, action) => {
-            state.token = action.payload.token;
-            state.loading = false;
-            state.username = action.meta.arg.username;
-            state.password = action.meta.arg.password;
+            state.items = action.payload;
+            state.loading = true;
+            // state.username = action.meta.arg.username;
+            // state.password = action.meta.arg.password;
         },
 
         [fetchData.rejected]: (state, action) => {

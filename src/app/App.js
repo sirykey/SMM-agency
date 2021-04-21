@@ -9,7 +9,8 @@ import { useSelector } from 'react-redux';
 import Headers from '../features/headers';
 
 function App() {
-  const token = useSelector((state) => state.authSlice.token);
+  const token = useSelector((state) => state.authSlice.loading);
+  console.log(token)
 
   let routes;
   if (token) {
@@ -30,12 +31,12 @@ function App() {
 
   return (
     <div className="container">
-      {/*{routes}*/}
+      {routes}
       {/*<Route path="/registration" component={SignUp} />*/}
       {/*<Admin />*/}
       {/*<SignUp />*/}
-      <Headers />
-      <CssBaseline />
+      {/* <Headers />
+      <CssBaseline /> */}
     </div>
   );
 }
