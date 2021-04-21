@@ -5,13 +5,13 @@ export const fetchData = createAsyncThunk('auth/fetchData',
     async ({ username, password }, { rejectWithValue }) => {
         try {
             const response = await api.post('/login', {
-                data: {
                     username: username,
                     password: password
-                }
             })
 
-            if(response.data.status === "success") {
+              //Если в ответе сервера есть ключ token, значит успех
+            if(response.data.hasOwnProperty('token')) {
+               //Если авторизация прошла успешно
                 return response.data;
             } else {
                 return rejectWithValue(response.data)
@@ -33,7 +33,7 @@ const authSlice = createSlice({
         },
         token: null,
         username: null,
-        password: null
+        role: null
     },
 
     extraReducers: {
@@ -45,16 +45,20 @@ const authSlice = createSlice({
 
         [fetchData.fulfilled]: (state, action) => {
             state.token = action.payload.token;
+            state.role = action.payload.role;
             state.loading = false;
             state.username = action.meta.arg.username;
-            state.password = action.meta.arg.password;
         },
 
         [fetchData.rejected]: (state, action) => {
-            state.error.message = action.payload.message;
+            state.loading = false;
+            state.error.message = action.payload;
             state.error.failed = true;
         }
     }
 })
 
 export default authSlice.reducer;
+
+
+
