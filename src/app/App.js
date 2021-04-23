@@ -13,28 +13,28 @@ function App() {
   const token = useSelector((state) => state.authSlice.token);
   const [autologinning, setAutologinning] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const autologin = await api.post('/autologin', { token });
-        if (autologin.data.status === 'success') {
-          setLoggedIn(true);
-        }
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setAutologinning(false);
-      }
-    })();
-  }, [loggedIn, autologinning, setAutologinning, setLoggedIn, token]);
+  // Ахьмад, это пока не работает( Токен бесконечно проверяется
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const autologin = await api.post('/autologin', { token });
+  //       if (autologin.data.status === 'success') {
+  //         setLoggedIn(true);
+  //       }
+  //     } catch (e) {
+  //       console.error(e);
+  //     } finally {
+  //       setAutologinning(false);
+  //     }
+  //   })();
+  // }, [loggedIn, autologinning, setAutologinning, setLoggedIn, token]);
 
   if (autologinning) {
     return 'Идет проверка профиля';
   }
 
   let routes;
-  if (autologinning) {
+  if (token) {
     routes = (
       <Switch>
         <Route path="/headers" component={Headers} />

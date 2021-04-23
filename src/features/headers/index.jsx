@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchHeaders } from './headersSlice';
+import { addHeader, fetchHeaders } from './headersSlice';
 import Header from './Header';
 
 function Headers(props) {
@@ -13,9 +13,9 @@ function Headers(props) {
     dispatch(fetchHeaders());
   }, []);
 
-  // const handleAddClick = (text) => {
-  //   dispatch(addHeader(text));
-  // };
+  const handleAddClick = (text) => {
+    dispatch(addHeader(text));
+  };
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -27,7 +27,7 @@ function Headers(props) {
         return <Header key={header._id} header={header} />;
       })}
       <input type="text" value={inputValue} onChange={handleInputChange} />
-      {/*<button onClick={handleAddClick}>Add</button>*/}
+      <button onClick={handleAddClick}>Add</button>
     </div>
   );
 }
