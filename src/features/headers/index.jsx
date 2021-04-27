@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchHeaders } from './headersSlice';
+import { addHeader, fetchHeaders } from './headersSlice';
 import Header from './Header';
 
 function Headers(props) {

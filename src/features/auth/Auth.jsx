@@ -95,12 +95,8 @@ function Authorisation() {
             onChange={passChange}
           />
           <Button
-<<<<<<< HEAD
-            // type="submit"
-=======
             disabled={loading}
             type="submit"
->>>>>>> 2fc22c656a88f6c2d68bca31301ec6e7affb94d4
             fullWidth
             variant="contained"
             color="primary"
