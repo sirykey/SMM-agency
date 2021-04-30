@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchHeaders = createAsyncThunk('headers/fetchHeaders',
   async () => {
 
-    const response = await api.get('/posts')
+    const response = await api.get('/posts', { headers: { Authorization:localStorage.getItem('jwtToken') } })
     return response.data
   })
 

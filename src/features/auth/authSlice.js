@@ -7,7 +7,7 @@ export const fetchData = createAsyncThunk('auth/fetchData',
             const response = await api.post('/login', {
                     username: username,
                     password: password
-            })
+            }, { headers: { Authorization:localStorage.getItem('jwtToken') } })
 
               //Если в ответе сервера есть ключ token, значит успех
             if(response.data.hasOwnProperty('token')) {

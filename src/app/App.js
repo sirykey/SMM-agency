@@ -10,10 +10,6 @@ import Headers from '../features/headers';
 import { api } from './api';
 
 function App() {
-<<<<<<< HEAD
-  const token = useSelector((state) => state.authSlice.loading);
-  console.log(token)
-=======
   const token = useSelector((state) => state.authSlice.token);
   const [autologinning, setAutologinning] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -33,10 +29,9 @@ function App() {
   //   })();
   // }, [loggedIn, autologinning, setAutologinning, setLoggedIn, token]);
 
-  if (autologinning) {
-    return 'Идет проверка профиля';
-  }
->>>>>>> e1f5c68674bdade782974b7f158982d525fd76b7
+  // if (token) {
+  //   return 'Идет проверка профиля';
+  // }
 
   let routes;
   if (token) {

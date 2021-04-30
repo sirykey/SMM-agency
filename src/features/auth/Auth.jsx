@@ -45,7 +45,7 @@ function Authorisation() {
     e.preventDefault();
     dispatch(
       fetchData({
-        username: login,
+        username: username,
         password: password,
       }),
     );
