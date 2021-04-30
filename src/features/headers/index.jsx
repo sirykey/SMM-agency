@@ -7,18 +7,27 @@ function Headers(props) {
   const dispatch = useDispatch();
   const headers = useSelector((state) => state.headersSlice.items);
   console.log(headers);
-  const [inputValue, setInputValue] = useState('');
+  const [title, setInputTitle] = useState('');
+  const [text, setInputText] = useState('');
 
   useEffect(() => {
     dispatch(fetchHeaders());
   }, []);
 
-  const handleAddClick = (text) => {
-    dispatch(addHeader(text));
+  const handleAddClick = (e) => {
+    e.preventDefault();
+    dispatch(addHeader({
+      title: title,
+      text: text
+      }));
   };
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const handleTitle = (e) => {
+    setInputTitle(e.target.value);
+  };
+
+  const handleTxet = (e) => {
+    setInputText(e.target.value);
   };
 
   return (
@@ -26,7 +35,8 @@ function Headers(props) {
       {headers.map((header) => {
         return <Header key={header._id} header={header} />;
       })}
-      <input type="text" value={inputValue} onChange={handleInputChange} />
+      <input type="text" value={title} onChange={handleTitle} />
+      <input type="text" value={text} onChange={handleTxet} />
       <button onClick={handleAddClick}>Add</button>
     </div>
   );

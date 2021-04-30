@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchHeaders = createAsyncThunk('headers/fetchHeaders',
   async () => {
 
-    const response = await api.get('/posts', { headers: { Authorization:localStorage.getItem('jwtToken') } })
+    const response = await api.get('/posts')
     return response.data
   })
 
@@ -25,8 +25,8 @@ export const addHeader = createAsyncThunk(
   async ({ title, text }, {rejectWithValue}) => {
     try {
       const response = await api.post('/posts', {
-        title,
-        text,
+        title: title,
+        text: text
       });
 
       return response.data;
@@ -87,11 +87,7 @@ const headerSlice = createSlice({
     },
 
     [addHeader.fulfilled]: (state, action) => {
-<<<<<<< HEAD
-      state.items.push({ text: action.meta.arg.text })
-=======
-      state.items.push(action.meta.arg)//Если поменять на action.payload - тоже не работает
->>>>>>> 208e1e8f5990fed770706d052955e8b54711940a
+      state.items.push({ text: action.payload.text,  title: action.payload.title})//Если поменять на action.payload - тоже не работает
       state.loading = false;
     },
 

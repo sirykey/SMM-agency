@@ -11,6 +11,7 @@ function Header({ header }) {
   return (
     <div>
       {header.text}
+      {header.title}
       <button onClick={() => handleDeleteClick(header._id)}>delete</button>
     </div>
   );
