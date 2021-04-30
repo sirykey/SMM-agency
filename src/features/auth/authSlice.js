@@ -7,21 +7,21 @@ export const fetchData = createAsyncThunk('auth/fetchData',
             const response = await api.post('/login', {
                     username: username,
                     password: password
-            })
+            }, { headers: { Authorization:localStorage.getItem('jwtToken') } })
 
               //Если в ответе сервера есть ключ token, значит успех
             if(response.data.hasOwnProperty('token')) {
                //Если авторизация прошла успешно
                 return response.data;
             } else {
-                return rejectWithValue(response.data)
+                return rejectWithValue(response.data);
             }
 
         }
         catch (e) {
             return rejectWithValue(e.message);
         }
-    })
+    });
 
 const authSlice = createSlice({
     name: "auth",
@@ -35,6 +35,7 @@ const authSlice = createSlice({
         username: null,
         role: null
     },
+
 
     extraReducers: {
         [fetchData.pending]: (state) => {

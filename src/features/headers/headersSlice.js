@@ -25,8 +25,8 @@ export const addHeader = createAsyncThunk(
   async ({ title, text }, {rejectWithValue}) => {
     try {
       const response = await api.post('/posts', {
-        title,
-        text,
+        title: title,
+        text: text
       });
 
       return response.data;
@@ -87,7 +87,7 @@ const headerSlice = createSlice({
     },
 
     [addHeader.fulfilled]: (state, action) => {
-      state.items.push(action.meta.arg)//Если поменять на action.payload - тоже не работает
+      state.items.push({ text: action.payload.text,  title: action.payload.title})//Если поменять на action.payload - тоже не работает
       state.loading = false;
     },
 
