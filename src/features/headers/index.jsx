@@ -7,27 +7,27 @@ function Headers(props) {
   const dispatch = useDispatch();
   const headers = useSelector((state) => state.headersSlice.items);
   console.log(headers);
-  const [title, setInputTitle] = useState('');
-  const [text, setInputText] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [textValue, setTextValue] = useState('');
 
   useEffect(() => {
     dispatch(fetchHeaders());
   }, []);
 
-  const handleAddClick = (e) => {
-    e.preventDefault();
-    dispatch(addHeader({
-      title: title,
-      text: text
-      }));
+  const handleAddClick = (text) => {
+    dispatch(
+      addHeader({
+        title: inputValue,
+        text: textValue,
+      }),
+    );
   };
 
-  const handleTitle = (e) => {
-    setInputTitle(e.target.value);
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
   };
-
-  const handleTxet = (e) => {
-    setInputText(e.target.value);
+  const handleTextChange = (e) => {
+    setTextValue(e.target.value);
   };
 
   return (
@@ -35,8 +35,10 @@ function Headers(props) {
       {headers.map((header) => {
         return <Header key={header._id} header={header} />;
       })}
-      <input type="text" value={title} onChange={handleTitle} />
-      <input type="text" value={text} onChange={handleTxet} />
+      <input type="text" value={inputValue} onChange={handleInputChange} />
+      <br />
+      <input type="text" value={textValue} onChange={handleTextChange} />
+      <br />
       <button onClick={handleAddClick}>Add</button>
     </div>
   );

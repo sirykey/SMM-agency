@@ -37,9 +37,9 @@ function App() {
     }
   }, [loggedIn, autologinning, setAutologinning, setLoggedIn, token]);
 
-  // if (token) {
-  //   return 'Идет проверка профиля';
-  // }
+  if (autologinning) {
+    return 'Идет проверка профиля';
+  }
 
   let routes;
   if (token) {
