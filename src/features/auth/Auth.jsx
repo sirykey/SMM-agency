@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 function Authorisation() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [login, setLogin] = useState('');
+  const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
   const loading = useSelector((state) => state.authSlice.loading);
@@ -45,7 +45,7 @@ function Authorisation() {
     e.preventDefault();
     dispatch(
       fetchData({
-        username: login,
+        username: username,
         password: password,
       }),
     );
@@ -68,11 +68,12 @@ function Authorisation() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            type = "text"
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            value={login}
+            value={username}
             id="email"
             label="Email Address"
             name="email"
