@@ -11,23 +11,31 @@ import { api } from './api';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
-  const [autologinning, setAutologinning] = useState(false);
+  const [autologinning, setAutologinning] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-  // Ахьмад, это пока не работает( Токен бесконечно проверяется
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const autologin = await api.post('/autologin', { token });
-  //       if (autologin.data.status === 'success') {
-  //         setLoggedIn(true);
-  //       }
-  //     } catch (e) {
-  //       console.error(e);
-  //     } finally {
-  //       setAutologinning(false);
-  //     }
-  //   })();
-  // }, [loggedIn, autologinning, setAutologinning, setLoggedIn, token]);
+
+  useEffect(() => {
+    api.defaults.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  }, [token]);
+
+  useEffect(() => {
+    if (autologinning) {
+      (async () => {
+        try {
+          const autologin = await api.post('/autologin');
+          if (autologin.data.status === 'success') {
+            setLoggedIn(true);
+          }
+        } catch (e) {
+          console.error(e);
+        } finally {
+          setAutologinning(false);
+        }
+      })();
+    }
+  }, [loggedIn, autologinning, setAutologinning, setLoggedIn, token]);
 
   if (autologinning) {
     return 'Идет проверка профиля';
