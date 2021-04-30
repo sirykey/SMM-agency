@@ -22,9 +22,10 @@ export const deleteHeader = createAsyncThunk(
 
 export const addHeader = createAsyncThunk(
   "header/addHeader",
-  async ({ text }, {rejectWithValue}) => {
+  async ({ title, text }, {rejectWithValue}) => {
     try {
       const response = await api.post('/posts', {
+        title,
         text,
       });
 
@@ -86,7 +87,11 @@ const headerSlice = createSlice({
     },
 
     [addHeader.fulfilled]: (state, action) => {
+<<<<<<< HEAD
       state.items.push({ text: action.meta.arg.text })
+=======
+      state.items.push(action.meta.arg)//Если поменять на action.payload - тоже не работает
+>>>>>>> 208e1e8f5990fed770706d052955e8b54711940a
       state.loading = false;
     },
 
