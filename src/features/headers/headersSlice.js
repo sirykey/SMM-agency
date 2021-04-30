@@ -86,7 +86,7 @@ const headerSlice = createSlice({
     },
 
     [addHeader.fulfilled]: (state, action) => {
-      state.items.push(action.payload)
+      state.items.push({ text: action.meta.arg.text })
       state.loading = false;
     },
 
