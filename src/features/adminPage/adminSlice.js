@@ -3,22 +3,17 @@ import { api } from '../../app/api';
 
 export const fetchRegistration = createAsyncThunk(
   'addWorkers/fetchRegistration',
-  async ({ username, name, surname, email, password }, { rejectWithValue }) => {
+  async ({ username, name, surname, mail, password }, { rejectWithValue }) => {
     try {
       const response = await api.post('/users', {
-        data: {
           username: username,
           name: name,
           surname: surname,
-          email: email,
-          password: password
-        },
+          mail: mail,
+          password: password,
       });
-      if (response.data.status === 'success') {
+
         return response.data;
-      } else {
-        return rejectWithValue(response.data);
-      }
     } catch (e) {
       rejectWithValue(e.message);
     }
@@ -33,11 +28,7 @@ const registrationSlice = createSlice({
       failed: false,
       message: null,
     },
-    username: null,
-    name: null,
-    surname: null,
-    email: null,
-    password: null
+    users: [],
   },
 
   extraReducers: {
@@ -48,12 +39,16 @@ const registrationSlice = createSlice({
     },
 
     [fetchRegistration.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.name = state.meta.arg.name;
-      state.surname = state.meta.arg.surname;
-      state.email = action.meta.arg.email;
-      state.password = action.meta.arg.password;
-      state.username = action.meta.arg.username;
+      state.loading = false
+      state.users.push(
+        {
+          name: action.meta.arg.name,
+          surname: action.meta.arg.surname,
+          email: action.meta.arg.email,
+          password: action.meta.arg.password,
+          username: action.meta.arg.username,
+        }
+      )
     },
 
     [fetchRegistration.rejected]: (state, action) => {
