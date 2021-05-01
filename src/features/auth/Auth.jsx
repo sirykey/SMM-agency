@@ -68,7 +68,7 @@ function Authorisation() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            type = "text"
+            type="text"
             variant="outlined"
             margin="normal"
             required

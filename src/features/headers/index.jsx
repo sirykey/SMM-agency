@@ -16,10 +16,12 @@ function Headers(props) {
 
   const handleAddClick = (e) => {
     e.preventDefault();
-    dispatch(addHeader({
-      title: title,
-      text: text
-      }));
+    dispatch(
+      addHeader({
+        title: title,
+        text: text,
+      }),
+    );
   };
 
   const handleTitle = (e) => {

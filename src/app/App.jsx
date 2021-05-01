@@ -1,6 +1,7 @@
 import Auth from '../features/auth/Auth';
 import { CssBaseline } from '@material-ui/core';
-import Admin from '../features/adminPage/index';
+import Admin from '../features/user/Admin/index';
+import Redactor from '../features/user/Redactor/index';
 import React, { useEffect, useState } from 'react';
 import SignUp from '../features/auth/signUp';
 import { Redirect, Route, Switch } from 'react-router';
@@ -11,6 +12,8 @@ import { api } from './api';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
+  const role = useSelector((state) => state.authSlice.role);
+
   const [autologinning, setAutologinning] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -37,16 +40,23 @@ function App() {
     }
   }, [loggedIn, autologinning, setAutologinning, setLoggedIn, token]);
 
-  // if (token) {
-  //   return 'Идет проверка профиля';
-  // }
+  if (autologinning) {
+    return 'Идет проверка профиля';
+  }
 
   let routes;
-  if (token) {
+  if (token && role === 'ADMIN') {
     routes = (
       <Switch>
-        <Route path="/headers" component={Headers} />
-        <Redirect to="/headers" />
+        <Route path="/admin" component={Admin} />
+        <Redirect to="/admin" />
+      </Switch>
+    );
+  } else if (token && role === 'USER') {
+    routes = (
+      <Switch>
+        <Route path="/redactor" component={Redactor} />
+        <Redirect to="/redactor" />
       </Switch>
     );
   } else {
