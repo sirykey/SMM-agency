@@ -10,9 +10,11 @@ function Header({ header }) {
   };
   return (
     <div>
-      {header.text}
-      {header.title}
-      <button onClick={() => handleDeleteClick(header._id)}>delete</button>
+      Title: {header.text}
+      <br />
+      Text: {header.title}
+      <br />
+      <button onClick={() => handleDeleteClick(header._id)}>delete post</button>
     </div>
   );
 }
