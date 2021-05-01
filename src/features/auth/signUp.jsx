@@ -57,9 +57,16 @@ function SignUp() {
     setWorkerEmail(e.target.value);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
+    e.preventDefault();
     dispatch(
-      fetchRegistration(firstname, surname, login, workerPass, workerEmail),
+      fetchRegistration({
+        username: login,
+        name: firstname,
+        surname: surname,
+        mail: workerEmail,
+        password: workerPass,
+      }),
     );
   };
 
