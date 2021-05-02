@@ -72,6 +72,7 @@ const headerSlice = createSlice({
     },
 
     [deleteHeader.fulfilled]: (state, action) => {
+      state.loading = false;
       state.items = state.items.filter((item) => {
         return item._id !== action.payload;
       });
@@ -87,7 +88,7 @@ const headerSlice = createSlice({
     },
 
     [addHeader.fulfilled]: (state, action) => {
-      state.items.push({ text: action.payload.text,  title: action.payload.title})//Если поменять на action.payload - тоже не работает
+      state.items.push({ text: action.meta.arg.text,  title: action.meta.arg.title})//Если поменять на action.payload - тоже не работает
       state.loading = false;
     },
 
