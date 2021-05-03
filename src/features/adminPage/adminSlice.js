@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { api } from '../../app/api';
+import { deleteHeader } from '../headers/headersSlice';
 
 export const fetchRegistration = createAsyncThunk(
   'addWorkers/fetchRegistration',
@@ -28,7 +29,19 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers',
     } catch (e) {
       rejectWithValue(e.message);
     }
-  })
+  });
+
+export const deleteUsers = createAsyncThunk(
+  "headers/deleteHeader",
+  async (deletingUserId, thunkAPI) => {
+    try {
+      await api.delete(`/posts/${deletingUserId}`);
+      return deletingUserId;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 const registrationSlice = createSlice({
   name: 'addWorkers',
@@ -81,7 +94,27 @@ const registrationSlice = createSlice({
       state.loading = false;
       state.error.message = action.payload;
       state.error.failed = true;
-    }
+    },
+
+    [deleteUsers.pending]: (state, action) => {
+      const headerId = state.users.findIndex((user) => {
+        return action.meta.arg === user._id;
+      });
+
+      state.users[headerId].deleting = true;
+    },
+
+    [deleteUsers.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.users = state.users.filter((user) => {
+        return user._id !== action.meta.arg;
+      });
+    },
+
+    [deleteUsers.rejected]: (state, action) => {
+      state.error.message = action.payload;
+      state.error.failed = true;
+    },
   },
 });
 
