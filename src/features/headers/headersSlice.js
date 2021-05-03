@@ -2,10 +2,13 @@ import { api } from '../../app/api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchHeaders = createAsyncThunk('headers/fetchHeaders',
-  async () => {
-
-    const response = await api.get('/posts')
-    return response.data
+  async ({ rejectWithValue }) => {
+     try {
+       const response = await api.get('/posts')
+       return response.data
+     } catch (e) {
+       rejectWithValue(e.message);
+     }
   })
 
 export const deleteHeader = createAsyncThunk(
@@ -74,7 +77,7 @@ const headerSlice = createSlice({
     [deleteHeader.fulfilled]: (state, action) => {
       state.loading = false;
       state.items = state.items.filter((item) => {
-        return item._id !== action.payload;
+        return item._id !== action.meta.arg;
       });
     },
 
