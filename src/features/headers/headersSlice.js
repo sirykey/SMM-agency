@@ -2,10 +2,13 @@ import { api } from '../../app/api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchHeaders = createAsyncThunk('headers/fetchHeaders',
-  async () => {
-
-      const response = await api.get('/posts')
-      return response.data
+  async ({ rejectWithValue }) => {
+     try {
+       const response = await api.get('/posts')
+       return response.data
+     } catch (e) {
+       rejectWithValue(e.message);
+     }
   })
 
 export const deleteHeader = createAsyncThunk(
@@ -19,6 +22,22 @@ export const deleteHeader = createAsyncThunk(
     }
   }
 );
+
+export const addHeader = createAsyncThunk(
+  "header/addHeader",
+  async ({ title, text }, {rejectWithValue}) => {
+    try {
+      const response = await api.post('/posts', {
+        title: title,
+        text: text
+      });
+
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.message)
+    }
+  }
+)
 
 const headerSlice = createSlice({
   name: "headers",
@@ -42,6 +61,7 @@ const headerSlice = createSlice({
     },
 
     [fetchHeaders.rejected]: (state, action) => {
+      state.loading = false;
       state.error.message = action.payload;
       state.error.failed = true;
     },
@@ -55,8 +75,9 @@ const headerSlice = createSlice({
     },
 
     [deleteHeader.fulfilled]: (state, action) => {
+      state.loading = false;
       state.items = state.items.filter((item) => {
-        return item._id !== action.payload;
+        return item._id !== action.meta.arg;
       });
     },
 
@@ -64,6 +85,21 @@ const headerSlice = createSlice({
       state.error.message = action.payload;
       state.error.failed = true;
     },
+
+    [addHeader.pending]: (state) => {
+      state.loading = true;
+    },
+
+    [addHeader.fulfilled]: (state, action) => {
+      state.items.push({ text: action.meta.arg.text,  title: action.meta.arg.title})//Если поменять на action.payload - тоже не работает
+      state.loading = false;
+    },
+
+    [addHeader.rejected]: (state, action) => {
+      state.loading = false;
+      state.error.message = action.payload;
+      state.error.failed = true;
+    }
   }
 })
 

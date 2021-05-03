@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from './authSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,11 +36,19 @@ const useStyles = makeStyles((theme) => ({
 function Authorisation() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [login, setLogin] = useState('');
+  const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleClick = () => {
-    dispatch(fetchData(login, password));
+  const loading = useSelector((state) => state.authSlice.loading);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(
+      fetchData({
+        username: username,
+        password: password,
+      }),
+    );
   };
   const loginChange = (e) => {
     setLogin(e.target.value);
@@ -60,11 +68,12 @@ function Authorisation() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            type = "text"
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            value={login}
+            value={username}
             id="email"
             label="Email Address"
             name="email"
@@ -86,6 +95,7 @@ function Authorisation() {
             onChange={passChange}
           />
           <Button
+            disabled={loading}
             type="submit"
             fullWidth
             variant="contained"
