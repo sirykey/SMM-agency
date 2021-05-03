@@ -2,13 +2,9 @@ import { api } from '../../app/api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchHeaders = createAsyncThunk('headers/fetchHeaders',
-  async ({ rejectWithValue }) => {
-     try {
+  async (s) => {
        const response = await api.get('/posts')
        return response.data
-     } catch (e) {
-       rejectWithValue(e.message);
-     }
   })
 
 export const deleteHeader = createAsyncThunk(
