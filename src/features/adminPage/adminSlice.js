@@ -65,6 +65,23 @@ const registrationSlice = createSlice({
       state.error.message = action.payload.message;
       state.error.failed = true;
     },
+
+    [fetchUsers.pending]: (state) => {
+      state.loading = true;
+      state.error.failed = false;
+      state.error.message = null;
+    },
+
+    [fetchUsers.fulfilled]: (state, action) => {
+      state.users = action.payload;
+      state.loading = false;
+    },
+
+    [fetchUsers.rejected]: (state, action) => {
+      state.loading = false;
+      state.error.message = action.payload;
+      state.error.failed = true;
+    }
   },
 });
 
