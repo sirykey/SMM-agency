@@ -22,20 +22,16 @@ export const fetchRegistration = createAsyncThunk(
 );
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers',
-  async ({ rejectWithValue }) => {
-    try {
+  async () => {
       const response = await api.get('/users')
       return response.data
-    } catch (e) {
-      rejectWithValue(e.message);
-    }
   });
 
 export const deleteUsers = createAsyncThunk(
   "headers/deleteHeader",
   async (deletingUserId, thunkAPI) => {
     try {
-      await api.delete(`/posts/${deletingUserId}`);
+      await api.delete(`/users/${deletingUserId}`);
       return deletingUserId;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
