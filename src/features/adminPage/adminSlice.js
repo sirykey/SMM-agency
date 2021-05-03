@@ -20,6 +20,16 @@ export const fetchRegistration = createAsyncThunk(
   }
 );
 
+export const fetchUsers = createAsyncThunk('users/fetchUsers',
+  async ({ rejectWithValue }) => {
+    try {
+      const response = await api.get('/users')
+      return response.data
+    } catch (e) {
+      rejectWithValue(e.message);
+    }
+  })
+
 const registrationSlice = createSlice({
   name: 'addWorkers',
   initialState: {
