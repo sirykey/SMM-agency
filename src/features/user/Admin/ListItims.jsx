@@ -3,45 +3,38 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
+import EmailIcon from '@material-ui/icons/Email';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import { useHistory } from "react-router-dom";
+import DraftsIcon from '@material-ui/icons/Drafts';
+import { useHistory } from 'react-router-dom';
 
 export default function AdminListItems() {
-    const history = useHistory();
+  const history = useHistory();
 
-    return (
-        <div>
-    <ListItem button onClick = { () => history.push('/admin') }>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button onClick = { () => history.push('/admin/home') }>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
-  </div>
-    )
-};
+  return (
+    <div>
+      <ListItem button onClick={() => history.push('/admin/redactors')}>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Redactors" />
+      </ListItem>
+      <ListItem button onClick={() => history.push('/admin/posts')}>
+        <ListItemIcon>
+          <EmailIcon />
+        </ListItemIcon>
+        <ListItemText primary="Posts" />
+      </ListItem>
+      <ListItem button onClick={() => history.push('/admin/drafts')}>
+        <ListItemIcon>
+          <DraftsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Drafts" />
+      </ListItem>
+    </div>
+  );
+}
 
 export const redactorListItems = (
   <div>

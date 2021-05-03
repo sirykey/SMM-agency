@@ -9,6 +9,8 @@ import ListItem from '@material-ui/core/ListItem';
 import clsx from 'clsx';
 import { IconButton, useTheme } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 const drawerWidth = 240;
 
@@ -78,6 +80,16 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginRight: 0,
   },
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
 }));
 
 function Redactor(props) {
@@ -126,15 +138,21 @@ function Redactor(props) {
         <div className={classes.drawerContainer}>
           <List>
             <ListItem button>мои посты</ListItem>
-          </List>
-          <List>
-            <ListItem button>посты</ListItem>
-          </List>
-          <List>
-            <ListItem button>черновики</ListItem>
+            <ListItem button>мои посты</ListItem>
+            <ListItem button>мои посты</ListItem>
           </List>
         </div>
       </Drawer>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={4} lg={3}>
+              fdfdfsdf
+            </Grid>
+          </Grid>
+        </Container>
+      </main>
     </div>
   );
 }

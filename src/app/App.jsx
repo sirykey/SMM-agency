@@ -3,11 +3,8 @@ import { CssBaseline } from '@material-ui/core';
 import Admin from '../features/user/Admin/index';
 import Redactor from '../features/user/Redactor/index';
 import React, { useEffect, useState } from 'react';
-import SignUp from '../features/auth/signUp';
 import { Redirect, Route, Switch } from 'react-router';
-import Content from '../features/content/Content';
 import { useSelector } from 'react-redux';
-import Headers from '../features/headers';
 import { api } from './api';
 
 function App() {
@@ -71,10 +68,6 @@ function App() {
   return (
     <div className="container">
       {routes}
-      {/*<Route path="/registration" component={SignUp} />*/}
-      {/*<Admin />*/}
-      {/*<SignUp />*/}
-      {/*<Headers />*/}
       <CssBaseline />
     </div>
   );

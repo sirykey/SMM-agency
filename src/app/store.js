@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
 import headersSlice from '../features/headers/headersSlice';
-import adminSlice from '../features/adminPage/adminSlice';
+import adminSlice from '../features/user/userSlice';
 
 const initialAuthSlice =
   localStorage.getItem('smm-token-slice') !== null
