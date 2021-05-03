@@ -26,8 +26,8 @@ function Profile() {
         </Grid>
         <Grid item item xs={8}>
           <Typography variant="h2" align="center">
-            {/* Директор */}
-            Редактор
+            Директор
+            {/* Редактор */}
           </Typography>
         </Grid>
         <Grid item item xs={8}>
@@ -41,10 +41,10 @@ function Profile() {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.paper}>
-          <ListTitle>Список постов:</ListTitle>
+          <ListTitle>Список редактров:</ListTitle>
           <List>
-            {/* <AdminAccountListItems /> */}
-            <RedactorAccountListItems />
+            <AdminAccountListItems />
+            {/* <RedactorAccountListItems /> */}
           </List>
         </Paper>
       </Grid>

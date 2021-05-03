@@ -40,8 +40,8 @@ function Header(props) {
         >
           Smm-Agency
         </Typography>
-        {/* <AdminMenu /> */}
-        <RedactorMenu />
+        <AdminMenu />
+        {/* <RedactorMenu /> */}
       </Toolbar>
     </AppBar>
   );

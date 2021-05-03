@@ -41,7 +41,7 @@ function App() {
   }
 
   let routes;
-  if (token && role === 'ADMIN') {
+  if (token) {
     routes = (
       <Switch>
         <Route path="/agency" component={Admin} />
