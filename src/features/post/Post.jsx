@@ -29,7 +29,10 @@ export default function Post(props) {
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" onClick={() => history.push('/admin/blog')}>
+      <CardActionArea
+        component="a"
+        onClick={() => history.push('/agency/blog')}
+      >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
@@ -48,7 +51,11 @@ export default function Post(props) {
             </CardContent>
           </div>
           <Hidden xsDown>
-            <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
+            <CardMedia
+              className={classes.cardMedia}
+              image={post.image}
+              title={post.imageTitle}
+            />
           </Hidden>
         </Card>
       </CardActionArea>

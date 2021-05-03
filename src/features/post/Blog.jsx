@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     width: '100%',
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(3),
   },
 }));
 
@@ -20,16 +20,19 @@ function Blog() {
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
-          <Grid container spacing={4}>
-            <Typography variant="h3" align="center" className={classes.title}>
-              Заголовок поста
-            </Typography>
-            <Typography>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat at possimus velit vitae facere praesentium incidunt nam obcaecati dignissimos! Tempore laborum ullam, aliquam tenetur iusto doloremque? Necessitatibus odit tempore dicta!
-            </Typography>
-          </Grid>
-      </Container>
-  )
+      <Grid container spacing={4}>
+        <Typography variant="h3" align="center" className={classes.title}>
+          Заголовок поста
+        </Typography>
+        <Typography>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat at
+          possimus velit vitae facere praesentium incidunt nam obcaecati
+          dignissimos! Tempore laborum ullam, aliquam tenetur iusto doloremque?
+          Necessitatibus odit tempore dicta!
+        </Typography>
+      </Grid>
+    </Container>
+  );
 }
 
 export default Blog;

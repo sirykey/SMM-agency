@@ -1,7 +1,6 @@
 import Auth from '../features/auth/Auth';
 import { CssBaseline } from '@material-ui/core';
-import Admin from '../features/user/Admin/index';
-import Redactor from '../features/user/Redactor/index';
+import Admin from '../features/user/index';
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -45,15 +44,8 @@ function App() {
   if (token && role === 'ADMIN') {
     routes = (
       <Switch>
-        <Route path="/admin" component={Admin} />
-        <Redirect to="/admin" />
-      </Switch>
-    );
-  } else if (token && role === 'USER') {
-    routes = (
-      <Switch>
-        <Route path="/redactor" component={Redactor} />
-        <Redirect to="/redactor" />
+        <Route path="/agency" component={Admin} />
+        <Redirect to="/agency" />
       </Switch>
     );
   } else {

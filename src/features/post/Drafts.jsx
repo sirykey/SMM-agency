@@ -33,18 +33,17 @@ const featuredPosts = [
   },
 ];
 
-
 function Drafts() {
   const classes = useStyles();
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
-          <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <Draft key={post.title} post={post} />
-            ))}
-          </Grid>
-      </Container>
+      <Grid container spacing={4}>
+        {featuredPosts.map((post) => (
+          <Draft key={post.title} post={post} />
+        ))}
+      </Grid>
+    </Container>
   );
 }
 

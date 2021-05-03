@@ -49,18 +49,17 @@ const featuredPosts = [
   },
 ];
 
-
 function Posts() {
   const classes = useStyles();
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
-          <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <Post key={post.title} post={post} />
-            ))}
-          </Grid>
-      </Container>
+      <Grid container spacing={4}>
+        {featuredPosts.map((post) => (
+          <Post key={post.title} post={post} />
+        ))}
+      </Grid>
+    </Container>
   );
 }
 

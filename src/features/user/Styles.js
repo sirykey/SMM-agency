@@ -76,7 +76,6 @@ export const useMainStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-    
   },
   fixedHeight: {
     height: 240,
@@ -104,4 +103,4 @@ export const useProfileStyles = makeStyles((theme) => ({
   btn: {
     marginRight: theme.spacing(1),
   },
-})); 
+}));
