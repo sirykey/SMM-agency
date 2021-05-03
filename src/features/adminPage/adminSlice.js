@@ -28,7 +28,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers',
   });
 
 export const deleteUsers = createAsyncThunk(
-  "headers/deleteHeader",
+  "users/deleteUsers",
   async (deletingUserId, thunkAPI) => {
     try {
       await api.delete(`/users/${deletingUserId}`);
