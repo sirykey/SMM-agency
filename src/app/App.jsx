@@ -5,6 +5,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
 import { api } from './api';
 import AdminMenu from '../features/users/admin/AdminMenu';
+import MainPage from '../features/users/admin';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
@@ -42,7 +43,7 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-        <Route path="/headers" component={AdminMenu} />
+        <Route path="/headers" component={MainPage} />
         <Redirect to="/headers" />
       </Switch>
     );
