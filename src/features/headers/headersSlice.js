@@ -1,14 +1,16 @@
 import { api } from '../../app/api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const fetchHeaders = createAsyncThunk('headers/fetchHeaders',
+export const fetchHeaders = createAsyncThunk(
+  'headers/fetchHeaders',
   async (s) => {
-       const response = await api.get('/posts')
-       return response.data
-  })
+    const response = await api.get('/content');
+    return response.data;
+  },
+);
 
 export const deleteHeader = createAsyncThunk(
-  "headers/deleteHeader",
+  'headers/deleteHeader',
   async (deletingHeaderId, thunkAPI) => {
     try {
       await api.delete(`/posts/${deletingHeaderId}`);
@@ -16,39 +18,39 @@ export const deleteHeader = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );
 
 export const addHeader = createAsyncThunk(
-  "header/addHeader",
-  async ({ title, text }, {rejectWithValue}) => {
+  'header/addHeader',
+  async ({ title, text }, { rejectWithValue }) => {
     try {
-      const response = await api.post('/posts', {
+      const response = await api.post('/content', {
         title: title,
-        text: text
+        text: text,
       });
 
       return response.data;
     } catch (e) {
-      return rejectWithValue(e.message)
+      return rejectWithValue(e.message);
     }
-  }
-)
+  },
+);
 
 const headerSlice = createSlice({
-  name: "headers",
+  name: 'headers',
   initialState: {
     items: [],
     loading: false,
     error: {
       failed: false,
-      message: null
+      message: null,
     },
   },
 
   extraReducers: {
     [fetchHeaders.pending]: (state) => {
-      state.loading = true
+      state.loading = true;
     },
 
     [fetchHeaders.fulfilled]: (state, action) => {
@@ -87,7 +89,10 @@ const headerSlice = createSlice({
     },
 
     [addHeader.fulfilled]: (state, action) => {
-      state.items.push({ text: action.meta.arg.text,  title: action.meta.arg.title})//Если поменять на action.payload - тоже не работает
+      state.items.push({
+        text: action.meta.arg.text,
+        title: action.meta.arg.title,
+      }); //Если поменять на action.payload - тоже не работает
       state.loading = false;
     },
 
@@ -95,8 +100,8 @@ const headerSlice = createSlice({
       state.loading = false;
       state.error.message = action.payload;
       state.error.failed = true;
-    }
-  }
-})
+    },
+  },
+});
 
 export default headerSlice.reducer;
