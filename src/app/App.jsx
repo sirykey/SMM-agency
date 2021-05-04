@@ -1,11 +1,10 @@
 import Auth from '../features/auth/Auth';
 import { CssBaseline } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import SignUp from '../features/auth/signUp';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
-import Headers from '../features/headers';
 import { api } from './api';
+import AdminMenu from '../features/users/admin/AdminMenu';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
@@ -43,7 +42,7 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-        <Route path="/headers" component={Headers} />
+        <Route path="/headers" component={AdminMenu} />
         <Redirect to="/headers" />
       </Switch>
     );
@@ -59,8 +58,6 @@ function App() {
   return (
     <div className="container">
       {routes}
-      {/*<SignUp />*/}
-      {/*<Headers />*/}
       <CssBaseline />
     </div>
   );
