@@ -42,7 +42,7 @@ function ProfileMenu() {
           onClick={handleClose}
           onClick={() => history.push('/agency/signup')}
         >
-          Sign Up
+          Create post
         </MenuItem>
         <MenuItem onClick={handleClose}>Log out</MenuItem>
       </Menu>
