@@ -5,7 +5,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
 import { api } from './api';
 import AdminMenu from '../features/users/admin/AdminMenu';
-import MainPage from '../features/users/admin';
+import MainPage from '../features/users';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);

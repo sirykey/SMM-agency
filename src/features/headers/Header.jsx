@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteHeader } from './headersSlice';
+import { deleteHeader } from '../content/contentSlice';
 
 function Header({ header }) {
   const dispatch = useDispatch();

@@ -1,34 +1,33 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { api } from '../../app/api';
-import { deleteHeader } from '../headers/headersSlice';
+import { deleteHeader } from '../content/contentSlice';
 
 export const fetchRegistration = createAsyncThunk(
   'addWorkers/fetchRegistration',
   async ({ username, name, surname, mail, password }, { rejectWithValue }) => {
     try {
       const response = await api.post('/users', {
-          username: username,
-          name: name,
-          surname: surname,
-          mail: mail,
-          password: password,
+        username: username,
+        name: name,
+        surname: surname,
+        mail: mail,
+        password: password,
       });
 
-        return response.data;
+      return response.data;
     } catch (e) {
       rejectWithValue(e.message);
     }
-  }
+  },
 );
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers',
-  async () => {
-      const response = await api.get('/users')
-      return response.data
-  });
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
+  const response = await api.get('/users');
+  return response.data;
+});
 
 export const deleteUsers = createAsyncThunk(
-  "users/deleteUsers",
+  'users/deleteUsers',
   async (deletingUserId, thunkAPI) => {
     try {
       await api.delete(`/users/${deletingUserId}`);
@@ -36,7 +35,7 @@ export const deleteUsers = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );
 
 const registrationSlice = createSlice({
@@ -58,16 +57,14 @@ const registrationSlice = createSlice({
     },
 
     [fetchRegistration.fulfilled]: (state, action) => {
-      state.loading = false
-      state.users.push(
-        {
-          name: action.meta.arg.name,
-          surname: action.meta.arg.surname,
-          email: action.meta.arg.email,
-          password: action.meta.arg.password,
-          username: action.meta.arg.username,
-        }
-      )
+      state.loading = false;
+      state.users.push({
+        name: action.meta.arg.name,
+        surname: action.meta.arg.surname,
+        email: action.meta.arg.email,
+        password: action.meta.arg.password,
+        username: action.meta.arg.username,
+      });
     },
 
     [fetchRegistration.rejected]: (state, action) => {
@@ -114,4 +111,4 @@ const registrationSlice = createSlice({
   },
 });
 
-export default registrationSlice.reducer
+export default registrationSlice.reducer;

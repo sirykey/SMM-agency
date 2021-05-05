@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
-import headersSlice from '../features/headers/headersSlice';
+import headersSlice from '../features/content/contentSlice';
 import adminSlice from '../features/users/usersSlice';
 
 const initialAuthSlice =

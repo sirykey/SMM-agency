@@ -1,7 +1,7 @@
 import React from 'react';
-import { useMainStyles } from '../styles';
-import Header from '../Header';
-import Sidebar from '../Sidebar';
+import { useMainStyles } from './styles';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 function MainPage(props) {
   const classes = useMainStyles();
