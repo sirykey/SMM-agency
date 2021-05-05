@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchHeaders = createAsyncThunk(
   'headers/fetchHeaders',
   async (s) => {
-    const response = await api.get('/content');
+    const response = await api.get('/posts');
     return response.data;
   },
 );
@@ -25,7 +25,7 @@ export const addHeader = createAsyncThunk(
   'header/addHeader',
   async ({ title, text }, { rejectWithValue }) => {
     try {
-      const response = await api.post('/content', {
+      const response = await api.post('/posts', {
         title: title,
         text: text,
       });
