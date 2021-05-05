@@ -3,7 +3,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchHeaders = createAsyncThunk(
   'headers/fetchHeaders',
-  async (s) => {
+  async () => {
+
     const response = await api.get('/posts');
     return response.data;
   },

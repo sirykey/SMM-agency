@@ -33,7 +33,9 @@ const authSlice = createSlice({
         },
         token: null,
         username: null,
-        role: null
+        role: null,
+        name: null,
+        surname: null,
     },
 
 
