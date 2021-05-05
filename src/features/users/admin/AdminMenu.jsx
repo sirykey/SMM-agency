@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from '@material-ui/core/Menu';
 import Badge from '@material-ui/core/Badge';
 import { AccountCircle } from '@material-ui/icons';
@@ -8,7 +8,7 @@ import { IconButton, MenuItem } from '@material-ui/core';
 function ProfileMenu() {
   const history = useHistory();
 
-  const [openMenu, setOpenMenu] = React.useState(null);
+  const [openMenu, setOpenMenu] = useState(null);
   const handleClick = (e) => {
     setOpenMenu(e.currentTarget);
   };
