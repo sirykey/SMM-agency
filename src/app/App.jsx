@@ -44,6 +44,7 @@ function App() {
     routes = (
       <Switch>
         <Route path="/headers" component={MainPage} />
+        <Redirect to="/headers" />
       </Switch>
     );
   } else {
