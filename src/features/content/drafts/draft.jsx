@@ -34,7 +34,7 @@ function Draft({ post }) {
                 {post.title}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {post.date}
+                {"22.01.2021"}
               </Typography>
               <Typography variant="subtitle1" paragraph>
                 {post.text}
