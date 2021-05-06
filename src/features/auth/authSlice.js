@@ -36,6 +36,8 @@ const authSlice = createSlice({
         role: null,
         name: null,
         surname: null,
+        mail: null,
+        id: null,
     },
 
 
@@ -51,6 +53,11 @@ const authSlice = createSlice({
             state.role = action.payload.user.role;
             state.loading = false;
             state.username = action.meta.arg.username;
+            state.role = action.payload.user.role;
+            state.mail = action.payload.user.mail;
+            state.surname = action.payload.user.surname;
+            state.id = action.payload.user._id;
+            state.name = action.payload.user.name;
         },
 
         [fetchData.rejected]: (state, action) => {
