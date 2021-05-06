@@ -6,6 +6,7 @@ import Redactors from './redactor/Redactors';
 import Posts from '../content/posts';
 import Drafts from '../content/drafts';
 import Blog from '../content';
+import Profile from './Profile';
 
 function Routs(props) {
   const classes = useMainStyles();
@@ -13,7 +14,7 @@ function Routs(props) {
   return (
     <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-      <Route exact path="/agency" component={} />
+      <Route exact path="/agency" component={Profile} />
       <Route path="/agency/redactors" component={Redactors} />
       <Route path="/agency/posts" component={Posts} />
       <Route path="/agency/drafts" component={Drafts} />
