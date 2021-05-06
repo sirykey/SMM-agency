@@ -2,6 +2,7 @@ import React from 'react';
 import { useMainStyles } from './styles';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import Routs from './Routs';
 
 function MainPage(props) {
   const classes = useMainStyles();
@@ -10,6 +11,7 @@ function MainPage(props) {
     <div className={classes.root}>
       <Header />
       <Sidebar />
+      <Routs />
     </div>
   );
 }
