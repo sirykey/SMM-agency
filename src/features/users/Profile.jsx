@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { useProfileStyles } from './Styles';
 import List from '@material-ui/core/List';
 import AdminAccountListItems from './admin/AdminAccountListItems';
-import RedactorAccountListItems from './redactor/RedactorAccountListItems';
+import RedactorListItems from './redactor/RedactorListItems';
 import ListTitle from './ListTitle';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 
@@ -55,7 +55,7 @@ function Profile() {
           filteredAdmin.map((user) => (
                <AdminAccountListItems key={user._id} user={user} /> )) :
           posts.map((post) => (
-              <RedactorAccountListItems key={post._id} post={post} /> ))
+              <RedactorListItems key={post._id} post={post} /> ))
            }
           </List>
           <Avatar>
