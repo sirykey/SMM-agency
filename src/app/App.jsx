@@ -45,7 +45,8 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-        <Route path="/headers" component={MainPage} />
+        <Route path="/agency" component={MainPage} />
+        <Redirect to="/agency" />
       </Switch>
     );
   } else {
