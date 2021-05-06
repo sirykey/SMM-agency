@@ -5,7 +5,7 @@ import { AccountCircle } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 import { IconButton, MenuItem } from '@material-ui/core';
 
-function ProfileMenu() {
+function RedactorsMenu() {
   const history = useHistory();
 
   const [openMenu, setOpenMenu] = useState(null);
@@ -38,16 +38,10 @@ function ProfileMenu() {
         <MenuItem onClick={handleClose} onClick={() => history.push('/agency')}>
           My Account
         </MenuItem>
-        <MenuItem
-          onClick={handleClose}
-          onClick={() => history.push('/agency/signup')}
-        >
-          Create post
-        </MenuItem>
         <MenuItem onClick={handleClose}>Log out</MenuItem>
       </Menu>
     </>
   );
 }
 
-export default ProfileMenu;
+export default RedactorsMenu;
