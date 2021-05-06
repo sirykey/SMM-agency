@@ -9,6 +9,8 @@ import MainPage from '../features/users';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
+  const role = useSelector((state) => state.authSlice.role);
+
   const [autologinning, setAutologinning] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
