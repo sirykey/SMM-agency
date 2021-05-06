@@ -90,13 +90,8 @@ const headerSlice = createSlice({
 
     [addHeader.fulfilled]: (state, action) => {
       state.items.push({
-<<<<<<< HEAD:src/features/headers/headersSlice.js
-        text: action.payload.text,
-        title: action.payload.title,
-=======
         text: action.meta.arg.text,
         title: action.meta.arg.title,
->>>>>>> be8d684067c5417ece95a91b203e64c0f9a50602:src/features/content/contentSlice.js
       }); //Если поменять на action.payload - тоже не работает
       state.loading = false;
     },

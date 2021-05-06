@@ -1,9 +1,5 @@
 import Auth from '../features/auth/Auth';
 import { CssBaseline } from '@material-ui/core';
-<<<<<<< HEAD
-import Admin from '../features/user/index';
-=======
->>>>>>> be8d684067c5417ece95a91b203e64c0f9a50602
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
