@@ -3,6 +3,9 @@ import { Route } from 'react-router';
 import { useMainStyles } from './styles';
 import SignUp from './admin/SignUp';
 import Redactors from './redactor/Redactors';
+import Posts from '../content/posts';
+import Drafts from '../content/drafts';
+import Blog from '../content';
 
 function Routs(props) {
   const classes = useMainStyles();
@@ -12,10 +15,10 @@ function Routs(props) {
       <div className={classes.appBarSpacer} />
       <Route exact path="/agency" component={} />
       <Route path="/agency/redactors" component={Redactors} />
-      <Route path="/agency/posts" component={} />
-      <Route path="/agency/drafts" component={} />
+      <Route path="/agency/posts" component={Posts} />
+      <Route path="/agency/drafts" component={Drafts} />
       <Route path="/agency/signup" component={SignUp} />
-      <Route path="/agency/blog" component={} />
+      <Route path="/agency/blog" component={Blog} />
     </main>
   );
 }
