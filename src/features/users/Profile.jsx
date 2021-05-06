@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { useProfileStyles } from './Styles';
 import List from '@material-ui/core/List';
-import AdminAccountListItems from './admin/AdminAccountListItems';
+import AdminListItems from './admin/AdminListItems';
 import RedactorListItems from './redactor/RedactorListItems';
 import ListTitle from './ListTitle';
 import PostAddIcon from '@material-ui/icons/PostAdd';
@@ -53,7 +53,7 @@ function Profile() {
           <List>
           { authUser.role === "ADMIN" ? 
           filteredAdmin.map((user) => (
-               <AdminAccountListItems key={user._id} user={user} /> )) :
+               <AdminListItems key={user._id} user={user} /> )) :
           posts.map((post) => (
               <RedactorListItems key={post._id} post={post} /> ))
            }

@@ -50,4 +50,4 @@ function RedactorListItems(props) {
   );
 }
 
-export default RedactorAccountListItems;
+export default RedactorListItems;
