@@ -28,12 +28,18 @@ export const fetchData = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: 'auth',
-  initialState: {
-    loading: false,
-    error: {
-      failed: false,
-      message: null,
+    name: "auth",
+    initialState: {
+        loading: false,
+        error: {
+            failed: false,
+            message: null
+        },
+        token: null,
+        username: null,
+        role: null,
+        name: null,
+        surname: null,
     },
     token: null,
     username: null,
@@ -59,7 +65,7 @@ const authSlice = createSlice({
       state.error.message = action.payload;
       state.error.failed = true;
     },
-  },
+  }
 });
 
 export default authSlice.reducer;

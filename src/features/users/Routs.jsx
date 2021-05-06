@@ -1,20 +1,19 @@
 import React from 'react';
-import { useMainStyles } from './Styles';
-import Posts from '../post/Posts';
-import Redactors from './Redactors';
-import Drafts from '../post/Drafts';
-import Blog from '../post/Blog';
-import Profile from './Profile';
-import SignUp from './signUp';
 import { Route } from 'react-router';
+import { useMainStyles } from './styles';
+import SignUp from './admin/SignUp';
+import Redactors from './redactor/Redactors';
+import Posts from '../content/posts';
+import Drafts from '../content/drafts';
+import Blog from '../content';
 
-function Main() {
+function Routs(props) {
   const classes = useMainStyles();
 
   return (
     <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-      <Route exact path="/agency" component={Profile} />
+      <Route exact path="/agency" component={} />
       <Route path="/agency/redactors" component={Redactors} />
       <Route path="/agency/posts" component={Posts} />
       <Route path="/agency/drafts" component={Drafts} />
@@ -24,4 +23,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Routs;

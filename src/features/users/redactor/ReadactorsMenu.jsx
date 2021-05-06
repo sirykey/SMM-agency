@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from '@material-ui/core/Menu';
 import Badge from '@material-ui/core/Badge';
 import { AccountCircle } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 import { IconButton, MenuItem } from '@material-ui/core';
 
-function ProfileMenu() {
+function RedactorsMenu() {
   const history = useHistory();
 
-  const [openMenu, setOpenMenu] = React.useState(null);
+  const [openMenu, setOpenMenu] = useState(null);
   const handleClick = (e) => {
     setOpenMenu(e.currentTarget);
   };
@@ -38,16 +38,10 @@ function ProfileMenu() {
         <MenuItem onClick={handleClose} onClick={() => history.push('/agency')}>
           My Account
         </MenuItem>
-        <MenuItem
-          onClick={handleClose}
-          onClick={() => history.push('/agency/signup')}
-        >
-          Sign Up
-        </MenuItem>
         <MenuItem onClick={handleClose}>Log out</MenuItem>
       </Menu>
     </>
   );
 }
 
-export default ProfileMenu;
+export default RedactorsMenu;

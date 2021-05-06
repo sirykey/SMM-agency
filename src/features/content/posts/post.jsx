@@ -8,6 +8,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
@@ -21,13 +22,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Draft(props) {
+function Post({ post }) {
   const classes = useStyles();
-  const { post } = props;
+  const history = useHistory();
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea
+        component="a"
+        onClick={() => history.push('/agency/blog')}
+      >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
@@ -35,10 +39,10 @@ export default function Draft(props) {
                 {post.title}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {post.date}
+                {"22.01.2021"}
               </Typography>
               <Typography variant="subtitle1" paragraph>
-                {post.description}
+                {post.text}
               </Typography>
               <Typography variant="subtitle1" color="primary">
                 Continue reading...
@@ -48,8 +52,8 @@ export default function Draft(props) {
           <Hidden xsDown>
             <CardMedia
               className={classes.cardMedia}
-              image={post.image}
-              title={post.imageTitle}
+              image={post.image !== undefined ? post.image : ''}
+              title={post.title}
             />
           </Hidden>
         </Card>
@@ -58,6 +62,8 @@ export default function Draft(props) {
   );
 }
 
-Draft.propTypes = {
+Post.propTypes = {
   post: PropTypes.object,
 };
+
+export default Post;

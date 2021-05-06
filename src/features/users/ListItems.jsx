@@ -1,15 +1,12 @@
 import React from 'react';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import { useHistory } from 'react-router-dom';
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People';
 import EmailIcon from '@material-ui/icons/Email';
 import DraftsIcon from '@material-ui/icons/Drafts';
-import { useHistory } from 'react-router-dom';
 
-export default function AdminListItems() {
+function ListItems(props) {
   const history = useHistory();
-
   return (
     <div>
       <ListItem button onClick={() => history.push('/agency/redactors')}>
@@ -33,3 +30,5 @@ export default function AdminListItems() {
     </div>
   );
 }
+
+export default ListItems;
