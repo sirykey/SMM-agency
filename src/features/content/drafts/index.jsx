@@ -17,13 +17,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Drafts() {
   const classes = useStyles();
-  const posts = useSelector(state => state.headersSlice.items)
-
+  const posts = useSelector((state) => state.headersSlice.items);
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
       <Grid container spacing={4}>
-        {posts.map(post => (
+        {posts.map((post) => (
           <Draft key={post._id} post={post} />
         ))}
       </Grid>

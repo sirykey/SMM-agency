@@ -18,15 +18,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Posts() {
   const classes = useStyles();
-  const posts = useSelector(state => state.headersSlice.items)
+  const posts = useSelector((state) => state.headersSlice.items);
   const dispatch = useDispatch;
 
-  useEffect(dispatch(fetchHeaders()))
+  useEffect(dispatch(fetchHeaders()));
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
       <Grid container spacing={4}>
-        {posts.map(post => (
+        {posts.map((post) => (
           <Post key={post._id} post={post} />
         ))}
       </Grid>
