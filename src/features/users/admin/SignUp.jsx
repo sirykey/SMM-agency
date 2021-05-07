@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { fetchRegistration } from '../adminPage/adminSlice';
+import { fetchRegistration } from '../usersSlice';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -57,16 +57,9 @@ function SignUp() {
     setWorkerEmail(e.target.value);
   };
 
-  const handleButtonClick = (e) => {
-    e.preventDefault();
+  const handleButtonClick = () => {
     dispatch(
-      fetchRegistration({
-        username: login,
-        name: firstname,
-        surname: surname,
-        mail: workerEmail,
-        password: workerPass,
-      }),
+      fetchRegistration(firstname, surname, login, workerPass, workerEmail),
     );
   };
 
