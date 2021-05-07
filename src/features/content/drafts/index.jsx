@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -21,9 +21,8 @@ function Drafts() {
   const posts = useSelector((state) => state.contentSlice.items);
   const dispatch = useDispatch;
 
-  useEffect(() => {
-    dispatch(fetchHeaders());
-  }, []);
+  dispatch(fetchHeaders())
+
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
       <Grid container spacing={4}>
