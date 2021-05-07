@@ -39,7 +39,7 @@ function Post({ post }) {
                 {post.title}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {"22.01.2021"}
+                {'22.01.2021'}
               </Typography>
               <Typography variant="subtitle1" paragraph>
                 {post.text}

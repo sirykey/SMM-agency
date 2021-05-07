@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { useProfileStyles } from '../Styles';
+import { useProfileStyles } from '../styles';
 
 function RedactorListItems(props) {
   const classes = useProfileStyles();
@@ -27,7 +27,10 @@ function RedactorListItems(props) {
             <EmailIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={props.post.title} secondary={`${props.post.author.name} ${props.post.author.surname}`} />
+        <ListItemText
+          primary={props.post.title}
+          secondary={`${props.post.author.name} ${props.post.author.surname}`}
+        />
         <ListItemSecondaryAction>
           <IconButton
             className={classes.btn}

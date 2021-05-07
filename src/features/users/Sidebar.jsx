@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMainStyles } from './styles';
-import { Drawer, List, ListItem, Toolbar } from '@material-ui/core';
+import { Drawer, List, Toolbar } from '@material-ui/core';
 import ListItems from './ListItems';
 
 function Sidebar(props) {
