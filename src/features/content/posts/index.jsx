@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Post from './post';
 import { fetchHeaders } from '../contentSlice';
 
+
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     marginTop: theme.spacing(3),
@@ -18,10 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Posts() {
   const classes = useStyles();
-  const posts = useSelector((state) => state.headersSlice.items);
+  const posts = useSelector((state) => state.contentSlice.items);
   const dispatch = useDispatch;
 
-  useEffect(dispatch(fetchHeaders()));
+  useEffect(() => {
+    dispatch(fetchHeaders());
+  }, []);
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
