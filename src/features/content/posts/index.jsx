@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import Post from './post';
+import Post from './Post';
 import { fetchHeaders } from '../contentSlice';
-
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
