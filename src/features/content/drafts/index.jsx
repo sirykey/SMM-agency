@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Draft from './draft';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHeaders } from '../contentSlice';
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -17,8 +18,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Drafts() {
   const classes = useStyles();
-  const posts = useSelector((state) => state.headersSlice.items);
+  const posts = useSelector((state) => state.contentSlice.items);
+  const dispatch = useDispatch;
 
+  useEffect(() => {
+    dispatch(fetchHeaders());
+  }, []);
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
       <Grid container spacing={4}>
