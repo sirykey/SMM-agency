@@ -17,7 +17,7 @@ function Profile() {
   const posts = useSelector((state) => state.contentSlice.items);
   const users = useSelector((state) => state.usersSlice.users);
   const filteredAdmin = users.filter((user) => user._id !== authUser.id);
-  const filteredPosts = users.filter((post) => post.author._id === authUser.id);
+  const filteredPosts = posts.filter((post) => post.author._id === authUser.id);
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
