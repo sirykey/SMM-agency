@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { Avatar } from '@material-ui/core';
-import { useProfileStyles } from '../Styles';
+import { useProfileStyles } from '../styles';
 
 function AdminListItems(props) {
   const classes = useProfileStyles();
@@ -19,7 +19,10 @@ function AdminListItems(props) {
         <ListItemAvatar>
           <Avatar></Avatar>
         </ListItemAvatar>
-        <ListItemText primary={`${props.user.name} ${props.user.surname}`} secondary="редактор" />
+        <ListItemText
+          primary={`${props.user.name} ${props.user.surname}`}
+          secondary="редактор"
+        />
         <ListItemSecondaryAction>
           <IconButton className={classes.btn} edge="end" aria-label="changed">
             <BorderColorIcon />

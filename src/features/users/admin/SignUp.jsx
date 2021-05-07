@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { fetchRegistration } from './userSlice';
+import { fetchRegistration } from '../usersSlice';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
