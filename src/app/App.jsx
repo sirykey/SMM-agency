@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
 import { api } from './api';
-import AdminMenu from '../features/users/admin/AdminMenu';
 import MainPage from '../features/users';
 
 function App() {
