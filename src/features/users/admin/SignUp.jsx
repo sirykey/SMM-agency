@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Container,
@@ -10,29 +9,10 @@ import {
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { fetchRegistration } from '../usersSlice';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+import { useSignUpStyles } from '../styles';
 
 function SignUp() {
-  const classes = useStyles();
+  const classes = useSignUpStyles();
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState('');
