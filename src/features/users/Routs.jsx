@@ -7,6 +7,7 @@ import Posts from '../content/posts';
 import Drafts from '../content/drafts';
 import Blog from '../content';
 import Profile from './Profile';
+import AddPost from '../content/AddPost';
 
 function Routs(props) {
   const classes = useMainStyles();
