@@ -1,23 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useDraftsStyles } from '../../users/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Draft from './Draft';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHeaders } from '../contentSlice';
 
-const useStyles = makeStyles((theme) => ({
-  mainGrid: {
-    marginTop: theme.spacing(3),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-}));
+
 
 function Drafts() {
-  const classes = useStyles();
+  const classes = useDraftsStyles();
   const posts = useSelector((state) => state.contentSlice.items);
   const dispatch = useDispatch;
 
