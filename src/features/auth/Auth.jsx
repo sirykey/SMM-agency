@@ -12,29 +12,10 @@ import {
 import { LockOutlined } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from './authSlice';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+import { useAuthStyles } from '../users/styles';
 
 function Authorisation() {
-  const classes = useStyles();
+  const classes = useAuthStyles();
   const dispatch = useDispatch();
   const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
