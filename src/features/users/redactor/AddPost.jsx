@@ -8,18 +8,16 @@ function AddPost() {
   return (
     <div>
       <ListItem>
-              <ListItemAvatar>
-              <Fab size="small" color="primary" aria-label="add">
-                <AddIcon />
-              </Fab>
-              </ListItemAvatar>
-              <ListItemText
-               primary="Добавить новый пост"
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
+        <ListItemAvatar>
+          <Fab size="small" color="primary" aria-label="add">
+            <AddIcon />
+          </Fab>
+        </ListItemAvatar>
+        <ListItemText primary="Добавить новый пост" />
+      </ListItem>
+      <Divider variant="inset" component="li" />
     </div>
-  )
+  );
 }
 
 export default AddPost;

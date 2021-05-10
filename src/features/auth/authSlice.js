@@ -59,7 +59,7 @@ const authSlice = createSlice({
       state.role = action.payload.user.role;
       state.mail = action.payload.user.mail;
       state.surname = action.payload.user.surname;
-      state.id = action.payload.user._id;
+      state.id = action.payload.user.id;
       state.name = action.payload.user.name;
     },
 

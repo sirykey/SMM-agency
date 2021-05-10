@@ -1,6 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import changedDraft from '../../content/contentSlice'; 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -8,19 +6,16 @@ import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import EditIcon from '@material-ui/icons/Edit';
 import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
 import SearchIcon from '@material-ui/icons/Search';
-import ProfileDialog from '../ProfileDialog';
+import ProfileDialog from './ProfileDialog';
 
-import { useProfileStyles } from '../styles';
+import { useProfileStyles } from './styles';
 
-function RedactorListItems(props) {
+function DraftListItems(props) {
   const classes = useProfileStyles();
-
-  // const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -34,12 +29,8 @@ function RedactorListItems(props) {
     setOpen(false);
   };
 
-  // const handleChange =(id, draft) => {
-  //   dispatch(changedDraft(id, draft));
-  // };
-
-    return (
-      <>
+  return (
+    <>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
@@ -47,8 +38,8 @@ function RedactorListItems(props) {
             </Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={props.post.title}
-            secondary={`${props.post.author.name} ${props.post.author.surname}`}
+            primary={props.draft.title}
+            secondary={`${props.draft.author.name} ${props.draft.author.surname}`}
           />
           <ListItemSecondaryAction>
             <IconButton
@@ -61,14 +52,6 @@ function RedactorListItems(props) {
               <SearchIcon />
             </IconButton>
             <IconButton
-              className={classes.btn}
-              color="primary"
-              edge="end"
-              aria-label="changed"
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton
               edge="end"
               aria-label="delete"
               color="secondary"
@@ -79,15 +62,9 @@ function RedactorListItems(props) {
           </ListItemSecondaryAction>
         </ListItem>
         <Divider variant="inset" component="li" />
-        <ProfileDialog 
-          open={open} 
-          handleClose={handleClose} 
-          handleChange={props.handleChange} 
-          id={props.post._id} 
-          draft={props.post.draft} 
-        />
+        <ProfileDialog open={open} handleClose={handleClose} />
       </>
-    )
+  )
 }
 
-export default RedactorListItems;
+export default DraftListItems;

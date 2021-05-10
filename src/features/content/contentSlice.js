@@ -37,6 +37,20 @@ export const addHeader = createAsyncThunk(
   },
 );
 
+export const changedDraft = createAsyncThunk(
+  'headers/changedDraft',
+  async ({_id, draft}, thunkApi) => {
+    try{
+      await api.patch(`/posts/${_id}`, {
+        draft: !draft,
+      });
+      return _id;
+    } catch (e) {
+      thunkApi.rejectWithValue(e.message);
+    }
+  }
+)
+
 const headerSlice = createSlice({
   name: 'headers',
   initialState: {
@@ -101,6 +115,34 @@ const headerSlice = createSlice({
       state.error.message = action.payload;
       state.error.failed = true;
     },
+
+    [changedDraft.pending]: (state, action) => {
+      const postID = state.items.findIndex((item) => {
+        return action.meta.arg === item._id;
+      });
+
+      state.items[postID].changed = true;
+    },
+
+    [changedDraft.fulfilled]: (state, action) => {
+      const postID = state.items.findIndex((item) => {
+        return action.payload === item._id;
+      });
+
+      state.items[postID].changed = false;
+      state.items[postID].draft = !state.items[postID].draft;
+    },
+
+    [changedDraft.rejected]: (state, action) => {
+      const postID = state.items.findIndex((item) => {
+        return action.payload === item._id;
+      });
+
+      // state.items[postID].changed = false;
+      state.error.message = action.payload;
+      state.error.failed = true;
+    }
+
   },
 });
 
