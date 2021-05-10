@@ -98,6 +98,13 @@ export const useProfileStyles = makeStyles((theme) => ({
   btn: {
     marginRight: theme.spacing(1),
   },
+  list: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
+    maxHeight: 300,
+  },
 }));
 
 export const useRedactorsStyles = makeStyles((theme) => ({
