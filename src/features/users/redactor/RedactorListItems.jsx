@@ -1,6 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import changedDraft from '../../content/contentSlice'; 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -13,14 +11,12 @@ import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
 import SearchIcon from '@material-ui/icons/Search';
-import ProfileDialog from '../ProfileDialog';
+import ProfileDialog from '../ChangePostDialog';
 
 import { useProfileStyles } from '../styles';
 
 function RedactorListItems(props) {
   const classes = useProfileStyles();
-
-  // const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -34,60 +30,55 @@ function RedactorListItems(props) {
     setOpen(false);
   };
 
-  // const handleChange =(id, draft) => {
-  //   dispatch(changedDraft(id, draft));
-  // };
-
-    return (
-      <>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <EmailIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={props.post.title}
-            secondary={`${props.post.author.name} ${props.post.author.surname}`}
-          />
-          <ListItemSecondaryAction>
-            <IconButton
-              className={classes.btn}
-              color="primary"
-              edge="end"
-              aria-label="search"
-              onClick={() => history.push('/agency/blog')}
-            >
-              <SearchIcon />
-            </IconButton>
-            <IconButton
-              className={classes.btn}
-              color="primary"
-              edge="end"
-              aria-label="changed"
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="delete"
-              color="secondary"
-              onClick={handleClickOpen}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
-        <Divider variant="inset" component="li" />
-        <ProfileDialog 
-          open={open} 
-          handleClose={handleClose} 
-          handleChange={props.handleChange} 
-          id={props.post._id} 
-          draft={props.post.draft} 
+  return (
+    <>
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <EmailIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={props.post.title}
+          secondary={`${props.post.author.name} ${props.post.author.surname}`}
         />
-      </>
-    )
+        <ListItemSecondaryAction>
+          <IconButton
+            className={classes.btn}
+            color="primary"
+            edge="end"
+            aria-label="search"
+            onClick={() => history.push('/agency/blog')}
+          >
+            <SearchIcon />
+          </IconButton>
+          <IconButton
+            className={classes.btn}
+            color="primary"
+            edge="end"
+            aria-label="changed"
+          >
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            color="secondary"
+            onClick={handleClickOpen}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <ProfileDialog
+        open={open}
+        handleClose={handleClose}
+        handleChange={props.handleChange}
+        id={props.post._id}
+      />
+    </>
+  );
 }
 
 export default RedactorListItems;

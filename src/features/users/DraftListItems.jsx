@@ -10,7 +10,7 @@ import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
 import SearchIcon from '@material-ui/icons/Search';
-import ProfileDialog from './ProfileDialog';
+import DeleteDraft from './DeleteDraft';
 
 import { useProfileStyles } from './styles';
 
@@ -31,40 +31,45 @@ function DraftListItems(props) {
 
   return (
     <>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <EmailIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={props.draft.title}
-            secondary={`${props.draft.author.name} ${props.draft.author.surname}`}
-          />
-          <ListItemSecondaryAction>
-            <IconButton
-              className={classes.btn}
-              color="primary"
-              edge="end"
-              aria-label="search"
-              onClick={() => history.push('/agency/blog')}
-            >
-              <SearchIcon />
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="delete"
-              color="secondary"
-              onClick={handleClickOpen}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
-        <Divider variant="inset" component="li" />
-        <ProfileDialog open={open} handleClose={handleClose} />
-      </>
-  )
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <EmailIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={props.draft.title}
+          secondary={`${props.draft.author.name} ${props.draft.author.surname}`}
+        />
+        <ListItemSecondaryAction>
+          <IconButton
+            className={classes.btn}
+            color="primary"
+            edge="end"
+            aria-label="search"
+            onClick={() => history.push('/agency/blog')}
+          >
+            <SearchIcon />
+          </IconButton>
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            color="secondary"
+            onClick={handleClickOpen}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <DeleteDraft
+        open={open}
+        handleClose={handleClose}
+        handleDelete={props.handleDelete}
+        id={props.draft._id}
+      />
+    </>
+  );
 }
 
 export default DraftListItems;

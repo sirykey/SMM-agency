@@ -6,7 +6,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
-function ProfileDialog(props) {
+function DeleteDraft(props) {
   return (
     <div>
       <Dialog
@@ -15,16 +15,14 @@ function ProfileDialog(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {'Переместить пост в черновики'}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{'Удалить черновик'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Вы уверенны
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => props.handleChange(props.id, props.draft)} onClose={props.handleClose} color="primary">
+          <Button onClick={() => props.handleDelete(props.id)} color="primary">
             Да
           </Button>
           <Button onClick={props.handleClose} color="secondary" autoFocus>
@@ -36,4 +34,4 @@ function ProfileDialog(props) {
   );
 }
 
-export default ProfileDialog;
+export default DeleteDraft;

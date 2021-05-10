@@ -13,18 +13,26 @@ function Profile() {
   const posts = useSelector((state) => state.contentSlice.items);
   const users = useSelector((state) => state.usersSlice.users);
   const filteredAdmin = users.filter((user) => user._id !== authUser.id);
-  const filteredPosts = posts.filter((post) => post.author._id === authUser.id && post.draft === false);
-  const filteredDrafts = posts.filter((post) => post.author._id === authUser.id && post.draft === true);
+  const filteredPosts = posts.filter(
+    (post) => post.author._id === authUser.id && post.draft === false,
+  );
+  const filteredDrafts = posts.filter(
+    (post) => post.author._id === authUser.id && post.draft === true,
+  );
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
       <UserInfo authUser={authUser} />
       <Grid item xs={12}>
-        <AccountList filteredAdmin={filteredAdmin} filteredPosts={filteredPosts} authUser={authUser} />
+        <AccountList
+          filteredAdmin={filteredAdmin}
+          filteredPosts={filteredPosts}
+          authUser={authUser}
+        />
         {filteredDrafts.length === 0 ? (
           ''
         ) : (
-           <DraftList filteredDrafts={filteredDrafts} />
+          <DraftList filteredDrafts={filteredDrafts} />
         )}
       </Grid>
     </Container>
