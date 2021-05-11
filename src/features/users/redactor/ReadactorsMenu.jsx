@@ -19,6 +19,7 @@ function RedactorsMenu() {
 
   const handleLogOut = () => {
     localStorage.clear();
+    window.location.reload();
   };
 
   return (
