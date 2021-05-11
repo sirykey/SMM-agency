@@ -13,10 +13,14 @@ function Posts() {
 
   dispatch(fetchHeaders())
 
+  const filteredPosts = posts.filter(post => {
+    return !post.draft
+  })
+
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
       <Grid container spacing={4}>
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <Post key={post._id} post={post} />
         ))}
       </Grid>
