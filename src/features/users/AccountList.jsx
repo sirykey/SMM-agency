@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { changedDraft } from './profileSlice';
+import { changeDraft } from '../content/contentSlice';
 import Paper from '@material-ui/core/Paper';
 import { useProfileStyles } from './styles';
 import List from '@material-ui/core/List';
@@ -15,7 +15,7 @@ function AccountList(props) {
   const dispatch = useDispatch();
 
   const handleChange = (id) => {
-    dispatch(changedDraft(id));
+    dispatch(changeDraft(id));
   };
 
   return (

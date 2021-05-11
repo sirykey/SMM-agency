@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteDraft } from './profileSlice';
+import { deleteDraft } from '../content/contentSlice';
 import Paper from '@material-ui/core/Paper';
 import { useProfileStyles } from './styles';
 import List from '@material-ui/core/List';
