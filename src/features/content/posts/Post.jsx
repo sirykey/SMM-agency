@@ -18,7 +18,7 @@ function Post({ post }) {
     <Grid item xs={12} md={6}>
       <CardActionArea
         component="a"
-        onClick={() => history.push('/agency/blog')}
+        onClick={() => history.push(`/agency/${post.id}`)}
       >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
