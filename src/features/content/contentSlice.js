@@ -9,7 +9,21 @@ export const fetchHeaders = createAsyncThunk(
   },
 );
 
-export const deleteHeader = createAsyncThunk(
+export const changeDraft = createAsyncThunk(
+  'headers/changedDraft',
+  async (id, thunkApi) => {
+    try {
+      await api.patch(`/posts/${id}`, {
+        draft: true,
+      });
+      return id;
+    } catch (e) {
+      thunkApi.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const deleteDraft = createAsyncThunk(
   'headers/deleteHeader',
   async (deletingHeaderId, thunkAPI) => {
     try {
@@ -64,7 +78,34 @@ const headerSlice = createSlice({
       state.error.failed = true;
     },
 
-    [deleteHeader.pending]: (state, action) => {
+    [changeDraft.pending]: (state, action) => {
+      const postID = state.items.findIndex((item) => {
+        return action.meta.arg === item._id;
+      });
+
+      // state.items[postID].changed = true;
+    },
+
+    [changeDraft.fulfilled]: (state, action) => {
+      const postID = state.items.findIndex((item) => {
+        return action.payload === item._id;
+      });
+
+      // state.items[postID].changed = false;
+      state.items[postID].draft = true;
+    },
+
+    [changeDraft.rejected]: (state, action) => {
+      const postID = state.items.findIndex((item) => {
+        return action.payload === item._id;
+      });
+
+      // state.items[postID].changed = false;
+      state.error.message = action.payload;
+      state.error.failed = true;
+    },
+
+    [deleteDraft.pending]: (state, action) => {
       const headerId = state.items.findIndex((item) => {
         return action.meta.arg === item._id;
       });
@@ -72,14 +113,14 @@ const headerSlice = createSlice({
       state.items[headerId].deleting = true;
     },
 
-    [deleteHeader.fulfilled]: (state, action) => {
+    [deleteDraft.fulfilled]: (state, action) => {
       state.loading = false;
       state.items = state.items.filter((item) => {
         return item._id !== action.meta.arg;
       });
     },
 
-    [deleteHeader.rejected]: (state, action) => {
+    [deleteDraft.rejected]: (state, action) => {
       state.error.message = action.payload;
       state.error.failed = true;
     },
@@ -92,7 +133,7 @@ const headerSlice = createSlice({
       state.items.push({
         text: action.meta.arg.text,
         title: action.meta.arg.title,
-      }); //Если поменять на action.payload - тоже не работает
+      });
       state.loading = false;
     },
 

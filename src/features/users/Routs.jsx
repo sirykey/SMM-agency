@@ -7,6 +7,7 @@ import Posts from '../content/posts';
 import Drafts from '../content/drafts';
 import Blog from '../content';
 import Profile from './Profile';
+import AddPost from '../content/AddPost';
 
 function Routs(props) {
   const classes = useMainStyles();
@@ -20,6 +21,7 @@ function Routs(props) {
       <Route path="/agency/drafts" component={Drafts} />
       <Route path="/agency/signup" component={SignUp} />
       <Route path="/agency/blog" component={Blog} />
+      <Route path="/agency/addPost" component={AddPost} />
     </main>
   );
 }

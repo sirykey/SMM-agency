@@ -17,6 +17,11 @@ function RedactorsMenu() {
     setOpenMenu(null);
   };
 
+  const handleLogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <>
       <IconButton
@@ -38,7 +43,7 @@ function RedactorsMenu() {
         <MenuItem onClick={handleClose} onClick={() => history.push('/agency')}>
           My Account
         </MenuItem>
-        <MenuItem onClick={handleClose}>Log out</MenuItem>
+        <MenuItem onClick={handleLogOut}>Log out</MenuItem>
       </Menu>
     </>
   );

@@ -1,22 +1,11 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useBlogStyles } from '../users/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
-const useStyles = makeStyles((theme) => ({
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  title: {
-    width: '100%',
-    paddingBottom: theme.spacing(3),
-  },
-}));
-
 function Blog() {
-  const classes = useStyles();
+  const classes = useBlogStyles();
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>

@@ -17,6 +17,11 @@ function AdminMenu() {
     setOpenMenu(null);
   };
 
+  const handleLogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <>
       <IconButton
@@ -44,7 +49,7 @@ function AdminMenu() {
         >
           Sign Up
         </MenuItem>
-        <MenuItem onClick={handleClose}>Log out</MenuItem>
+        <MenuItem onClick={handleLogOut}>Log out</MenuItem>
       </Menu>
     </>
   );
