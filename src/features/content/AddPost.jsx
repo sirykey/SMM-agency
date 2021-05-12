@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import { useAddPostStyles } from '../users/styles';
 import { useDispatch } from 'react-redux';
-import { addHeader } from './contentSlice';
+import { addHeader } from './content/contentSlice';
 
 function AddPost() {
   const classes = useAddPostStyles();
