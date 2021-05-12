@@ -227,3 +227,9 @@ export const useSignUpStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
+export const useAddPostStyles = makeStyles((theme) => ({
+  form: {
+    margin: theme.spacing(1, 0),
+  },
+}));
