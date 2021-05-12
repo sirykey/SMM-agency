@@ -7,7 +7,7 @@ import List from '@material-ui/core/List';
 import AdminListItems from './admin/AdminListItems';
 import RedactorListItems from './redactor/RedactorListItems';
 import ListTitle from './ListTitle';
-import AddPost from './redactor/AddPost';
+import AddPost from '../content/AddPost';
 
 function AccountList(props) {
   const classes = useProfileStyles();

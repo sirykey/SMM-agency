@@ -12,9 +12,9 @@ import {
   Button,
   Dialog,
 } from '@material-ui/core';
-import { useAddPostStyles } from '../styles';
+import { useAddPostStyles } from '../users/styles';
 import { useDispatch } from 'react-redux';
-import { addHeader } from '../../content/contentSlice';
+import { addHeader } from './contentSlice';
 
 function AddPost() {
   const classes = useAddPostStyles();
