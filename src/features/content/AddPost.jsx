@@ -12,8 +12,8 @@ import {
   Button,
   Dialog,
 } from '@material-ui/core';
-import { useAddPostStyles } from '../users/styles';
 import { useDispatch } from 'react-redux';
+import { useAddPostStyles } from '../users/styles';
 import { addHeader } from './contentSlice';
 
 function AddPost() {
@@ -37,7 +37,6 @@ function AddPost() {
     setTextValue(e.target.value);
   };
   const handleAddClick = () => {
-    window.location.reload();
     dispatch(
       addHeader({
         title: titleValue,
