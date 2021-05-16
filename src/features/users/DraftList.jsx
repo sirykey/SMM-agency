@@ -9,20 +9,15 @@ import ListTitle from './ListTitle';
 
 function DraftList(props) {
   const classes = useProfileStyles();
-
-  const dispatch = useDispatch();
-
-  const handleDelete = (id) => {
-    dispatch(deleteDraft(id));
-  };
-
+  
   return (
     <Paper className={classes.paper}>
       <ListTitle>Список черновиков</ListTitle>
       <List className={classes.list}>
         {props.filteredDrafts.map((draft) => (
           <DraftListItems
-            handleDelete={handleDelete}
+            handleChange={props.handleChange}
+            handleDelete={props.handleDelete}
             key={draft._id}
             draft={draft}
           />

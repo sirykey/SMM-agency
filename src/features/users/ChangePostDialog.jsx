@@ -16,7 +16,7 @@ function ProfileDialog(props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {'Переместить пост в черновики'}
+          {'Добавить черновик в пост'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

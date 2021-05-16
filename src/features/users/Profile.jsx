@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteDraft, changeDraft } from '../content/contentSlice';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { useProfileStyles } from './styles';
@@ -9,9 +10,13 @@ import DraftList from './DraftList';
 
 function Profile() {
   const classes = useProfileStyles();
+
+  const dispatch = useDispatch();
+
   const authUser = useSelector((state) => state.authSlice);
   const posts = useSelector((state) => state.contentSlice.items);
   const users = useSelector((state) => state.usersSlice.users);
+
   const filteredAdmin = users.filter((user) => user._id !== authUser.id);
   const filteredPosts = posts.filter(
     (post) => post.author._id === authUser.id && post.draft === false,
@@ -19,6 +24,14 @@ function Profile() {
   const filteredDrafts = posts.filter(
     (post) => post.author._id === authUser.id && post.draft === true,
   );
+
+  const handleDelete = (id) => {
+    dispatch(deleteDraft(id));
+  };
+
+  const handleChange = (id) => {
+    dispatch(changeDraft(id));
+  };
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
@@ -28,11 +41,16 @@ function Profile() {
           filteredAdmin={filteredAdmin}
           filteredPosts={filteredPosts}
           authUser={authUser}
+          handleDelete={handleDelete}
         />
         {filteredDrafts.length === 0 ? (
           ''
         ) : (
-          <DraftList filteredDrafts={filteredDrafts} />
+          <DraftList 
+            filteredDrafts={filteredDrafts}
+            handleDelete={handleDelete}
+            handleChange={handleChange}  
+          />
         )}
       </Grid>
     </Container>

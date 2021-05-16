@@ -12,12 +12,6 @@ import AddPost from '../content/AddPost';
 function AccountList(props) {
   const classes = useProfileStyles();
 
-  const dispatch = useDispatch();
-
-  const handleChange = (id) => {
-    dispatch(changeDraft(id));
-  };
-
   return (
     <Paper className={classes.paper}>
       <ListTitle>
@@ -32,7 +26,7 @@ function AccountList(props) {
             ))
           : props.filteredPosts.map((post) => (
               <RedactorListItems
-                handleChange={handleChange}
+                handleDelete={props.handleDelete}
                 key={post._id}
                 post={post}
               />
