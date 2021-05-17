@@ -8,13 +8,18 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
+import { useHistory } from 'react-router';
 
 function Draft({ post }) {
   const classes = useDraftsStyles();
+  const history = useHistory();
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea
+        component="a"
+        onClick={() => history.push(`/agency/blog/${post._id}`)}
+      >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>

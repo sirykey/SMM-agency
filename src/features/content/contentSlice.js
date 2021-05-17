@@ -51,6 +51,22 @@ export const addHeader = createAsyncThunk(
   },
 );
 
+export const editHeader = createAsyncThunk(
+  'header/editHeader',
+  async ({ title, text, id }, { rejectWithValue }) => {
+    try {
+      const response = await api.patch(`/posts${id}`, {
+        title: title,
+        text: text,
+      });
+
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  },
+);
+
 const headerSlice = createSlice({
   name: 'headers',
   initialState: {
@@ -142,6 +158,24 @@ const headerSlice = createSlice({
       state.error.message = action.payload;
       state.error.failed = true;
     },
+
+    [editHeader.pending]: (state) => {
+      state.loading = true;
+    },
+
+    [editHeader.fulfilled]: (state, action) => {
+      const checkId = state.items.findIndex((item) => {
+        return item.id === action.payload;
+      });
+      state.items[checkId].title = action.meta.arg.title;
+      state.items[checkId].text = action.meta.arg.text;
+    },
+
+    [editHeader.rejected]: (state, action) => {
+      state.items = action.payload;
+      state.loading = false;
+    },
+
   },
 });
 
