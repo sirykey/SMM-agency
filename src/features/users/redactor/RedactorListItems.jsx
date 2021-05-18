@@ -48,7 +48,7 @@ function RedactorListItems(props) {
             color="primary"
             edge="end"
             aria-label="search"
-            onClick={() => history.push('/agency/blog')}
+            onClick={() => history.push(`/agency/blog/${props.post._id}`)}
           >
             <SearchIcon />
           </IconButton>
