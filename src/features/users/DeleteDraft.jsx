@@ -15,7 +15,9 @@ function DeleteDraft(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Удалить черновик'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {props.draft ? "Удалить черновик" : "Удалить пост"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Вы уверенны
