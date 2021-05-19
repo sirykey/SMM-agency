@@ -9,7 +9,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import DraftsIcon from '@material-ui/icons/Drafts';
-import SearchIcon from '@material-ui/icons/Search';
 import EditIcon from '@material-ui/icons/Edit';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import DeleteDraft from './DeleteDraft';
@@ -41,7 +40,7 @@ function DraftListItems(props) {
 
   return (
     <>
-      <ListItem>
+      <ListItem button onClick={() => history.push(`/agency/blog/${props.draft._id}`)}>
         <ListItemAvatar>
           <Avatar>
             <DraftsIcon />
@@ -52,15 +51,6 @@ function DraftListItems(props) {
           secondary={`${props.draft.author.name} ${props.draft.author.surname}`}
         />
         <ListItemSecondaryAction>
-          <IconButton
-            className={classes.btn}
-            color="primary"
-            edge="end"
-            aria-label="search"
-            onClick={() => history.push('/agency/blog')}
-          >
-            <SearchIcon />
-          </IconButton>
           <IconButton
             className={classes.btn}
             color="primary"
