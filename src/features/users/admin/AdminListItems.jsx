@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
+import EditIcon from '@material-ui/icons/Edit';
 import { Avatar } from '@material-ui/core';
 import { useProfileStyles } from '../styles';
 import { useDispatch } from 'react-redux';
@@ -30,10 +30,10 @@ function AdminListItems(props) {
           secondary="редактор"
         />
         <ListItemSecondaryAction>
-          <IconButton className={classes.btn} edge="end" aria-label="changed">
-            <BorderColorIcon />
+          <IconButton className={classes.btn} edge="end" aria-label="changed" color="primary">
+            <EditIcon />
           </IconButton>
-          <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteRedactor(props.user._id)}>
+          <IconButton edge="end" aria-label="delete" color="secondary" onClick={() => handleDeleteRedactor(props.user._id)}>
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>
