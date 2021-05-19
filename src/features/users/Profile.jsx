@@ -13,7 +13,7 @@ function Profile() {
   const authUser = useSelector((state) => state.authSlice);
   const posts = useSelector((state) => state.contentSlice.items);
   const users = useSelector((state) => state.usersSlice.users);
-
+  const loading = useSelector(state => state.contentSlice.loading)
   const filteredAdmin = users.filter((user) => user._id !== authUser.id);
   const filteredPosts = posts.filter(
     (post) => post.author._id === authUser.id && post.draft === false,
@@ -21,6 +21,10 @@ function Profile() {
   const filteredDrafts = posts.filter(
     (post) => post.author._id === authUser.id && post.draft === true,
   );
+
+  if (loading) {
+    return 'wait'
+  }
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
