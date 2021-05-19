@@ -1,22 +1,13 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { changedDraft } from './profileSlice';
 import Paper from '@material-ui/core/Paper';
 import { useProfileStyles } from './styles';
 import List from '@material-ui/core/List';
 import AdminListItems from './admin/AdminListItems';
 import RedactorListItems from './redactor/RedactorListItems';
 import ListTitle from './ListTitle';
-import AddPost from './redactor/AddPost';
 
 function AccountList(props) {
   const classes = useProfileStyles();
-
-  const dispatch = useDispatch();
-
-  const handleChange = (id) => {
-    dispatch(changedDraft(id));
-  };
 
   return (
     <Paper className={classes.paper}>
@@ -32,13 +23,11 @@ function AccountList(props) {
             ))
           : props.filteredPosts.map((post) => (
               <RedactorListItems
-                handleChange={handleChange}
+                handleDelete={props.handleDelete}
                 key={post._id}
                 post={post}
               />
             ))}
-
-        {props.authUser.role === 'ADMIN' ? '' : <AddPost />}
       </List>
     </Paper>
   );

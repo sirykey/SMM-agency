@@ -20,7 +20,7 @@ function Routs(props) {
       <Route path="/agency/posts" component={Posts} />
       <Route path="/agency/drafts" component={Drafts} />
       <Route path="/agency/signup" component={SignUp} />
-      <Route path="/agency/blog" component={Blog} />
+      <Route path="/agency/blog/:id?" component={Blog} />
       <Route path="/agency/addPost" component={AddPost} />
     </main>
   );

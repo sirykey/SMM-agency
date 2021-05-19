@@ -1,20 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteDraft } from './profileSlice';
 import Paper from '@material-ui/core/Paper';
 import { useProfileStyles } from './styles';
 import List from '@material-ui/core/List';
 import DraftListItems from './DraftListItems';
 import ListTitle from './ListTitle';
+import AddPost from '../content/AddPost';
+import { useSelector } from 'react-redux';
 
 function DraftList(props) {
   const classes = useProfileStyles();
-
-  const dispatch = useDispatch();
-
-  const handleDelete = (id) => {
-    dispatch(deleteDraft(id));
-  };
+  const authUser = useSelector(state => state.authSlice)
 
   return (
     <Paper className={classes.paper}>
@@ -22,11 +17,11 @@ function DraftList(props) {
       <List className={classes.list}>
         {props.filteredDrafts.map((draft) => (
           <DraftListItems
-            handleDelete={handleDelete}
             key={draft._id}
             draft={draft}
           />
         ))}
+        {authUser.role === 'ADMIN' ? '' : <AddPost />}
       </List>
     </Paper>
   );

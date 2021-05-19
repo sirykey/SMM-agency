@@ -5,8 +5,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import { deleteDraft } from '../content/contentSlice';
+import { useDispatch } from 'react-redux';
 
 function DeleteDraft(props) {
+  const dispatch = useDispatch();
+  const handleDelete = (id) => {
+    dispatch(deleteDraft(id));
+  };
+
   return (
     <div>
       <Dialog
@@ -14,15 +21,18 @@ function DeleteDraft(props) {
         onClose={props.handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        maxWidth={'md'}
       >
-        <DialogTitle id="alert-dialog-title">{'Удалить черновик'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {props.draft ? "Удалить черновик" : "Удалить пост"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Вы уверенны
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => props.handleDelete(props.id)} color="primary">
+          <Button onClick={() => handleDelete(props.id)} color="primary">
             Да
           </Button>
           <Button onClick={props.handleClose} color="secondary" autoFocus>

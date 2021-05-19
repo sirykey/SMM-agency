@@ -14,7 +14,7 @@ export const changeDraft = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       await api.patch(`/posts/${id}`, {
-        draft: true,
+        draft: false,
       });
       return id;
     } catch (e) {
@@ -40,6 +40,22 @@ export const addHeader = createAsyncThunk(
   async ({ title, text }, { rejectWithValue }) => {
     try {
       const response = await api.post('/posts', {
+        title: title,
+        text: text,
+      });
+
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const editHeader = createAsyncThunk(
+  'header/editHeader',
+  async ({ title, text, id }, { rejectWithValue }) => {
+    try {
+      const response = await api.patch(`/posts${id}`, {
         title: title,
         text: text,
       });
@@ -92,7 +108,7 @@ const headerSlice = createSlice({
       });
 
       // state.items[postID].changed = false;
-      state.items[postID].draft = true;
+      state.items[postID].draft = false;
     },
 
     [changeDraft.rejected]: (state, action) => {
@@ -142,6 +158,24 @@ const headerSlice = createSlice({
       state.error.message = action.payload;
       state.error.failed = true;
     },
+
+    [editHeader.pending]: (state) => {
+      state.loading = true;
+    },
+
+    [editHeader.fulfilled]: (state, action) => {
+      const checkId = state.items.findIndex((item) => {
+        return item.id === action.payload;
+      });
+      state.items[checkId].title = action.meta.arg.title;
+      state.items[checkId].text = action.meta.arg.text;
+    },
+
+    [editHeader.rejected]: (state, action) => {
+      state.items = action.payload;
+      state.loading = false;
+    },
+
   },
 });
 

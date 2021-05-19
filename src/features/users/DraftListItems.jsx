@@ -8,33 +8,42 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import EmailIcon from '@material-ui/icons/Email';
-import SearchIcon from '@material-ui/icons/Search';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import EditIcon from '@material-ui/icons/Edit';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import DeleteDraft from './DeleteDraft';
-
+import ChangePostDialog from './ChangePostDialog';
 import { useProfileStyles } from './styles';
 
 function DraftListItems(props) {
   const classes = useProfileStyles();
 
   const history = useHistory();
+  const [openChange, setOpenChange] = React.useState(false);
+  const [openDelete, setOpenDelete] = React.useState(false);
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleChangeOpen = () => {
+    setOpenChange(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleChangeClose = () => {
+    setOpenChange(false);
+  };
+
+  const handleDeleteOpen = () => {
+    setOpenDelete(true);
+  };
+
+  const handleDeleteClose = () => {
+    setOpenDelete(false);
   };
 
   return (
     <>
-      <ListItem>
+      <ListItem button onClick={() => history.push(`/agency/blog/${props.draft._id}`)}>
         <ListItemAvatar>
           <Avatar>
-            <EmailIcon />
+            <DraftsIcon />
           </Avatar>
         </ListItemAvatar>
         <ListItemText
@@ -46,27 +55,41 @@ function DraftListItems(props) {
             className={classes.btn}
             color="primary"
             edge="end"
-            aria-label="search"
-            onClick={() => history.push('/agency/blog')}
+            aria-label="changed"
           >
-            <SearchIcon />
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            className={classes.btn}
+            color="primary"
+            edge="end"
+            aria-label="search"
+            onClick={handleChangeOpen}
+          >
+            <PostAddIcon />
           </IconButton>
           <IconButton
             edge="end"
             aria-label="delete"
             color="secondary"
-            onClick={handleClickOpen}
+            onClick={handleDeleteOpen}
           >
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
-      <DeleteDraft
-        open={open}
-        handleClose={handleClose}
-        handleDelete={props.handleDelete}
+      <ChangePostDialog
+        open={openChange}
+        handleClose={handleChangeClose}
+        handleChange={props.handleChange}
         id={props.draft._id}
+      />
+      <DeleteDraft
+        open={openDelete}
+        handleClose={handleDeleteClose}
+        id={props.draft._id}
+        draft={props.draft.draft}
       />
     </>
   );

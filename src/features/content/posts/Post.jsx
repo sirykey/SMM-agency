@@ -13,12 +13,11 @@ import { useHistory } from 'react-router-dom';
 function Post({ post }) {
   const classes = usePostsStyles();
   const history = useHistory();
-
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea
         component="a"
-        onClick={() => history.push('/agency/blog')}
+        onClick={() => history.push(`/agency/blog/${post._id}`)}
       >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
