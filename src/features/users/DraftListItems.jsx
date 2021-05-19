@@ -13,15 +13,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import EditIcon from '@material-ui/icons/Edit';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import DeleteDraft from './DeleteDraft';
-import ProfileDialog from './ChangePostDialog';
-
+import ChangePostDialog from './ChangePostDialog';
 import { useProfileStyles } from './styles';
 
 function DraftListItems(props) {
   const classes = useProfileStyles();
 
   const history = useHistory();
-
   const [openChange, setOpenChange] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
 
@@ -91,16 +89,15 @@ function DraftListItems(props) {
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
-      <ProfileDialog 
+      <ChangePostDialog
         open={openChange}
         handleClose={handleChangeClose}
-        handleDelete={props.handleChange}
+        handleChange={props.handleChange}
         id={props.draft._id}
       />
       <DeleteDraft
         open={openDelete}
         handleClose={handleDeleteClose}
-        handleDelete={props.handleDelete}
         id={props.draft._id}
         draft={props.draft.draft}
       />
