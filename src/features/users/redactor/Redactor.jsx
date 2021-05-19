@@ -32,7 +32,7 @@ function Redactor({ data }) {
           <Button
             size="small"
             color="primary"
-            onClick={() => history.push('/agency/posts')}
+            onClick={() => history.push(`/agency/posts/${data._id}`)}
           >
             View
           </Button>
