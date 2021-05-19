@@ -52,11 +52,11 @@ function AddPost() {
             <AddIcon onClick={handleOpen} />
           </Fab>
         </ListItemAvatar>
-        <ListItemText primary="Добавить новый пост" />
+        <ListItemText primary="Добавить новый черновик" />
       </ListItem>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Новый пост</DialogTitle>
+        <DialogTitle>Новый черновик</DialogTitle>
         <DialogContent>
           <TextField
             onChange={handleTitleChange}

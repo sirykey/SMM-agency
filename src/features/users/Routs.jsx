@@ -17,7 +17,7 @@ function Routs(props) {
       <div className={classes.appBarSpacer} />
       <Route exact path="/agency" component={Profile} />
       <Route path="/agency/redactors" component={Redactors} />
-      <Route path="/agency/posts" component={Posts} />
+      <Route path="/agency/posts/:id?" component={Posts} />
       <Route path="/agency/drafts" component={Drafts} />
       <Route path="/agency/signup" component={SignUp} />
       <Route path="/agency/blog/:id?" component={Blog} />
