@@ -14,7 +14,7 @@ export const changeDraft = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       await api.patch(`/posts/${id}`, {
-        draft: true,
+        draft: false,
       });
       return id;
     } catch (e) {
@@ -108,7 +108,7 @@ const headerSlice = createSlice({
       });
 
       // state.items[postID].changed = false;
-      state.items[postID].draft = true;
+      state.items[postID].draft = false;
     },
 
     [changeDraft.rejected]: (state, action) => {
