@@ -10,7 +10,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
-import SearchIcon from '@material-ui/icons/Search';
 import DeleteDraft from '../DeleteDraft';
 
 import { useProfileStyles } from '../styles';
@@ -32,7 +31,8 @@ function RedactorListItems(props) {
 
   return (
     <>
-      <ListItem>
+      <ListItem button onClick={() => history.push(`/agency/blog/${props.post._id}`)}
+      >
         <ListItemAvatar>
           <Avatar>
             <EmailIcon />
@@ -43,15 +43,6 @@ function RedactorListItems(props) {
           secondary={`${props.post.author.name} ${props.post.author.surname}`}
         />
         <ListItemSecondaryAction>
-          <IconButton
-            className={classes.btn}
-            color="primary"
-            edge="end"
-            aria-label="search"
-            onClick={() => history.push(`/agency/blog/${props.post._id}`)}
-          >
-            <SearchIcon />
-          </IconButton>
           <IconButton
             className={classes.btn}
             color="primary"
