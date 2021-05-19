@@ -9,9 +9,15 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { Avatar } from '@material-ui/core';
 import { useProfileStyles } from '../styles';
+import { useDispatch } from 'react-redux';
+import { deleteUsers } from '../usersSlice';
 
 function AdminListItems(props) {
   const classes = useProfileStyles();
+  const dispatch = useDispatch();
+  const handleDeleteRedactor = (id) => {
+    dispatch(deleteUsers(id))
+  }
 
   return (
     <div>
@@ -27,7 +33,7 @@ function AdminListItems(props) {
           <IconButton className={classes.btn} edge="end" aria-label="changed">
             <BorderColorIcon />
           </IconButton>
-          <IconButton edge="end" aria-label="delete">
+          <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteRedactor(props.user._id)}>
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>
