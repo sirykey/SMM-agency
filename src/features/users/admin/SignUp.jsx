@@ -8,8 +8,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { fetchRegistration } from '../usersSlice';
 import { useSignUpStyles } from '../styles';
+import { fetchRegistration } from '../usersSlice';
 
 function SignUp() {
   const classes = useSignUpStyles();
@@ -37,9 +37,16 @@ function SignUp() {
     setWorkerEmail(e.target.value);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
+    e.preventDefault();
     dispatch(
-      fetchRegistration(firstname, surname, login, workerPass, workerEmail),
+      fetchRegistration({
+        username: login,
+        name: firstname,
+        surname: surname,
+        mail: workerEmail,
+        password: workerPass,
+      }),
     );
   };
 
