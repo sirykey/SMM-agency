@@ -35,7 +35,7 @@ function Profile() {
           filteredPosts={filteredPosts}
           authUser={authUser}
         />
-        {filteredDrafts.length === 0 ? (
+        {authUser.role === 'ADMIN' ? (
           ''
         ) : (
           <DraftList 
