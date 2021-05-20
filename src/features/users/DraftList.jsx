@@ -13,7 +13,7 @@ function DraftList(props) {
 
   return (
     <Paper className={classes.paper}>
-      <ListTitle>Список черновиков</ListTitle>
+      <ListTitle>Список черновиков:</ListTitle>
       <List className={classes.list}>
         {props.filteredDrafts.map((draft) => (
           <DraftListItems
