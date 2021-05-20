@@ -6,15 +6,16 @@ import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
+import EditIcon from '@material-ui/icons/Edit';
 import { Avatar } from '@material-ui/core';
 import { useProfileStyles } from '../styles';
 import DeleteUser from '../DeleteUser';
+import { useHistory } from 'react-router';
 
 function AdminListItems(props) {
   const classes = useProfileStyles();
   const [open, setOpen] = useState(false);
-
+  const history = useHistory();
   const handleDeleteAlertOpen = () => {
     setOpen(true);
   };
@@ -24,19 +25,26 @@ function AdminListItems(props) {
 
   return (
     <div>
-      <ListItem>
+      <ListItem button>
         <ListItemAvatar>
           <Avatar></Avatar>
         </ListItemAvatar>
         <ListItemText
           primary={`${props.user.name} ${props.user.surname}`}
           secondary="редактор"
+          onClick={() => history.push(`/agency/posts/${props.user._id}`)}
         />
         <ListItemSecondaryAction>
-          <IconButton className={classes.btn} edge="end" aria-label="changed">
-            <BorderColorIcon />
+          <IconButton
+            color="primary"
+            className={classes.btn}
+            edge="end"
+            aria-label="changed"
+          >
+            <EditIcon />
           </IconButton>
           <IconButton
+            color="secondary"
             edge="end"
             aria-label="delete"
             onClick={handleDeleteAlertOpen}

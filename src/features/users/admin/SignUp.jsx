@@ -7,13 +7,14 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSignUpStyles } from '../styles';
 import { fetchRegistration } from '../usersSlice';
 
 function SignUp() {
   const classes = useSignUpStyles();
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.authSlice.loading);
 
   const [login, setLogin] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -128,6 +129,7 @@ function SignUp() {
             </Grid>
           </Grid>
           <Button
+            disabled={loading}
             type="submit"
             fullWidth
             variant="contained"
