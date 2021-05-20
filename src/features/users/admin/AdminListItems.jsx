@@ -9,8 +9,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { Avatar } from '@material-ui/core';
 import { useProfileStyles } from '../styles';
-import { useDispatch } from 'react-redux';
-import { deleteUsers } from '../usersSlice';
 import DeleteUser from '../DeleteUser';
 
 function AdminListItems(props) {
@@ -31,7 +29,7 @@ function AdminListItems(props) {
           <Avatar></Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary={${props.user.name} ${props.user.surname}}
+          primary={`${props.user.name} ${props.user.surname}`}
           secondary="редактор"
         />
         <ListItemSecondaryAction>
