@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { api } from '../../app/api';
-import { deleteHeader } from '../content/contentSlice';
 
 export const fetchRegistration = createAsyncThunk(
   'addWorkers/fetchRegistration',
@@ -61,7 +60,7 @@ const registrationSlice = createSlice({
       state.users.push({
         name: action.meta.arg.name,
         surname: action.meta.arg.surname,
-        email: action.meta.arg.email,
+        mail: action.meta.arg.mail,
         password: action.meta.arg.password,
         username: action.meta.arg.username,
       });
