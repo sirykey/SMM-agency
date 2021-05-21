@@ -63,12 +63,9 @@ export const editHeader = createAsyncThunk(
   'header/editHeader',
   async ({ title, text, id }, { rejectWithValue }) => {
     try {
-      const response = await api.patch(`/posts${id}`, {
-        title: title,
-        text: text,
-      });
+      await api.patch(`/posts/${id}`, { title, text, id });
 
-      return response.data;
+      return id;
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -81,6 +78,7 @@ const headerSlice = createSlice({
     items: [],
     comments: [],
     loading: false,
+    adding: false,
     error: {
       failed: false,
       message: null,
@@ -166,7 +164,7 @@ const headerSlice = createSlice({
     },
 
     [addHeader.pending]: (state) => {
-      state.loading = true;
+      state.adding = true;
     },
 
     [addHeader.fulfilled]: (state, action) => {
@@ -174,7 +172,7 @@ const headerSlice = createSlice({
         text: action.meta.arg.text,
         title: action.meta.arg.title,
       });
-      state.loading = false;
+      state.adding = false;
     },
 
     [addHeader.rejected]: (state, action) => {
@@ -189,7 +187,7 @@ const headerSlice = createSlice({
 
     [editHeader.fulfilled]: (state, action) => {
       const checkId = state.items.findIndex((item) => {
-        return item.id === action.payload;
+        return item._id === action.payload;
       });
       state.items[checkId].title = action.meta.arg.title;
       state.items[checkId].text = action.meta.arg.text;
@@ -197,7 +195,7 @@ const headerSlice = createSlice({
 
     [editHeader.rejected]: (state, action) => {
       state.items = action.payload;
-      state.loading = false;
+      state.adding = false;
     },
 
   },
