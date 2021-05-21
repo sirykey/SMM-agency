@@ -191,6 +191,7 @@ const headerSlice = createSlice({
       });
       state.items[checkId].title = action.meta.arg.title;
       state.items[checkId].text = action.meta.arg.text;
+      state.loading = false;
     },
 
     [editHeader.rejected]: (state, action) => {
