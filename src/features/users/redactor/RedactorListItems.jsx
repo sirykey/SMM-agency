@@ -6,13 +6,13 @@ import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import EditIcon from '@material-ui/icons/Edit';
 import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
 import DeleteDraft from '../DeleteDraft';
 
 import { useProfileStyles } from '../styles';
+import EditPost from '../../content/EditPost';
 
 function RedactorListItems(props) {
   const classes = useProfileStyles();
@@ -43,14 +43,11 @@ function RedactorListItems(props) {
           secondary={`${props.post.author.name} ${props.post.author.surname}`}
         />
         <ListItemSecondaryAction>
-          <IconButton
-            className={classes.btn}
-            color="primary"
-            edge="end"
-            aria-label="changed"
-          >
-            <EditIcon />
-          </IconButton>
+          <EditPost
+            title={props.post.title}
+            text={props.post.text}
+            id={props.post._id}
+          />
           <IconButton
             edge="end"
             aria-label="delete"
