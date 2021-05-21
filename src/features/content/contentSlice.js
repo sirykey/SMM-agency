@@ -11,8 +11,8 @@ export const fetchHeaders = createAsyncThunk(
 
 export const fetchComments = createAsyncThunk(
   'comments/fetchComments',
-  async () => {
-    const response = await api.get(`/posts/:postID/comments`);
+  async (id) => {
+    const response = await api.get(`/posts/${id}/comments`);
     return response.data;
   },
 );
@@ -79,6 +79,7 @@ const headerSlice = createSlice({
   name: 'headers',
   initialState: {
     items: [],
+    comments: [],
     loading: false,
     error: {
       failed: false,
@@ -107,7 +108,7 @@ const headerSlice = createSlice({
     },
 
     [fetchComments.fulfilled]: (state, action) => {
-      state.items = action.payload;
+      state.comments = action.payload;
       state.loading = false;
     },
 
