@@ -16,7 +16,7 @@ function Profile() {
   const loading = useSelector(state => state.contentSlice.loading)
   const filteredAdmin = users.filter((user) => user._id !== authUser.id);
   const filteredPosts = posts.filter(
-    (post) => post.author._id === authUser.id && post.draft === null,
+    (post) => post.author._id === authUser.id && post.draft === false,
   );
   const filteredDrafts = posts.filter(
     (post) => post.author._id === authUser.id && post.draft === true,
