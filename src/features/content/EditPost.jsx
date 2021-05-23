@@ -42,7 +42,7 @@ function EditPost({title, text, id}) {
       }),
     );
   };
-  console.log(`edit ${titleValue}`);
+
   return (
     <>
       <IconButton
