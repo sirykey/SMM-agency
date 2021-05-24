@@ -29,7 +29,6 @@ function AddTask({ message, id}) {
   };
   
   const handleAddClick = () => {
-    alert(id)
     dispatch(
       addTasks({
         message: messageValue,
