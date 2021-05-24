@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchHeaders = createAsyncThunk(
   'headers/fetchHeaders',
   async () => {
-    const response = await api.get('/posts');
+    const response = await api.get(`/posts`);
     return response.data;
   },
 );
@@ -45,29 +45,28 @@ export const deleteDraft = createAsyncThunk(
 
 export const addHeader = createAsyncThunk(
   'header/addHeader',
-  async ({ title, text }, { rejectWithValue }) => {
+  async ({ title, text }, thunkAPI) => {
     try {
-      const response = await api.post('/posts', {
+      await api.post('/posts', {
         title: title,
         text: text,
       });
 
-      return response.data;
+      return thunkAPI.getState().authSlice.id
     } catch (e) {
-      return rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.message);
     }
   },
 );
 
 export const editHeader = createAsyncThunk(
   'header/editHeader',
-  async ({ title, text, id }, { rejectWithValue }) => {
+  async ({ title, text, id }, thunkAPI) => {
     try {
-      await api.patch(`/posts/${id}`, { title, text, id });
-
+      await api.patch(`/posts/${id}`, { title, text });
       return id;
     } catch (e) {
-      return rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.message);
     }
   },
 );
@@ -121,7 +120,7 @@ const headerSlice = createSlice({
         return action.meta.arg === item._id;
       });
 
-      // state.items[postID].changed = true;
+      state.items[postID].changed = true;
     },
 
     [changeDraft.fulfilled]: (state, action) => {
@@ -129,8 +128,8 @@ const headerSlice = createSlice({
         return action.payload === item._id;
       });
 
-      // state.items[postID].changed = false;
-      state.items[postID].draft = false;
+      state.items[postID].changed = false;
+      state.items[postID].draft = !state.items[postID].draft
     },
 
     [changeDraft.rejected]: (state, action) => {
@@ -171,12 +170,13 @@ const headerSlice = createSlice({
       state.items.push({
         text: action.meta.arg.text,
         title: action.meta.arg.title,
+        author: action.payload,
       });
       state.adding = false;
     },
 
     [addHeader.rejected]: (state, action) => {
-      state.loading = false;
+      state.adding = false;
       state.error.message = action.payload;
       state.error.failed = true;
     },
@@ -191,11 +191,12 @@ const headerSlice = createSlice({
       });
       state.items[checkId].title = action.meta.arg.title;
       state.items[checkId].text = action.meta.arg.text;
+      state.loading = false;
     },
 
     [editHeader.rejected]: (state, action) => {
       state.items = action.payload;
-      state.adding = false;
+      state.loading = false;
     },
 
   },

@@ -8,18 +8,15 @@ import {
   Dialog,
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { useAddPostStyles } from '../users/styles';
-import { editHeader } from './contentSlice';
 import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
+import { AddCircleOutline } from '@material-ui/icons';
+import { addTasks } from './taskSlice';
 
-function EditPost({title, text, id}) {
-  const classes = useAddPostStyles();
+function AddTask({ message, id}) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-  const [titleValue, setTitleValue] = useState(title);
-  const [textValue, setTextValue] = useState(text);
+  const [messageValue, setMessageValue] = useState(message);
 
   const handleOpen = () => {
     setOpen(true);
@@ -27,18 +24,16 @@ function EditPost({title, text, id}) {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleTitleChange = (e) => {
-    setTitleValue(e.target.value);
+  const handleMessageChange = (e) => {
+    setMessageValue(e.target.value);
   };
-  const handleTextChange = (e) => {
-    setTextValue(e.target.value);
-  };
+  
   const handleAddClick = () => {
+    alert(id)
     dispatch(
-      editHeader({
-        title: titleValue,
-        text: textValue,
-        id
+      addTasks({
+        message: messageValue,
+        id,
       }),
     );
   };
@@ -46,38 +41,27 @@ function EditPost({title, text, id}) {
   return (
     <>
       <IconButton
-        className={classes.btn}
-        color="primary"
+        color="secondary"
         edge="end"
-        aria-label="changed"
+        aria-label="AddCircleOutline"
         onClick={handleOpen}
       >
-        <EditIcon />
+        <AddCircleOutline />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Изменить черновик</DialogTitle>
+        <DialogTitle>Добавить задачу</DialogTitle>
         <DialogContent>
           <TextField
-            onChange={handleTitleChange}
+            onChange={handleMessageChange}
             type="text"
             variant="outlined"
             fullWidth
-            value={titleValue}
-          />
-          <TextField
-            className={classes.form}
-            onChange={handleTextChange}
-            type="text"
-            value={textValue}
-            multiline
-            rows={4}
-            variant="outlined"
-            fullWidth
+            value={messageValue}
           />
         </DialogContent>
         <DialogActions>
           <Button color="primary" variant="contained" onClick={handleAddClick}>
-            Change post
+            ADD TASK
           </Button>
           <Button color="secondary" variant="contained" onClick={handleClose}>
             Cancel
@@ -88,4 +72,4 @@ function EditPost({title, text, id}) {
   );
 }
 
-export default EditPost;
+export default AddTask;
