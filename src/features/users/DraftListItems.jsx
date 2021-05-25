@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import { Avatar } from '@material-ui/core';
+import { Avatar, Tooltip } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import EditIcon from '@material-ui/icons/Edit';
@@ -40,7 +40,10 @@ function DraftListItems(props) {
 
   return (
     <>
-      <ListItem button onClick={() => history.push(`/agency/blog/${props.draft._id}`)}>
+      <ListItem
+        button
+        onClick={() => history.push(`/agency/blog/${props.draft._id}`)}
+      >
         <ListItemAvatar>
           <Avatar>
             <DraftsIcon />
@@ -51,31 +54,37 @@ function DraftListItems(props) {
           secondary={`${props.draft.author.name} ${props.draft.author.surname}`}
         />
         <ListItemSecondaryAction>
-          <IconButton
-            className={classes.btn}
-            color="primary"
-            edge="end"
-            aria-label="changed"
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            className={classes.btn}
-            color="primary"
-            edge="end"
-            aria-label="search"
-            onClick={handleChangeOpen}
-          >
-            <PostAddIcon />
-          </IconButton>
-          <IconButton
-            edge="end"
-            aria-label="delete"
-            color="secondary"
-            onClick={handleDeleteOpen}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <Tooltip title="change your draft">
+            <IconButton
+              className={classes.btn}
+              color="primary"
+              edge="end"
+              aria-label="changed"
+            >
+              <EditIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="relocate your draft into posts">
+            <IconButton
+              className={classes.btn}
+              color="primary"
+              edge="end"
+              aria-label="search"
+              onClick={handleChangeOpen}
+            >
+              <PostAddIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="delete your draft">
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              color="secondary"
+              onClick={handleDeleteOpen}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />

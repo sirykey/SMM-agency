@@ -6,24 +6,24 @@ import DraftListItems from './DraftListItems';
 import ListTitle from './ListTitle';
 import AddPost from '../content/AddPost';
 import { useSelector } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
 
 function DraftList(props) {
   const classes = useProfileStyles();
-  const authUser = useSelector(state => state.authSlice)
+  const authUser = useSelector((state) => state.authSlice);
 
   return (
-    <Paper className={classes.paper}>
-      <ListTitle>Список черновиков:</ListTitle>
-      <List className={classes.list}>
-        {props.filteredDrafts.map((draft) => (
-          <DraftListItems
-            key={draft._id}
-            draft={draft}
-          />
-        ))}
-        {authUser.role === 'ADMIN' ? '' : <AddPost />}
-      </List>
-    </Paper>
+    <Grid item xs={6}>
+      <Paper className={classes.paper}>
+        <ListTitle>Список черновиков:</ListTitle>
+        <List className={classes.list}>
+          {props.filteredDrafts.map((draft) => (
+            <DraftListItems key={draft._id} draft={draft} />
+          ))}
+          {authUser.role === 'ADMIN' ? '' : <AddPost />}
+        </List>
+      </Paper>
+    </Grid>
   );
 }
 
