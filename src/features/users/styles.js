@@ -148,6 +148,11 @@ export const useBlogStyles = makeStyles((theme) => ({
     width: '100%',
     paddingBottom: theme.spacing(3),
   },
+  paper: {
+    maxWidth: 400,
+    margin: theme.spacing(5, 1),
+    padding: theme.spacing(2),
+  },
 }));
 
 export const usePostsStyles = makeStyles((theme) => ({
