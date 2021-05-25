@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
 import contentSlice from '../features/content/contentSlice';
 import usersSlice from '../features/users/usersSlice';
+import commentsSlice from '../features/content/comments/commentsSlice';
+import taskSlice from '../features/tasks/taskSlice';
 
 const initialAuthSlice =
   localStorage.getItem('smm-token-slice') !== null
@@ -13,6 +15,8 @@ export const store = configureStore({
     authSlice,
     contentSlice,
     usersSlice,
+    taskSlice,
+    commentsSlice,
   },
 
   preloadedState: {
