@@ -6,22 +6,33 @@ import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { Avatar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
-import SearchIcon from '@material-ui/icons/Search';
+import DeleteDraft from '../DeleteDraft';
 
 import { useProfileStyles } from '../styles';
+import EditPost from '../../content/EditPost';
 
 function RedactorListItems(props) {
   const classes = useProfileStyles();
 
   const history = useHistory();
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div>
-      <ListItem>
+    <>
+      <ListItem button onClick={() => history.push(`/agency/blog/${props.post._id}`)}
+      >
         <ListItemAvatar>
           <Avatar>
             <EmailIcon />
@@ -32,24 +43,30 @@ function RedactorListItems(props) {
           secondary={`${props.post.author.name} ${props.post.author.surname}`}
         />
         <ListItemSecondaryAction>
+          <EditPost
+            title={props.post.title}
+            text={props.post.text}
+            id={props.post._id}
+          />
           <IconButton
-            className={classes.btn}
             edge="end"
-            aria-label="search"
-            onClick={() => history.push('/agency/blog')}
+            aria-label="delete"
+            color="secondary"
+            onClick={handleClickOpen}
           >
-            <SearchIcon />
-          </IconButton>
-          <IconButton className={classes.btn} edge="end" aria-label="changed">
-            <BorderColorIcon />
-          </IconButton>
-          <IconButton edge="end" aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
-    </div>
+      <DeleteDraft
+        open={open}
+        handleClose={handleClose}
+        handleDelete={props.handleDelete}
+        id={props.post._id}
+        draft={props.post.draft}
+      />
+    </>
   );
 }
 

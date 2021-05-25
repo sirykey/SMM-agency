@@ -98,6 +98,13 @@ export const useProfileStyles = makeStyles((theme) => ({
   btn: {
     marginRight: theme.spacing(1),
   },
+  list: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
+    maxHeight: 300,
+  },
 }));
 
 export const useRedactorsStyles = makeStyles((theme) => ({
@@ -129,5 +136,105 @@ export const useRedactorsStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
+  },
+}));
+
+export const useBlogStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  title: {
+    width: '100%',
+    paddingBottom: theme.spacing(3),
+  },
+  paper: {
+    maxWidth: 400,
+    margin: theme.spacing(5, 1),
+    padding: theme.spacing(2),
+  },
+}));
+
+export const usePostsStyles = makeStyles((theme) => ({
+  card: {
+    display: 'flex',
+  },
+  cardDetails: {
+    flex: 1,
+  },
+  cardMedia: {
+    width: 160,
+  },
+  mainGrid: {
+    marginTop: theme.spacing(3),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+}));
+
+export const useDraftsStyles = makeStyles((theme) => ({
+  card: {
+    display: 'flex',
+  },
+  cardDetails: {
+    flex: 1,
+  },
+  cardMedia: {
+    width: 160,
+  },
+  mainGrid: {
+    marginTop: theme.spacing(3),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+}));
+
+export const useAuthStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export const useSignUpStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export const useAddPostStyles = makeStyles((theme) => ({
+  form: {
+    margin: theme.spacing(1, 0),
   },
 }));

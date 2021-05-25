@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Container,
@@ -8,32 +7,14 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSignUpStyles } from '../styles';
 import { fetchRegistration } from '../usersSlice';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 function SignUp() {
-  const classes = useStyles();
+  const classes = useSignUpStyles();
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.authSlice.loading);
 
   const [login, setLogin] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -57,9 +38,16 @@ function SignUp() {
     setWorkerEmail(e.target.value);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
+    e.preventDefault();
     dispatch(
-      fetchRegistration(firstname, surname, login, workerPass, workerEmail),
+      fetchRegistration({
+        username: login,
+        name: firstname,
+        surname: surname,
+        mail: workerEmail,
+        password: workerPass,
+      }),
     );
   };
 
@@ -141,6 +129,7 @@ function SignUp() {
             </Grid>
           </Grid>
           <Button
+            disabled={loading}
             type="submit"
             fullWidth
             variant="contained"

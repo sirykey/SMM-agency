@@ -1,36 +1,45 @@
-import { Typography } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useBlogStyles } from '../users/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-
-const useStyles = makeStyles((theme) => ({
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  title: {
-    width: '100%',
-    paddingBottom: theme.spacing(3),
-  },
-}));
+import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+import Comments from './comments/comments';
 
 function Blog() {
-  const classes = useStyles();
+  const classes = useBlogStyles();
+  const params = useParams().id;
+  const posts = useSelector((state) => state.contentSlice.items);
+
+  const filteredPosts = posts.find((post) => {
+    return post._id === params;
+  });
+
+  if (filteredPosts === undefined) {
+    return '';
+  }
 
   return (
     <Container maxWidth="lg" className={classes.cardGrid}>
-      <Grid container spacing={4}>
+      <Grid
+        container
+        wrap="nowrap"
+        spacing={2}
+        direction="column"
+        justify="space-evenly"
+        alignItems="flex-start"
+      >
         <Typography variant="h3" align="center" className={classes.title}>
-          Заголовок поста
+          {filteredPosts.title}
         </Typography>
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat at
-          possimus velit vitae facere praesentium incidunt nam obcaecati
-          dignissimos! Tempore laborum ullam, aliquam tenetur iusto doloremque?
-          Necessitatibus odit tempore dicta!
-        </Typography>
+        <Paper className={classes.paper}>
+          <Typography>
+            {filteredPosts.text}
+          </Typography>
+        </Paper>
       </Grid>
+      <Comments />
     </Container>
   );
 }

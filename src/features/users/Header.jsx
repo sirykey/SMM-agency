@@ -1,6 +1,5 @@
 import React from 'react';
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { AccountCircle } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { useMainStyles } from './styles';
 import AdminMenu from './admin/AdminMenu';
 import { useSelector } from 'react-redux';

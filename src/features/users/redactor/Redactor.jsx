@@ -11,12 +11,11 @@ import {
   Typography,
 } from '@material-ui/core';
 
-function Redactor(props) {
+function Redactor({ data }) {
   const history = useHistory();
   const classes = useRedactorsStyles();
-
   return (
-    <Grid item key={props.key} xs={12} sm={6} md={4}>
+    <Grid item key={data.key} xs={12} sm={6} md={4}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.cardMedia}
@@ -25,7 +24,7 @@ function Redactor(props) {
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-            Тимуркаев Магомед
+            {data.name} {data.surname}
           </Typography>
           <Typography>редактор</Typography>
         </CardContent>
@@ -33,7 +32,7 @@ function Redactor(props) {
           <Button
             size="small"
             color="primary"
-            onClick={() => history.push('/agency/posts')}
+            onClick={() => history.push(`/agency/posts/${data._id}`)}
           >
             View
           </Button>
