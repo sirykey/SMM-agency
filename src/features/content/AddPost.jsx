@@ -11,14 +11,16 @@ import {
   DialogActions,
   Button,
   Dialog,
+  Tooltip,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAddPostStyles } from '../users/styles';
 import { addHeader } from './contentSlice';
 
 function AddPost() {
   const classes = useAddPostStyles();
   const dispatch = useDispatch();
+  const adding = useSelector((state) => state.contentSlice.adding);
 
   const [open, setOpen] = useState(false);
   const [titleValue, setTitleValue] = useState('');
@@ -44,15 +46,19 @@ function AddPost() {
       }),
     );
   };
+  if (adding) {
+    return 'идет добавление';
+  }
   return (
     <div>
       <ListItem>
-        <ListItemAvatar ma>
+        <ListItemAvatar>
           <Fab size="small" color="primary" aria-label="add">
-            <AddIcon onClick={handleOpen} />
+            <Tooltip title="Add new post">
+              <AddIcon onClick={handleOpen} />
+            </Tooltip>
           </Fab>
         </ListItemAvatar>
-        <ListItemText primary="Добавить новый черновик" />
       </ListItem>
 
       <Dialog open={open} onClose={handleClose}>

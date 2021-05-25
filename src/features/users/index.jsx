@@ -6,6 +6,7 @@ import Routs from './Routs';
 import { useDispatch } from 'react-redux';
 import { fetchUsers } from './usersSlice';
 import { fetchHeaders } from '../content/contentSlice';
+import { fetchAllTasks } from '../tasks/taskSlice';
 
 function MainPage(props) {
   const classes = useMainStyles();
@@ -14,6 +15,7 @@ function MainPage(props) {
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchHeaders());
+    dispatch(fetchAllTasks());
   }, [dispatch]);
 
   return (

@@ -11,6 +11,7 @@ import { Avatar } from '@material-ui/core';
 import { useProfileStyles } from '../styles';
 import DeleteUser from '../DeleteUser';
 import { useHistory } from 'react-router';
+import AddTask from '../../tasks/AddTask';
 
 function AdminListItems(props) {
   const classes = useProfileStyles();
@@ -35,6 +36,7 @@ function AdminListItems(props) {
           onClick={() => history.push(`/agency/posts/${props.user._id}`)}
         />
         <ListItemSecondaryAction>
+          <AddTask id={props.user._id} />
           <IconButton
             color="primary"
             className={classes.btn}
