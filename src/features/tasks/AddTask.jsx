@@ -10,7 +10,7 @@ import {
 import { useDispatch } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import { AddCircleOutline } from '@material-ui/icons';
-import { addTasks } from './taskSlice';
+import { addTask } from './taskSlice';
 
 function AddTask({ message, id}) {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function AddTask({ message, id}) {
   
   const handleAddClick = () => {
     dispatch(
-      addTasks({
+      addTask({
         message: messageValue,
         id,
       }),
