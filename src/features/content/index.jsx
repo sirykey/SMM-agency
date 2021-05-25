@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
-import Comments from './comments/comments';
+import Comments from './comments';
+
 
 function Blog() {
   const classes = useBlogStyles();

@@ -8,7 +8,7 @@ import { useProfileStyles } from '../users/styles';
 
 function Tasks() {
   const classes = useProfileStyles();
-  const tasks = useSelector(state => state.tasksSlice.tasks)
+  const tasks = useSelector(state => state.taskSlice.tasks)
 
   return (
     <div>
