@@ -9,14 +9,6 @@ export const fetchHeaders = createAsyncThunk(
   },
 );
 
-export const fetchComments = createAsyncThunk(
-  'comments/fetchComments',
-  async (id) => {
-    const response = await api.get(`/posts/${id}/comments`);
-    return response.data;
-  },
-);
-
 export const changeDraft = createAsyncThunk(
   'headers/changedDraft',
   async (id, thunkApi) => {
@@ -100,21 +92,6 @@ const headerSlice = createSlice({
       state.error.failed = true;
     },
 
-    [fetchComments.pending]: (state) => {
-      state.loading = true;
-    },
-
-    [fetchComments.fulfilled]: (state, action) => {
-      state.comments = action.payload;
-      state.loading = false;
-    },
-
-    [fetchComments.rejected]: (state, action) => {
-      state.loading = false;
-      state.error.message = action.payload;
-      state.error.failed = true;
-    },
-
     [changeDraft.pending]: (state, action) => {
       const postID = state.items.findIndex((item) => {
         return action.meta.arg === item._id;
@@ -153,7 +130,7 @@ const headerSlice = createSlice({
     [deleteDraft.fulfilled]: (state, action) => {
       state.loading = false;
       state.items = state.items.filter((item) => {
-        return item._id !== action.meta.arg;
+        return item._id !== action.payload;
       });
     },
 
