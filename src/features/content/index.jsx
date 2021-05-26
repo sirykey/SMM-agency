@@ -7,7 +7,6 @@ import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import Comments from './comments';
 
-
 function Blog() {
   const classes = useBlogStyles();
   const params = useParams().id;
@@ -35,12 +34,10 @@ function Blog() {
           {filteredPosts.title}
         </Typography>
         <Paper className={classes.paper}>
-          <Typography>
-            {filteredPosts.text}
-          </Typography>
+          <Typography>{filteredPosts.text}</Typography>
         </Paper>
       </Grid>
-      <Comments />
+      <Comments id={filteredPosts._id} />
     </Container>
   );
 }

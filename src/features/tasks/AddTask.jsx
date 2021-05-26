@@ -7,17 +7,17 @@ import {
   Button,
   Dialog,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import { AddCircleOutline } from '@material-ui/icons';
-import { addTask } from './taskSlice';
+import { addTask } from './tasksSlice';
 
 function AddTask({ message, id}) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [messageValue, setMessageValue] = useState(message);
-
+  const adding = useSelector(state=> state.tasksSlice.adding)
   const handleOpen = () => {
     setOpen(true);
   };
@@ -59,7 +59,7 @@ function AddTask({ message, id}) {
           />
         </DialogContent>
         <DialogActions>
-          <Button color="primary" variant="contained" onClick={handleAddClick}>
+          <Button disabled={adding} color="primary" variant="contained" onClick={handleAddClick}>
             ADD TASK
           </Button>
           <Button color="secondary" variant="contained" onClick={handleClose}>

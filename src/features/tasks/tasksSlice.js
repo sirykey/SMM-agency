@@ -3,7 +3,7 @@ import { api } from '../../app/api';
 import { deleteDraft } from '../content/contentSlice';
 
 export const fetchOneWorkerTasks = createAsyncThunk(
-  'tasks/fetchTasks',
+  'tasks/fetchOneWorkerTasks',
   async (id) => {
     const response = await api.get(`/users/${id}/tasks`);
 
@@ -62,6 +62,7 @@ const tasksSlice = createSlice({
   initialState: {
     tasks: [],
     loading: false,
+    loadingOneWorkerTasks: false,
     error: {
       failed: false,
       error: null,
@@ -73,16 +74,16 @@ const tasksSlice = createSlice({
 
   extraReducers: {
     [fetchOneWorkerTasks.pending]: (state) => {
-      state.loading = true;
+      state.loadingOneWorkerTasks = true;
     },
 
     [fetchOneWorkerTasks.fulfilled]: (state, action) => {
-      state.loading = false;
+      state.loadingOneWorkerTasks = false;
       state.tasks = action.payload;
     },
 
     [fetchOneWorkerTasks.rejected]: (state, action) => {
-      state.loading = false;
+      state.loadingOneWorkerTasks = false;
       state.error.message = action.payload;
     },
 
@@ -140,12 +141,12 @@ const tasksSlice = createSlice({
 
     [deleteTask.fulfilled]: (state, action) => {
       state.deleting = false;
-      state.items = state.items.filter((item) => {
-        return item._id !== action.meta.arg;
+      state.tasks = state.tasks.filter((task) => {
+        return task._id !== action.meta.arg;
       });
     },
 
-    [deleteDraft.rejected]: (state, action) => {
+    [deleteTask.rejected]: (state, action) => {
       state.error.message = action.payload;
       state.error.failed = true;
       state.deleting = false;
