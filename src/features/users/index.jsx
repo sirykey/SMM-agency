@@ -6,7 +6,8 @@ import Routs from './Routs';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from './usersSlice';
 import { fetchHeaders } from '../content/contentSlice';
-import { fetchAllTasks, fetchOneWorkerTasks } from '../tasks/tasksSlice';
+import { fetchAllTasks } from '../tasks/taskSlice';
+import { fetchComments } from '../content/comments/commentsSlice';
 
 function MainPage() {
   const classes = useMainStyles();
@@ -16,7 +17,6 @@ function MainPage() {
     dispatch(fetchUsers());
     dispatch(fetchHeaders());
     dispatch(fetchAllTasks());
-    dispatch(fetchOneWorkerTasks(authUser.id))
   }, [dispatch]);
 
   return (
