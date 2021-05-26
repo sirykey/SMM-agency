@@ -3,19 +3,20 @@ import { useMainStyles } from './styles';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Routs from './Routs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from './usersSlice';
 import { fetchHeaders } from '../content/contentSlice';
-import { fetchAllTasks } from '../tasks/taskSlice';
+import { fetchAllTasks, fetchOneWorkerTasks } from '../tasks/tasksSlice';
 
-function MainPage(props) {
+function MainPage() {
   const classes = useMainStyles();
   const dispatch = useDispatch();
-
+  const authUser = useSelector(state => state.authSlice)
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchHeaders());
     dispatch(fetchAllTasks());
+    dispatch(fetchOneWorkerTasks(authUser.id))
   }, [dispatch]);
 
   return (
