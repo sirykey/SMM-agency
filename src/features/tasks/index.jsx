@@ -8,7 +8,7 @@ import { useProfileStyles } from '../users/styles';
 
 function Tasks() {
   const classes = useProfileStyles();
-  const tasks = useSelector(state => state.taskSlice.tasks)
+  const tasks = useSelector(state => state.tasksSlice.tasks)
 
   return (
     <div>
@@ -21,7 +21,6 @@ function Tasks() {
             })}
         </List>
       </Paper>
-
     </div>
   );
 }
