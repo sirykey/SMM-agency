@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { fetchUsers } from './usersSlice';
 import { fetchHeaders } from '../content/contentSlice';
 import { fetchAllTasks } from '../tasks/taskSlice';
+import { fetchComments } from '../content/comments/commentsSlice';
 
 function MainPage(props) {
   const classes = useMainStyles();

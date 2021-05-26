@@ -18,7 +18,9 @@ export const addComments = createAsyncThunk(
   'comments/addComments',
   async ({ message, id }, { rejectWithValue }) => {
     try {
-      const response = await api.post(`posts/${id}/comments`);
+      const response = await api.post(`posts/${id}/comments`, {
+        message,
+      });
 
       return response.data;
     } catch (e) {
@@ -42,10 +44,10 @@ export const editComments = createAsyncThunk(
 
 export const deleteComment = createAsyncThunk(
   'comments/editComments',
-  async ({ deletingCommentId, id }, { rejectedWithValue }) => {
+  async ({ commentId, id }, { rejectedWithValue }) => {
     try {
-      await api.delete(`post/${deletingCommentId}/comments/${id}`);
-      return deletingCommentId;
+      await api.delete(`posts/${id}/comments/${commentId}`);
+      return commentId;
     } catch (e) {
       return rejectedWithValue(e.message);
     }
@@ -56,7 +58,9 @@ const commentsSlice = createSlice({
   name: 'comments',
   initialState: {
     items: [],
-    loading: true,
+    loading: false,
+    adding: false,
+    deleting: false,
   },
   extraReducers: {
     [fetchComments.pending]: (state) => {
@@ -68,8 +72,37 @@ const commentsSlice = createSlice({
     },
     [fetchComments.rejected]: (state, action) => {
       state.loading = false;
-      state.error.message = action.payload;
     },
+  },
+  [addComments.pending]: (state) => {
+    console.log(1111);
+    state.adding = true;
+  },
+
+  [addComments.fulfilled]: (state, action) => {
+    alert();
+    state.adding = false;
+    state.items.push({
+      message: action.meta.arg.message,
+    });
+  },
+
+  [addComments.rejected]: (state, action) => {
+    alert(2);
+    state.adding = false;
+    state.error.message = action.payload;
+  },
+  [deleteComment.pending]: (state) => {
+    state.deleting = true;
+  },
+  [deleteComment.fulfilled]: (state, action) => {
+    state.deleting = false;
+    state.items = state.items.filter((item) => {
+      return item.id !== action.meta.arg;
+    });
+  },
+  [deleteComment.rejected]: (state) => {
+    state.deleting = false;
   },
 });
 

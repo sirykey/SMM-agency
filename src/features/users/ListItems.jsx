@@ -4,6 +4,7 @@ import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People';
 import EmailIcon from '@material-ui/icons/Email';
 import DraftsIcon from '@material-ui/icons/Drafts';
+import { AccountCircle } from '@material-ui/icons';
 
 function ListItems(props) {
   const history = useHistory();
@@ -26,6 +27,12 @@ function ListItems(props) {
           <DraftsIcon />
         </ListItemIcon>
         <ListItemText primary="Drafts" />
+      </ListItem>
+      <ListItem button onClick={() => history.push('/agency')}>
+        <ListItemIcon>
+          <AccountCircle />
+        </ListItemIcon>
+        <ListItemText primary="My account" />
       </ListItem>
     </div>
   );
