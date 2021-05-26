@@ -6,20 +6,23 @@ import {
   DialogActions,
   Button,
   Dialog,
+  CircularProgress,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAddPostStyles } from '../users/styles';
 import { editHeader } from './contentSlice';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
-function EditPost({title, text, id}) {
+function EditPost({ title, text, id }) {
   const classes = useAddPostStyles();
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [titleValue, setTitleValue] = useState(title);
   const [textValue, setTextValue] = useState(text);
+
+  const editing = useSelector((state) => state.contentSlice.editing);
 
   const handleOpen = () => {
     setOpen(true);
@@ -38,9 +41,11 @@ function EditPost({title, text, id}) {
       editHeader({
         title: titleValue,
         text: textValue,
-        id
+        id,
       }),
-    );
+    ).then(() => {
+      handleClose();
+    });
   };
 
   return (
@@ -76,7 +81,13 @@ function EditPost({title, text, id}) {
           />
         </DialogContent>
         <DialogActions>
-          <Button color="primary" variant="contained" onClick={handleAddClick}>
+          {editing && <CircularProgress size={16} />}
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleAddClick}
+            disabled={editing}
+          >
             Change post
           </Button>
           <Button color="secondary" variant="contained" onClick={handleClose}>

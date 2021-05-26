@@ -6,18 +6,21 @@ import {
   DialogActions,
   Button,
   Dialog,
+  ListItemAvatar,
+  Tooltip,
+  ListItem,
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import IconButton from '@material-ui/core/IconButton';
-import { AddCircleOutline } from '@material-ui/icons';
 import { addComments } from './commentsSlice';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
-function AddComment({ message, id }) {
+function AddComment({ id }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-  const [messageValue, setMessageValue] = useState(message);
 
+  const [messageValue, setMessageValue] = useState('');
   const handleOpen = () => {
     setOpen(true);
   };
@@ -28,7 +31,7 @@ function AddComment({ message, id }) {
     setMessageValue(e.target.value);
   };
 
-  const handleAddClick = () => {
+  const handleAddClick = (e) => {
     dispatch(
       addComments({
         message: messageValue,
@@ -39,14 +42,15 @@ function AddComment({ message, id }) {
 
   return (
     <>
-      <IconButton
-        color="secondary"
-        edge="end"
-        aria-label="AddCircleOutline"
-        onClick={handleOpen}
-      >
-        <AddCircleOutline />
-      </IconButton>
+      <ListItem>
+        <ListItemAvatar>
+          <Fab size="small" color="primary" aria-label="add">
+            <Tooltip title="Add new comment">
+              <AddIcon onClick={handleOpen} />
+            </Tooltip>
+          </Fab>
+        </ListItemAvatar>
+      </ListItem>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Добавить Комментарий</DialogTitle>
         <DialogContent>
