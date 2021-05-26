@@ -70,6 +70,7 @@ const headerSlice = createSlice({
     comments: [],
     loading: false,
     adding: false,
+    editing: false,
     error: {
       failed: false,
       message: null,
@@ -159,7 +160,7 @@ const headerSlice = createSlice({
     },
 
     [editHeader.pending]: (state) => {
-      state.loading = true;
+      state.editing = true;
     },
 
     [editHeader.fulfilled]: (state, action) => {
@@ -168,12 +169,12 @@ const headerSlice = createSlice({
       });
       state.items[checkId].title = action.meta.arg.title;
       state.items[checkId].text = action.meta.arg.text;
-      state.loading = false;
+      state.editing = false;
     },
 
     [editHeader.rejected]: (state, action) => {
       state.items = action.payload;
-      state.loading = false;
+      state.editing = false;
     },
 
   },
