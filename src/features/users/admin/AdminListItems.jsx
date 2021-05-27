@@ -7,7 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import EditIcon from '@material-ui/icons/Edit';
-import { Avatar } from '@material-ui/core';
+import { Avatar, Tooltip } from '@material-ui/core';
 import { useProfileStyles } from '../styles';
 import DeleteUser from '../DeleteUser';
 import { useHistory } from 'react-router';
@@ -45,14 +45,16 @@ function AdminListItems(props) {
           >
             <EditIcon />
           </IconButton>
-          <IconButton
-            color="secondary"
-            edge="end"
-            aria-label="delete"
-            onClick={handleDeleteAlertOpen}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <Tooltip title="Удалить пользователя">
+            <IconButton
+              color="secondary"
+              edge="end"
+              aria-label="delete"
+              onClick={handleDeleteAlertOpen}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
