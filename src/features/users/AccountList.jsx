@@ -33,7 +33,7 @@ function AccountList(props) {
               ))}
         </List>
       </Paper>
-      {props.authUser.role === 'ADMIN' ? <Tasks /> : ''}
+      <Tasks role={props.authUser.role} userid={props.authUser.id} />
     </Grid>
   );
 }
