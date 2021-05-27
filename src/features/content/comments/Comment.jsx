@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Divider, ListItem, ListItemText } from '@material-ui/core';
+import { Divider, ListItem, ListItemText, Tooltip } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -19,14 +19,16 @@ function Comment(props) {
       <ListItem button>
         <ListItemText>{props.comment.message}</ListItemText>
         <ListItemSecondaryAction>
-          <IconButton
-            color="secondary"
-            edge="end"
-            aria-label="delete"
-            onClick={handleDeleteCommentOpen}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <Tooltip title="Удалить комментарий">
+            <IconButton
+              color="secondary"
+              edge="end"
+              aria-label="delete"
+              onClick={handleDeleteCommentOpen}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
         </ListItemSecondaryAction>
       </ListItem>
 

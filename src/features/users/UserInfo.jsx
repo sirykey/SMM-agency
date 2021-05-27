@@ -14,20 +14,20 @@ function UserInfo({ authUser }) {
       alignItems="center"
       spacing={3}
     >
-      <Grid item item xs={4}>
-        <Avatar className={classes.avatar}></Avatar>
+      <Grid item xs={4}>
+        <Avatar className={classes.avatar} />
       </Grid>
-      <Grid item item xs={8}>
+      <Grid item xs={8}>
         <Typography variant="h4" align="center">
           {authUser.role === 'ADMIN' ? 'Директор' : 'Редактор'}
         </Typography>
       </Grid>
-      <Grid item item xs={8}>
+      <Grid item xs={8}>
         <Typography variant="h3" align="right">
           {`${authUser.name}  ${authUser.surname}`}
         </Typography>
       </Grid>
-      <Grid item item xs={3}>
+      <Grid item xs={3}>
         <Typography align="center">{authUser.mail}</Typography>
       </Grid>
     </Grid>

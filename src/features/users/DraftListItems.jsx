@@ -14,6 +14,7 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import DeleteDraft from './DeleteDraft';
 import ChangePostDialog from './ChangePostDialog';
 import { useProfileStyles } from './styles';
+import EditDraft from '../content/drafts/EditDraft';
 
 function DraftListItems(props) {
   const classes = useProfileStyles();
@@ -54,17 +55,14 @@ function DraftListItems(props) {
           secondary={`${props.draft.author.name} ${props.draft.author.surname}`}
         />
         <ListItemSecondaryAction>
-          <Tooltip title="change your draft">
-            <IconButton
-              className={classes.btn}
-              color="primary"
-              edge="end"
-              aria-label="changed"
-            >
-              <EditIcon />
-            </IconButton>
+          <Tooltip title="Изменить черновик">
+            <EditDraft
+              title={props.draft.title}
+              text={props.draft.text}
+              id={props.draft._id}
+            />
           </Tooltip>
-          <Tooltip title="relocate your draft into posts">
+          <Tooltip title="Переместить черновик в посты">
             <IconButton
               className={classes.btn}
               color="primary"
@@ -75,7 +73,7 @@ function DraftListItems(props) {
               <PostAddIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="delete your draft">
+          <Tooltip title="Удалить черновик">
             <IconButton
               edge="end"
               aria-label="delete"
