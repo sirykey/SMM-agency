@@ -7,6 +7,7 @@ import {
   Button,
   Dialog,
   CircularProgress,
+  Tooltip,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAddPostStyles } from '../users/styles';
@@ -50,15 +51,17 @@ function EditPost({ title, text, id }) {
 
   return (
     <>
-      <IconButton
-        className={classes.btn}
-        color="primary"
-        edge="end"
-        aria-label="changed"
-        onClick={handleOpen}
-      >
-        <EditIcon />
-      </IconButton>
+      <Tooltip title="Изменить пост">
+        <IconButton
+          className={classes.btn}
+          color="primary"
+          edge="end"
+          aria-label="changed"
+          onClick={handleOpen}
+        >
+          <EditIcon />
+        </IconButton>
+      </Tooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Изменить черновик</DialogTitle>
         <DialogContent>
@@ -81,15 +84,19 @@ function EditPost({ title, text, id }) {
           />
         </DialogContent>
         <DialogActions>
-          {editing && <CircularProgress size={16} />}
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={handleAddClick}
-            disabled={editing}
-          >
-            Change post
-          </Button>
+          {editing ? (
+            <CircularProgress color="primary" size={16} />
+          ) : (
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={handleAddClick}
+              disabled={editing}
+            >
+              Change post
+            </Button>
+          )}
+
           <Button color="secondary" variant="contained" onClick={handleClose}>
             Cancel
           </Button>

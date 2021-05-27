@@ -6,18 +6,19 @@ import {
   DialogActions,
   Button,
   Dialog,
+  Tooltip,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import { AddCircleOutline } from '@material-ui/icons';
 import { addTask } from './tasksSlice';
 
-function AddTask({ message, id}) {
+function AddTask({ message, id }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [messageValue, setMessageValue] = useState(message);
-  const adding = useSelector(state=> state.tasksSlice.adding)
+  const adding = useSelector((state) => state.tasksSlice.adding);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -27,7 +28,7 @@ function AddTask({ message, id}) {
   const handleMessageChange = (e) => {
     setMessageValue(e.target.value);
   };
-  
+
   const handleAddClick = () => {
     dispatch(
       addTask({
@@ -39,14 +40,16 @@ function AddTask({ message, id}) {
 
   return (
     <>
-      <IconButton
-        color="secondary"
-        edge="end"
-        aria-label="AddCircleOutline"
-        onClick={handleOpen}
-      >
-        <AddCircleOutline />
-      </IconButton>
+      <Tooltip title="Добавить задачу">
+        <IconButton
+          color="secondary"
+          edge="end"
+          aria-label="AddCircleOutline"
+          onClick={handleOpen}
+        >
+          <AddCircleOutline />
+        </IconButton>
+      </Tooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Добавить задачу</DialogTitle>
         <DialogContent>
@@ -59,7 +62,12 @@ function AddTask({ message, id}) {
           />
         </DialogContent>
         <DialogActions>
-          <Button disabled={adding} color="primary" variant="contained" onClick={handleAddClick}>
+          <Button
+            disabled={adding}
+            color="primary"
+            variant="contained"
+            onClick={handleAddClick}
+          >
             ADD TASK
           </Button>
           <Button color="secondary" variant="contained" onClick={handleClose}>
