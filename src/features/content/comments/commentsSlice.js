@@ -81,10 +81,10 @@ const commentsSlice = createSlice({
 
   [addComments.fulfilled]: (state, action) => {
     alert();
-    state.adding = false;
     state.items.push({
       message: action.meta.arg.message,
     });
+    state.adding = false;
   },
 
   [addComments.rejected]: (state, action) => {
