@@ -1,20 +1,18 @@
 import React from 'react';
 import { Divider, ListItem, ListItemText } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import DoneIcon from '@material-ui/icons/Done';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import DeleteTask from './DeleteTask';
+import EditTask from './EditTask';
 
-function Task({task}) {
+function Task({task, role, userId }) {
+
   return (
     <>
       <ListItem button>
       <ListItemText>{task.message}</ListItemText>
       <ListItemSecondaryAction>
-        <IconButton color="primary" edge="end" aria-label="delete">
-          <DoneIcon />
-        </IconButton>
-        <DeleteTask id={task._id} />
+        <EditTask message={task.message} id={task._id} role={role} completed={task.completed} userId={userId} />
+        {role === 'ADMIN'? <DeleteTask id={task._id} />: '' }
       </ListItemSecondaryAction>
     </ListItem>
     <Divider />
