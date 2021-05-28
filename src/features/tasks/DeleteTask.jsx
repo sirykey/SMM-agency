@@ -5,6 +5,7 @@ import {
   DialogActions,
   Button,
   Dialog,
+  Tooltip,
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +17,6 @@ function DeleteTask(props) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -25,21 +25,21 @@ function DeleteTask(props) {
   };
 
   const handleDeleteTask = (id) => {
-    dispatch(
-      deleteTask(id),
-    );
+    dispatch(deleteTask(id));
   };
 
   return (
     <>
-      <IconButton
-        color="secondary"
-        edge="end"
-        aria-label="delete"
-        onClick={handleOpen}
-      >
-        <DeleteIcon />
-      </IconButton>
+      <Tooltip title="удалить задачу">
+        <IconButton
+          color="secondary"
+          edge="end"
+          aria-label="delete"
+          onClick={handleOpen}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
       <div>
         <Dialog
           open={open}
@@ -48,7 +48,9 @@ function DeleteTask(props) {
           aria-describedby="alert-dialog-description"
           maxWidth={'md'}
         >
-          <DialogTitle id="alert-dialog-title">Удалить пользователя</DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            Удалить пользователя
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               Вы уверенны?
