@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { api } from '../../app/api';
-import { deleteDraft } from '../content/contentSlice';
 
 export const fetchOneWorkerTasks = createAsyncThunk(
   'tasks/fetchOneWorkerTasks',
@@ -44,6 +43,20 @@ export const editTask = createAsyncThunk(
   },
 );
 
+export const changeTaskCompleted = createAsyncThunk(
+  'tasks/changeTaskCompleted',
+  async ({completed, userId, id}, {rejectWithValue}) => {
+     try {
+       await api.patch(`users/${userId}/tasks/${id}`, {
+         completed: !completed,
+       })
+       return id;
+     } catch (e) {
+       return rejectWithValue(e.message)
+     }
+  }
+)
+
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
   async (id, thunkAPI) => {
@@ -70,6 +83,7 @@ const tasksSlice = createSlice({
     adding: false,
     editing: false,
     deleting: false,
+    changing: false,
   },
 
   extraReducers: {
@@ -123,10 +137,10 @@ const tasksSlice = createSlice({
 
     [editTask.fulfilled]: (state, action) => {
       state.editing = false;
-      const checkId = state.items.findIndex((item) => {
-        return item._id === action.payload;
+      const checkId = state.tasks.findIndex((task) => {
+        return task._id === action.payload;
       });
-      state.items[checkId].message = action.meta.arg.message;
+      state.tasks[checkId].message = action.meta.arg.message;
     },
 
     [editTask.rejected]: (state, action) => {
@@ -151,6 +165,28 @@ const tasksSlice = createSlice({
       state.error.failed = true;
       state.deleting = false;
     },
+
+    [changeTaskCompleted.pending]: (state, action) => {
+      state.changing = true
+      // const taskId = state.tasks.findIndex((task) => {
+      //   return task._id = action.payload;
+      // });
+      //
+      // state.tasks[taskId].changing = true;
+    },
+
+    [changeTaskCompleted.fulfilled]: (state, action) => {
+      state.changing = false;
+      const checkIndex = state.tasks.findIndex((task) => {
+        return task._id === action.payload;
+      });
+      state.tasks[checkIndex].completed = !state.tasks[checkIndex].completed;
+    },
+
+    [changeTaskCompleted.rejected]: (state, action) => {
+      state.changing = false;
+      state.error.message = action.payload;
+    }
   },
 });
 
