@@ -30,7 +30,7 @@ function DeleteTask(props) {
 
   return (
     <>
-      <Tooltip title="удалить задачу">
+      <Tooltip title="Удалить задачу">
         <IconButton
           color="secondary"
           edge="end"
