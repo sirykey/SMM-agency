@@ -5,17 +5,14 @@ import {
   Button,
   Container,
   Grid,
-  makeStyles,
   TextField,
   Typography,
 } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from './authSlice';
-import { useAuthStyles } from '../users/styles';
 
 function Authorisation() {
-  const classes = useAuthStyles();
   const dispatch = useDispatch();
   const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -40,14 +37,14 @@ function Authorisation() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <div>
+        <Avatar>
           <LockOutlined />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form noValidate>
           <TextField
             type="text"
             variant="outlined"
@@ -81,7 +78,6 @@ function Authorisation() {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
             onClick={handleClick}
           >
             Sign In

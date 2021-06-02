@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
 import { api } from './api';
-import MainPage from '../features/users';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
@@ -42,12 +41,7 @@ function App() {
 
   let routes;
   if (token) {
-    routes = (
-      <Switch>
-        <Route path="/agency" component={MainPage} />
-        <Redirect to="/agency" />
-      </Switch>
-    );
+    routes = <Switch></Switch>;
   } else {
     routes = (
       <Switch>
