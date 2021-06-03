@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ListItem,
-} from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import PageTitle from '../../common /PageTitle';
 import Avatar from '../../common /Avatar';
 
