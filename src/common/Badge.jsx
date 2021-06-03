@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Fab } from '@material-ui/core';
+import { Fab, PropTypes } from '@material-ui/core';
 import { Menu, MenuItem } from '@material-ui/core';
 
 function Badge() {
@@ -34,5 +34,9 @@ function Badge() {
     </div>
   );
 }
+
+Badge.propTypes = {
+  draft: PropTypes.boolean,
+};
 
 export default Badge;
