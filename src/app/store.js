@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
-
+import draftsSlice from '../features/drafts /draftsSlice';
 const initialAuthSlice =
   localStorage.getItem('smm-token-slice') !== null
     ? JSON.parse(localStorage.getItem('smm-token-slice'))
@@ -9,6 +9,7 @@ const initialAuthSlice =
 export const store = configureStore({
   reducer: {
     authSlice,
+    draftsSlice,
   },
 
   preloadedState: {
