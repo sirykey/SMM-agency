@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Fab, PropTypes } from '@material-ui/core';
+import { Fab } from '@material-ui/core';
 import { Menu, MenuItem } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 function Badge() {
   const [openMenu, setOpenMenu] = useState(null);
@@ -36,7 +37,7 @@ function Badge() {
 }
 
 Badge.propTypes = {
-  draft: PropTypes.boolean,
+  draft: PropTypes.bool,
 };
 
 export default Badge;
