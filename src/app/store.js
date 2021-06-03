@@ -9,8 +9,7 @@ const initialAuthSlice =
 export const store = configureStore({
   reducer: {
     authSlice,
-    draftsSlice
-
+    draftsSlice,
   },
 
   preloadedState: {

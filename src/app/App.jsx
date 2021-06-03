@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
 import { api } from './api';
+import Routes from './Routes';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
@@ -41,7 +42,14 @@ function App() {
 
   let routes;
   if (token) {
-    routes = <Switch></Switch>;
+    routes = (
+      <Switch>
+        <Route>
+          <Routes path="/main" component={App} />
+          <Redirect to="/main" />
+        </Route>
+      </Switch>
+    );
   } else {
     routes = (
       <Switch>
@@ -52,10 +60,14 @@ function App() {
   }
 
   return (
-    <div className="container">
-      {routes}
+    <>
+      {routes && (
+        <div>
+          <Routes />
+        </div>
+      )}
       <CssBaseline />
-    </div>
+    </>
   );
 }
 
