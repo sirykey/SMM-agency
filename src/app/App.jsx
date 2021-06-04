@@ -4,11 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
 import { api } from './api';
-import Routes from './Routes';
+import Main from './Main';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
-  const role = useSelector((state) => state.authSlice.role);
 
   const [autologinning, setAutologinning] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -44,10 +43,8 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-        <Route>
-          <Routes path="/main" component={App} />
-          <Redirect to="/main" />
-        </Route>
+          <Route path="/agency" component={Main}/>
+          <Redirect to="/agency" />
       </Switch>
     );
   } else {
@@ -60,14 +57,10 @@ function App() {
   }
 
   return (
-    <>
-      {routes && (
-        <div>
-          <Routes />
-        </div>
-      )}
+    <div>
+      {routes}
       <CssBaseline />
-    </>
+    </div>
   );
 }
 
