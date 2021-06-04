@@ -1,24 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Grid, ListItemText } from '@material-ui/core';
+import { useCommonStyles } from './styles';
 
-function PageTitle({ title, name, surname }) {
+function PageTitle() {
+  const classes = useCommonStyles();
+
   return (
-    <>
-      <Grid item xs={4}>
-        <ListItemText primary={`${name} ${surname}`} />
-      </Grid>
-      <Grid item xs={9}>
-        <ListItemText primary={title} />
-      </Grid>
-    </>
+      <h1 className={classes.title}>
+        Черновики:
+      </h1>
   );
 }
-
-PageTitle.propTypes = {
-  title: PropTypes.string,
-  name: PropTypes.string,
-  surname: PropTypes.string,
-};
 
 export default PageTitle;

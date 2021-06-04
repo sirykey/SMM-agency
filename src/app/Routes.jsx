@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router';
 import DraftsList from '../features/drafts /DraftsList';
+import EditDrafts from '../features/drafts /EditDrafts';
 
 function Routes() {
   return (
-    <main>
-      <div>
-        <Route path="/agency" component={DraftsList} />
-      </div>
-    </main>
+      <>
+        <Route exact path="/agency" component={DraftsList} />
+        <Route path="/agency/blog/:id?" component={EditDrafts} />
+      </>
   );
 }
 
