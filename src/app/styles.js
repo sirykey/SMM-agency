@@ -16,6 +16,7 @@ export const useSidebarStyles = makeStyles((theme) => ({
 
 export const useHeaderStyles = makeStyles((theme) => ({
   appBar: {
+    position: 'fixed',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
