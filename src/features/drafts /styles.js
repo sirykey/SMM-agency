@@ -46,5 +46,12 @@ export const useEditDraftStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
   },
+  btn: {
+    alignSelf: 'flex-end',
+    marginTop: 12,
+
+  }
 }))
