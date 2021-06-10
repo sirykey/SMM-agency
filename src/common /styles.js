@@ -7,13 +7,9 @@ export const useCommonStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       marginRight: 20,
     },
-
-
   },
 
   title: {
     paddingLeft: 25,
-
-  }
+  },
 }));
-
