@@ -12,7 +12,8 @@ export const useDraftStyles = makeStyles((theme) => ({
   },
   mainGrid: {
     marginTop: theme.spacing(7),
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(3),
+    display: 'flex',
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -32,6 +33,14 @@ export const useDraftStyles = makeStyles((theme) => ({
     position: 'relative',
     overflow: 'auto',
   },
+
+  containerForButtons: {
+    justifyContent: 'flex-end',
+  },
+
+  btn: {
+    marginTop: 12,
+  }
 }));
 
 export const useEditDraftStyles = makeStyles((theme) => ({
@@ -39,9 +48,9 @@ export const useEditDraftStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 0),
   },
   root: {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
+    margin: theme.spacing(1),
+    width: theme.spacing(16),
+    height: theme.spacing(16),
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -49,9 +58,14 @@ export const useEditDraftStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+
+  containerForButtons: {
+    justifyContent: 'flex-end',
+  },
+
   btn: {
     alignSelf: 'flex-end',
     marginTop: 12,
-
-  }
-}))
+    marginLeft: 3,
+  },
+}));
