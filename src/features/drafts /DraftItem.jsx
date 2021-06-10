@@ -6,12 +6,16 @@ import Avatar from '../../common /Avatar';
 import Badge from '../../common /Badge';
 import { useHistory } from 'react-router';
 
+
 function DraftItem({ draft }) {
   const history = useHistory();
 
   return (
     <>
-      <ListItem button onClick={() => history.push(`/agency/blog/${draft._id}`)}>
+      <ListItem
+        button
+        onClick={() => history.push(`/agency/blog/${draft._id}`)}
+      >
         <Avatar />
         <DraftsTitle
           title={draft.title}
