@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Container, Grid, TextField, Typography } from '@material-ui/core';
+import {
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 import { useEditDraftStyles } from './styles';
 import { Editor } from '@tinymce/tinymce-react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { addDraft } from './draftsSlice';
-
 
 function EditDrafts() {
   const classes = useEditDraftStyles();
@@ -20,8 +25,7 @@ function EditDrafts() {
   };
 
   const handleAddDraft = () => {
-    dispatch(addDraft({ title: titleValue, text: textValue, }) )
-      .then(() => {
+    dispatch(addDraft({ title: titleValue, text: textValue })).then(() => {
       history.push('/agency');
     });
   };
@@ -69,7 +73,7 @@ function EditDrafts() {
           content_style:
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         }}
-    />
+      />
       <Button
         variant="contained"
         color="primary"

@@ -6,7 +6,6 @@ import Avatar from '../../common /Avatar';
 import Badge from '../../common /Badge';
 import { useHistory } from 'react-router';
 
-
 function DraftItem({ draft }) {
   const history = useHistory();
 

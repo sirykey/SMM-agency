@@ -15,17 +15,16 @@ import DeleteDrafts from './DeleteDrafts';
 import Snackbar from '@material-ui/core/Snackbar';
 import { Alert } from '@material-ui/lab';
 
-
 function EditDrafts() {
   const classes = useEditDraftStyles();
   const id = useParams().id;
   const dispatch = useDispatch();
-  const oneDraft = useSelector(state => state.draftsSlice.oneDraft);
-  const loading = useSelector(state => state.draftsSlice.oneDraftLoading);
-  const [titleValue, setTitleValue] = useState("");
-  const [textValue, setTextValue] = useState("");
-  const editing = useSelector(state => state.draftsSlice.editing)
-  const failed = useSelector(state => state.draftsSlice.error.failed)
+  const oneDraft = useSelector((state) => state.draftsSlice.oneDraft);
+  const loading = useSelector((state) => state.draftsSlice.oneDraftLoading);
+  const [titleValue, setTitleValue] = useState('');
+  const [textValue, setTextValue] = useState('');
+  const editing = useSelector((state) => state.draftsSlice.editing);
+  const failed = useSelector((state) => state.draftsSlice.error.failed);
   const [open, setOpen] = React.useState(false);
 
   const handleTitleChange = (e) => {
@@ -34,19 +33,18 @@ function EditDrafts() {
 
   const handleChangeDraft = () => {
     dispatch(editDraft({ title: titleValue, text: textValue, id })).then(() => {
-       setOpen(true)
-    })
+      setOpen(true);
+    });
   };
 
+  useEffect(() => {
+    dispatch(fetchOneDraft(id));
+  }, [dispatch, id]);
 
   useEffect(() => {
-    dispatch(fetchOneDraft(id))
-  }, [dispatch,id]);
-
-  useEffect(() => {
-    setTitleValue(oneDraft.title)
-    setTextValue(oneDraft.text)
-  }, [oneDraft])
+    setTitleValue(oneDraft.title);
+    setTextValue(oneDraft.text);
+  }, [oneDraft]);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -54,8 +52,7 @@ function EditDrafts() {
     }
 
     setOpen(false);
-  }
-
+  };
 
   return (
     <Container maxWidth="md" className={classes.cardGrid}>
@@ -74,14 +71,14 @@ function EditDrafts() {
           className={classes.form}
           type="text"
           variant="outlined"
-          value={loading? '...': titleValue}
+          value={loading ? '...' : titleValue}
           onChange={handleTitleChange}
         />
       </Grid>
       <Editor
         apiKey="jlz8bac87srss3dre4jzt1fhtk9w6fs6sg8l7ywftd113tv8"
         onEditorChange={(newText) => setTextValue(newText)}
-        value={loading? '...': textValue}
+        value={loading ? '...' : textValue}
         init={{
           selector: 'textarea',
           height: 500,
@@ -112,8 +109,11 @@ function EditDrafts() {
             Сохранить
           </Button>
           <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity={failed? 'error': 'success'}>
-              {failed? 'Произошла ошибка': 'Пост успешно изменен'}
+            <Alert
+              onClose={handleClose}
+              severity={failed ? 'error' : 'success'}
+            >
+              {failed ? 'Произошла ошибка' : 'Пост успешно изменен'}
             </Alert>
           </Snackbar>
         </Grid>

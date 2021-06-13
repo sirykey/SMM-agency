@@ -40,7 +40,7 @@ export const useDraftStyles = makeStyles((theme) => ({
 
   btn: {
     marginTop: 12,
-  }
+  },
 }));
 
 export const useEditDraftStyles = makeStyles((theme) => ({
