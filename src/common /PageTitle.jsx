@@ -1,8 +1,8 @@
 import React from 'react';
-import { useCommonStyles } from './styles';
+import { useAvatarStyles } from './styles';
 
 function PageTitle() {
-  const classes = useCommonStyles();
+  const classes = useAvatarStyles();
 
   return <h1 className={classes.title}>Черновики:</h1>;
 }

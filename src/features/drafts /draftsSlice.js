@@ -9,7 +9,7 @@ export const fetchDrafts = createAsyncThunk('drafts/fetchDrafts', async () => {
 export const fetchOneDraft = createAsyncThunk(
   'drafts/fetchOneDraft',
   async (id) => {
-    const response = await api.get(`/posts/${id}`)
+    const response = await api.get(`/posts/${id}`);
     return response.data;
   },
 );
@@ -58,7 +58,7 @@ const draftsSlice = createSlice({
   name: 'drafts',
   initialState: {
     drafts: [],
-    oneDraft:{},
+    oneDraft: {},
     loading: false,
     oneDraftLoading: false,
     adding: false,
@@ -155,7 +155,7 @@ const draftsSlice = createSlice({
       state.oneDraftLoading = false;
       state.error.failed = true;
       state.error.message = action.payload;
-    }
+    },
   },
 });
 

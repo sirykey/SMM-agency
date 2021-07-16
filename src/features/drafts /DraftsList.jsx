@@ -2,7 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDrafts } from './draftsSlice';
 import DraftItem from './DraftItem';
-import { Button, Container, Grid, List, Paper, Typography } from '@material-ui/core';
+import {
+  Button,
+  Container,
+  Grid,
+  List,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import PageTitle from '../../common /PageTitle';
 import { useDraftStyles } from './styles';
 import { useHistory } from 'react-router';
@@ -32,17 +39,17 @@ function DraftsList() {
             </List>
           </Paper>
           <Grid container className={classes.containerForButtons}>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.btn}
-              onClick={ () => history.push('/agency/addPost')}
-            >
-              Добавить
-            </Button>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                onClick={() => history.push('/agency/addPost')}
+              >
+                Добавить
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
         </Grid>
       </Container>
     </>
