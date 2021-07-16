@@ -33,7 +33,7 @@ function EditDrafts() {
 
   return (
     <Container className={classes.root} maxWidth="md">
-      <Grid container justify="center">
+      <Grid container>
         <Grid item>
           <Typography
             variant="h4"
