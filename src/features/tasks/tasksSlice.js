@@ -7,10 +7,35 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
   return response.data;
 });
 
+export const addTask = createAsyncThunk(
+  'tasks/addTask',
+  async ({ message, id }) => {
+    const response = await api.post(`/users/${id}/tasks`, {
+      message: message,
+    });
+
+    return response.data;
+  },
+);
+
+export const deleteTask = createAsyncThunk(
+  'tasks/deleteTask',
+  async (id, thunkAPI) => {
+    try {
+      await api.delete(`/tasks/${id}`);
+
+      return id;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {
     tasks: [],
+    adding: false,
     loading: false,
     error: {
       failed: false,
@@ -31,7 +56,40 @@ const tasksSlice = createSlice({
       state.loading = false;
       state.error.message = action.payload;
     },
+
+    [addTask.pending]: (state) => {
+      state.adding = true;
+    },
+
+    [addTask.fulfilled]: (state, action) => {
+      state.adding = false;
+      state.tasks.push({
+        message: action.meta.arg.message,
+      });
+    },
+
+    [addTask.rejected]: (state, action) => {
+      state.adding = false;
+      state.error.message = action.payload;
+    },
+
+    [deleteTask.pending]: (state) => {
+      state.deleting = true;
+    },
+
+    [deleteTask.fulfilled]: (state, action) => {
+      state.deleting = false;
+      state.tasks = state.tasks.filter((task) => {
+        return task._id !== action.meta.arg;
+      });
+    },
+
+    [deleteTask.rejected]: (state, action) => {
+      state.error.message = action.payload;
+      state.error.failed = true;
+      state.deleting = false;
+    },
   },
 });
 
-export default tasksSlice;
+export default tasksSlice.reducer;
