@@ -33,3 +33,27 @@ export const useHeaderStyles = makeStyles((theme) => ({
     display: 'flex',
   },
 }));
+
+export const useCommentsStyles = makeStyles((theme) => ({
+  cardGrid: {
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
+  },
+  paper: {
+    marginTop: theme.spacing(5),
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+  },
+  btn: {
+    marginRight: theme.spacing(1),
+  },
+  list: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
+    maxHeight: 300,
+  },
+}));
