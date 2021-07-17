@@ -1,17 +1,25 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TasksItem from './TasksItem';
-import { fetchTasks } from './tasksSlice';
+import { fetchOneTask, fetchTasks } from './tasksSlice';
 import { useDraftStyles } from '../drafts /styles';
 import { Container, Grid, List, Paper, Typography } from '@material-ui/core';
+import authSlice from '../auth/authSlice';
 
 function TasksList(props) {
   const classes = useDraftStyles();
   const tasks = useSelector((state) => state.tasksSlice.tasks);
+  const authUser = useSelector(state => state.authSlice.id)
+if (authUser !== undefined) {
+  console.log(authUser);
+}
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchOneTask(authUser))
+  }, [dispatch])
 
   return (
     <>
