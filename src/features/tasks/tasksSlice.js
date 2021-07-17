@@ -7,6 +7,14 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
   return response.data;
 });
 
+export const fetchOneTask = createAsyncThunk(
+  'tasks/fetchOneTask',
+  async (id) => {
+    const response = await api.get(`/users/${id}/tasks`);
+
+    return response.data;
+});
+
 export const addTask = createAsyncThunk(
   'tasks/addTask',
   async ({ message, id }) => {
@@ -54,6 +62,20 @@ const tasksSlice = createSlice({
 
     [fetchTasks.rejected]: (state, action) => {
       state.loading = false;
+      state.error.message = action.payload;
+    },
+
+    [fetchOneTask.pending]: (state) => {
+      state.loadingOneWorkerTasks = true;
+    },
+
+    [fetchOneTask.fulfilled]: (state, action) => {
+      state.loadingOneWorkerTasks = false;
+      state.tasks = action.payload;
+    },
+
+    [fetchOneTask.rejected]: (state, action) => {
+      state.loadingOneWorkerTasks = false;
       state.error.message = action.payload;
     },
 
