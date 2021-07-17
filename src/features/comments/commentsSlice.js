@@ -16,8 +16,12 @@ export const fetchComments = createAsyncThunk(
 const commentsSlice = createSlice({
   name: 'comments',
   initialState: {
-    comments: [],
+    comments: {},
     loading: false,
+    error: {
+      failed: false,
+      message: null,
+    },
   },
   extraReducers: {
     [fetchComments.pending]: (state) => {

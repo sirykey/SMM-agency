@@ -16,11 +16,14 @@ function CommentsList() {
   return (
     <div>
       <Paper className={classes.paper}>
-        <List className={classes.list}>
-          {comms.map((comment) => {
-            return <CommentsItem comment={comment} />;
-          })}
-        </List>
+        {comms.data !== undefined ?
+          <List className={classes.list}>
+            {comms.map((comment) => {
+              return <CommentsItem comment={comment} />;
+            })}
+          </List> : ''
+        }
+
       </Paper>
     </div>
   );
