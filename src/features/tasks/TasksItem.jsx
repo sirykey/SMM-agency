@@ -12,7 +12,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteTask from './DeleteTask';
 
 function TasksItem({ task }) {
-  console.log(task);
   const [open, setOpen] = useState(false);
   const handleDeleteAlertOpen = () => {
     setOpen(true);
