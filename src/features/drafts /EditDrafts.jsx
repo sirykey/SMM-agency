@@ -16,6 +16,7 @@ import DeleteDrafts from './DeleteDrafts';
 import Snackbar from '@material-ui/core/Snackbar';
 import { Alert } from '@material-ui/lab';
 import DraftsImage from './DraftsImage';
+import CommentsList from '../comments/CommentsList';
 
 function EditDrafts() {
   const classes = useEditDraftStyles();
@@ -145,6 +146,10 @@ function EditDrafts() {
           <DeleteDrafts id={id} />
         </Grid>
       </Grid>
+      <Grid>
+        <CommentsList id={id} />
+      </Grid>
+
     </Container>
   );
 }
