@@ -54,6 +54,20 @@ export const addDraft = createAsyncThunk(
   },
 );
 
+export const setCompleted = createAsyncThunk(
+  'draft/setCompleted',
+  async (id, thunkApi) => {
+    try {
+      await api.patch(`/posts/${id}`, {
+        draft: false,
+      });
+      return id;
+    } catch (e) {
+      thunkApi.rejectWithValue(e.message);
+    }
+  },
+);
+
 const draftsSlice = createSlice({
   name: 'drafts',
   initialState: {
@@ -61,6 +75,7 @@ const draftsSlice = createSlice({
     oneDraft: {},
     loading: false,
     oneDraftLoading: false,
+    setCompletedLoading: false,
     adding: false,
     deleting: false,
     editing: false,
@@ -155,6 +170,28 @@ const draftsSlice = createSlice({
       state.oneDraftLoading = false;
       state.error.failed = true;
       state.error.message = action.payload;
+    },
+
+    [setCompleted.pending]: (state) => {
+     state.setCompletedLoading = true;
+     state.error.failed = false;
+    },
+
+    [setCompleted.fulfilled]: (state, action) => {
+      const postID = state.drafts.findIndex((draft) => {
+        return action.payload === draft._id;
+      });
+
+      state.setCompletedLoading = false;
+
+
+      state.drafts[postID].draft = !state.drafts[postID].draft
+    },
+
+    [setCompleted.rejected]: (state, action) => {
+      state.setCompletedLoading = false;
+      state.error.message = action.payload;
+      state.error.failed = true;
     },
   },
 });

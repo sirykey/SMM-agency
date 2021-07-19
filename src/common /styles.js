@@ -50,3 +50,14 @@ export const useAvatarStyles = makeStyles((theme) => ({
     paddingLeft: 25,
   },
 }));
+
+export const useBageStyles = makeStyles((theme) => ({
+  btn: {
+    width: theme.spacing(13),
+    height: theme.spacing(5),
+    fontSize: theme.spacing(1.6),
+    fontWeight: 600
+  }
+}));
+
+

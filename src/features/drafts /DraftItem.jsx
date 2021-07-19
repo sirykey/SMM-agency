@@ -12,21 +12,24 @@ function DraftItem({ draft }) {
   const classes = useAddDraftStyles();
   return (
     <>
-      <ListItem
-        button
-        onClick={() => history.push(`/agency/blog/${draft._id}`)}
-      >
-        <Avatar
-          className={classes.small}
-          src="https://im0-tub-ru.yandex.net/i?id=299736ae5da1556ac5a80051c33d564a&n=13&exp=1"
-        />
-        <DraftsTitle
-          title={draft.title}
-          name={draft.author.name}
-          surname={draft.author.surname}
-        />
-        <Grid>
-          <Badge />
+      <ListItem>
+        <ListItem
+          button
+          onClick={() => history.push(`/agency/blog/${draft._id}`)}
+        >
+
+          <Avatar
+            className={classes.small}
+            src="https://im0-tub-ru.yandex.net/i?id=299736ae5da1556ac5a80051c33d564a&n=13&exp=1"
+          />
+          <DraftsTitle
+            title={draft.title}
+            name={draft.author.name}
+            surname={draft.author.surname}
+          />
+        </ListItem>
+        <Grid item>
+          <Badge id={draft._id} isItDraft={draft.draft} />
         </Grid>
       </ListItem>
     </>
