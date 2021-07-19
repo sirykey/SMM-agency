@@ -12,6 +12,8 @@ function Badge({id, isItDraft}) {
   const dispatch = useDispatch()
   const failed = useSelector(state => state.draftsSlice.failed)
   const [openMenu, setOpenMenu] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(null)
+
   const handleClick = (e) => {
     setOpenMenu(e.currentTarget);
   };
@@ -49,8 +51,16 @@ function Badge({id, isItDraft}) {
         open={Boolean(openMenu)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Пост</MenuItem>
-        <MenuItem onClick={handleClose}>Черновик</MenuItem>
+        <MenuItem onClick={handleSetCompleted}>Пост</MenuItem>
+        <MenuItem onClick={handleSetCompleted}>Черновик</MenuItem>
+        <Snackbar open={openSnackbar} autoHideDuration={1000} onClose={handleCloseSnackbar}>
+          <Alert
+            onClose={handleCloseSnackbar}
+            severity={failed ? 'error' : 'success'}
+          >
+            {failed ? 'Произошла ошибка' : 'Пост успешно изменен'}
+          </Alert>
+        </Snackbar>
       </Menu>
     </div>
   );
