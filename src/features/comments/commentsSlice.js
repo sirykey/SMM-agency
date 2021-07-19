@@ -13,6 +13,33 @@ export const fetchComments = createAsyncThunk(
     }
   },
 );
+export const addComments = createAsyncThunk(
+  'comments/addComments',
+  async ({ message, id }, { rejectWithValue }) => {
+    try {
+      const response = await api.post(`posts/${id}/comments`, {
+        message,
+      });
+
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const deleteComment = createAsyncThunk(
+  'comments/editComments',
+  async ({ commentId, id }, { rejectedWithValue }) => {
+    try {
+      await api.delete(`posts/${id}/comments/${commentId}`);
+      return commentId;
+    } catch (e) {
+      return rejectedWithValue(e.message);
+    }
+  },
+);
+
 const commentsSlice = createSlice({
   name: 'comments',
   initialState: {
@@ -28,12 +55,39 @@ const commentsSlice = createSlice({
       state.loading = true;
     },
     [fetchComments.fulfilled]: (state, action) => {
-      state.items = action.payload;
+      state.comments = action.payload;
       state.loading = false;
     },
     [fetchComments.rejected]: (state, action) => {
       state.loading = false;
       state.error.message = action.payload;
+    },
+    [addComments.pending]: (state) => {
+      state.adding = true;
+    },
+
+    [addComments.fulfilled]: (state, action) => {
+      state.comments.push({
+        message: action.meta.arg.message,
+      });
+      state.adding = false;
+    },
+
+    [addComments.rejected]: (state, action) => {
+      state.adding = false;
+      state.error.message = action.payload;
+    },
+    [deleteComment.pending]: (state) => {
+      state.deleting = true;
+    },
+    [deleteComment.fulfilled]: (state, action) => {
+      state.deleting = false;
+      state.comments = state.comments.filter((item) => {
+        return item.id !== action.meta.arg;
+      });
+    },
+    [deleteComment.rejected]: (state) => {
+      state.deleting = false;
     },
   },
 });
