@@ -31,13 +31,14 @@ function AddComment({ id }) {
     setMessageValue(e.target.value);
   };
 
-  const handleAddClick = (e) => {
+  const handleAddClick = () => {
     dispatch(
       addComments({
         message: messageValue,
         id,
       }),
     );
+    handleClose()
   };
 
   return (

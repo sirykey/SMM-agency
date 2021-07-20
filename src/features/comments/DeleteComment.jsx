@@ -11,7 +11,9 @@ function DeleteComment(props) {
   const dispatch = useDispatch();
   const handleDelete = (id, commentId) => {
     dispatch(deleteComment({ commentId, id }));
+    props.handleClose()
   };
+
 
   return (
     <div>
