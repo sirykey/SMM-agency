@@ -3,16 +3,12 @@ import { Fab } from '@material-ui/core';
 import { Menu, MenuItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useBageStyles } from './styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCompleted } from '../features/drafts /draftsSlice';
-import { Alert } from '@material-ui/lab';
-import Snackbar from '@material-ui/core/Snackbar';
 
 function Badge({id, isItDraft}) {
   const dispatch = useDispatch()
-  const failed = useSelector(state => state.draftsSlice.failed)
   const [openMenu, setOpenMenu] = useState(null);
-  const [openSnackbar, setOpenSnackbar] = useState(null)
 
   const handleClick = (e) => {
     setOpenMenu(e.currentTarget);
@@ -22,14 +18,11 @@ function Badge({id, isItDraft}) {
     setOpenMenu(null);
   };
 
-  const handleCloseSnackbar = () => {
-    setOpenSnackbar(null)
-  }
-
   const handleSetCompleted = () => {
-     dispatch(setCompleted(id)).then(() => {
-       setOpenSnackbar(true)
-     })
+     dispatch(setCompleted(id))
+       .then(() => setOpenMenu(false))
+
+
   }
 
   const classes = useBageStyles();
@@ -53,14 +46,6 @@ function Badge({id, isItDraft}) {
       >
         <MenuItem onClick={handleSetCompleted}>Пост</MenuItem>
         <MenuItem onClick={handleSetCompleted}>Черновик</MenuItem>
-        <Snackbar open={openSnackbar} autoHideDuration={1000} onClose={handleCloseSnackbar}>
-          <Alert
-            onClose={handleCloseSnackbar}
-            severity={failed ? 'error' : 'success'}
-          >
-            {failed ? 'Произошла ошибка' : 'Пост успешно изменен'}
-          </Alert>
-        </Snackbar>
       </Menu>
     </div>
   );
