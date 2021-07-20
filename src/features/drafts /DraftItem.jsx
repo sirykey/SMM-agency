@@ -4,12 +4,10 @@ import { Grid, ListItem } from '@material-ui/core';
 import DraftsTitle from './DraftsTitle';
 import Badge from '../../common /Badge';
 import { useHistory } from 'react-router';
-import { useAddDraftStyles } from './styles';
 import MainAvatar from '../../common /MainAvatar';
 
 function DraftItem({ draft }) {
   const history = useHistory();
-  const classes = useAddDraftStyles();
   return (
     <>
       <ListItem>

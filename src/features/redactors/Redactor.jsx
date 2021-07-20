@@ -31,7 +31,7 @@ function Redactor ({ user }) {
           history.push(`agency/posts/${user._id}`);
         }}
       >
-        <MainAvatar/>
+        <MainAvatar size={'classes.small'}/>
         <ListItemText primary={`${user.name} ${user.surname}`} />
         <ListItemSecondaryAction>
           <AddTask id={user._id} />

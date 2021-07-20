@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Dialog,
@@ -11,11 +11,11 @@ import {
   TextField,
   Tooltip,
 } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRedactors, signUpRedactor } from './redactorsSlice';
+import { useDispatch } from 'react-redux';
+import { signUpRedactor } from './redactorsSlice';
 import AddIcon from '@material-ui/icons/Add';
 
-function AddRedactor(props) {
+function AddRedactor() {
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState('');
@@ -48,7 +48,7 @@ function AddRedactor(props) {
     setWorkerEmail(e.target.value);
   };
 
-  const handleButtonClick = (e) => {
+  const handleButtonClick = () => {
     dispatch(
       signUpRedactor({
         username: login,

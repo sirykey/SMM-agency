@@ -5,18 +5,17 @@ import { fetchOneTask, fetchTasks } from './tasksSlice';
 import { useDraftStyles } from '../drafts /styles';
 import { Container, Grid, List, Paper, Typography } from '@material-ui/core';
 
-function TasksList(props) {
+function TasksList() {
   const classes = useDraftStyles();
   const tasks = useSelector((state) => state.tasksSlice.tasks);
   const authUser = useSelector(state => state.authSlice.id)
+  const role = useSelector((state) => state.authSlice.role);
+
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(fetchOneTask(authUser))
-  }, [dispatch])
+    dispatch(role === 'ADMIN' ? fetchTasks() : fetchOneTask(authUser));
+  }, [dispatch, authUser, role]);
 
   return (
     <>
