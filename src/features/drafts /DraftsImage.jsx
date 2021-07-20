@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     width: '120px',
     height: '120px',
-    color: 'blue',
+    color: 'whitesmoke',
   },
   subtitle: {
     fontSize: '12px',
