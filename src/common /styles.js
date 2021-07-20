@@ -33,17 +33,15 @@ export const useProfileStyles = makeStyles((theme) => ({
 export const useAvatarStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
+
   },
   small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+      margin: theme.spacing(1),
+
   },
   large: {
-    width: theme.spacing(25),
-    height: theme.spacing(25),
+    width: '120px',
+    height: '120px',
   },
 
   title: {
