@@ -35,6 +35,7 @@ function AddTask({ id }) {
         id,
       }),
     );
+    handleClose()
   };
   return (
     <>

@@ -24,12 +24,6 @@ function ListItems() {
       </ListItem>
       <ListItem button>
         <ListItemIcon>
-          <InsertCommentIcon />
-        </ListItemIcon>
-        <ListItemText primary="Комменты" onClick={() => history.push('/agency/comments')} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
           <FormatListBulletedIcon />
         </ListItemIcon>
         <ListItemText primary="Задачи" onClick={() => history.push('/agency/tasks')} />
