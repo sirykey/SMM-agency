@@ -11,9 +11,11 @@ import {
 import { LockOutlined } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from './authSlice';
+import { useAuthStyles } from './styles';
 
 function Authorisation() {
   const dispatch = useDispatch();
+  const classes = useAuthStyles()
   const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,14 +39,14 @@ function Authorisation() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div>
-        <Avatar>
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
           <LockOutlined />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form noValidate>
+        <form className={classes.form} noValidate>
           <TextField
             type="text"
             variant="outlined"
