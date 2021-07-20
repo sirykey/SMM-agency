@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Avatar from '../../common/MainAvatar';
+import MainAvatar from '../../common /MainAvatar';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {
   Divider,
@@ -31,7 +31,7 @@ function Redactor ({ user }) {
           history.push(`agency/posts/${user._id}`);
         }}
       >
-        <Avatar size={'classes.small'}/>
+        <MainAvatar/>
         <ListItemText primary={`${user.name} ${user.surname}`} />
         <ListItemSecondaryAction>
           <AddTask id={user._id} />
