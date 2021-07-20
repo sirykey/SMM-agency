@@ -3,7 +3,6 @@ import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/Email';
 import PeopleIcon from '@material-ui/icons/People';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import InsertCommentIcon from '@material-ui/icons/InsertComment';
 import { useHistory } from 'react-router-dom';
 
 function ListItems() {

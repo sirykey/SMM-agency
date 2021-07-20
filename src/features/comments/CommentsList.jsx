@@ -14,7 +14,7 @@ function CommentsList({id}) {
 
   useEffect(() => {
     dispatch(fetchComments(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   return (
     <div>
       <Paper className={classes.paper}>
