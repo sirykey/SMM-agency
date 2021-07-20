@@ -3,15 +3,15 @@ import Avatar from '@material-ui/core/Avatar';
 import { PropTypes } from 'prop-types';
 import { useAvatarStyles } from './styles';
 
- function ImageAvatars({ size }) {
+ function MainAvatar({ size }) {
   const classes = useAvatarStyles();
-
+   console.log(size);
   return (
-    <div className={classes.root}>
+    <div >
       <Avatar
         alt="Remy Sharp"
         src="https://img.favpng.com/23/14/13/avatar-computer-icons-logo-png-favpng-cn0QQR4duut7PZicNCY4KtB1H.jpg"
-        className={size}
+        className={eval(size)}
       />
     </div>
   );
@@ -21,4 +21,4 @@ Avatar.propTypes = {
   imageUrl: PropTypes.string,
 };
 
-export default ImageAvatars;
+export default MainAvatar;

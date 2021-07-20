@@ -1,6 +1,7 @@
 import React from 'react';
-import { Avatar, IconButton, makeStyles } from '@material-ui/core';
+import { IconButton, makeStyles } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
+import MainAvatar from './MainAvatar';
 
 const useStyles = makeStyles(() => ({
   account: {
@@ -8,10 +9,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     flexDirection: 'column',
   },
-  avatar: {
-    width: '120px',
-    height: '120px',
-  },
+
   avatarWrapper: {
     margin: '20px auto',
     display: 'inline-block',
@@ -43,6 +41,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '50%',
     width: '120px',
     height: '120px',
+    color: 'whitesmoke',
   },
   subtitle: {
     fontSize: '12px',
@@ -69,7 +68,7 @@ function ProfileAvatar() {
       />
 
       <div className={classes.avatarWrapper}>
-        <Avatar className={classes.avatar} />
+        <MainAvatar size={'classes.large'} />
         <div className={classes.avatarButton}>
           <label htmlFor="icon-button-file">
             <IconButton

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, ListItem } from '@material-ui/core';
 import DraftsTitle from './DraftsTitle';
-import Avatar from '../../common /Avatar';
 import Badge from '../../common /Badge';
 import { useHistory } from 'react-router';
 import { useAddDraftStyles } from './styles';
+import MainAvatar from '../../common /MainAvatar';
 
 function DraftItem({ draft }) {
   const history = useHistory();
@@ -18,8 +18,8 @@ function DraftItem({ draft }) {
           onClick={() => history.push(`/agency/blog/${draft._id}`)}
         >
 
-          <Avatar
-            className={classes.small}
+          <MainAvatar
+            size={'classes.small'}
             src="https://im0-tub-ru.yandex.net/i?id=299736ae5da1556ac5a80051c33d564a&n=13&exp=1"
           />
           <DraftsTitle
