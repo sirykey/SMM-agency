@@ -8,7 +8,7 @@ import AddComment from './AddComment';
 
 function CommentsList({id}) {
   const comms = useSelector((state) => state.commentsSlice.comments);
-  console.log(comms);
+  const role = useSelector((state) => state.authSlice.role);
   const dispatch = useDispatch();
   const classes = useCommentsStyles();
 
@@ -28,11 +28,10 @@ function CommentsList({id}) {
         </Typography>
         {comms.length > 0 ?  <List className={classes.list}>
           {comms.map((comment) => {
-            return <CommentsItem comment={comment} id={id} />;
+            return <CommentsItem comment={comment} id={id} role={role} />;
           })}
         </List> : 'Комментариев нет'}
-
-        <AddComment id={id}/>
+        {role === 'ADMIN' ? <AddComment id={id}/> : ''}
       </Paper>
     </div>
   );
