@@ -14,6 +14,7 @@ import AddRedactor from './AddRedactor';
 
 function RedactorsList() {
   const classes = useDraftStyles();
+  const role = useSelector((state) => state.authSlice.role);
   const redactors = useSelector((state) => state.redactorsSlice.users);
   const filteredRedactors = redactors.filter(
     (redactor) => redactor.role === 'USER',
@@ -38,15 +39,17 @@ function RedactorsList() {
             </Typography>
             <List className={classes.list}>
               {filteredRedactors.map((user) => (
-                <Redactor key={redactors.id} user={user} />
+                <Redactor key={redactors.id} user={user} role={role} />
               ))}
             </List>
           </Paper>
-          <Grid container className={classes.containerForButtons}>
-            <Grid item>
-              <AddRedactor />
-            </Grid>
-          </Grid>
+          {role === 'ADMIN' ?
+            <Grid container className={classes.containerForButtons}>
+              <Grid item>
+                <AddRedactor />
+              </Grid>
+            </Grid> : ''
+          }
         </Grid>
       </Container>
     </>

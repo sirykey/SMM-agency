@@ -3,7 +3,8 @@ import { Divider, IconButton, ListItem, ListItemSecondaryAction, ListItemText, T
 import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteComment from './DeleteComment';
 
-function CommentsItem({ comment, id }) {;
+function CommentsItem({ comment, id, role }) {
+  console.log(role);
   const [open, setOpen] = useState(false);
   const handleDeleteCommentOpen = () => {
     setOpen(true);
@@ -16,16 +17,21 @@ function CommentsItem({ comment, id }) {;
       <ListItem>
         <ListItemText>{comment.message}</ListItemText>
         <ListItemSecondaryAction>
-          <Tooltip title="Удалить комментарий">
-            <IconButton
-              color="secondary"
-              edge="end"
-              aria-label="delete"
-              onClick={handleDeleteCommentOpen}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
+          {role === 'ADMIN' ?
+            <Tooltip title="Удалить комментарий">
+              <IconButton
+                color="secondary"
+                edge="end"
+                aria-label="delete"
+                onClick={handleDeleteCommentOpen}
+              >
+                <DeleteIcon />
+              </IconButton>
+
+
+            </Tooltip> : ''
+          }
+
         </ListItemSecondaryAction>
       </ListItem>
 

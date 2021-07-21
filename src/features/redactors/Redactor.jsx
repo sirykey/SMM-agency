@@ -13,7 +13,7 @@ import DeleteRedactor from './DeleteRedactor';
 import { useHistory } from 'react-router';
 import AddTask from '../tasks/AddTask';
 
-function Redactor ({ user }) {
+function Redactor ({ user, role }) {
   const history = useHistory();
 
   const [open, setOpen] = useState(false);
@@ -26,21 +26,20 @@ function Redactor ({ user }) {
   return (
     <>
       <ListItem
-        button
-        onClick={() => {
-          history.push(`agency/posts/${user._id}`);
-        }}
       >
         <MainAvatar size={'classes.small'}/>
         <ListItemText primary={`${user.name} ${user.surname}`} />
-        <ListItemSecondaryAction>
-          <AddTask id={user._id} />
-          <Tooltip title='Удалить редактора'>
-            <IconButton color='secondary' onClick={handleDeleteAlertOpen}>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        </ListItemSecondaryAction>
+        {role === 'ADMIN' ?
+          <ListItemSecondaryAction>
+            <AddTask id={user._id} />
+            <Tooltip title='Удалить редактора'>
+              <IconButton color='secondary' onClick={handleDeleteAlertOpen}>
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+          </ListItemSecondaryAction> : ''
+        }
+
       </ListItem>
       <Divider variant='inset' component='li' />
       <DeleteRedactor
