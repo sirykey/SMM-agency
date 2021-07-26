@@ -8,11 +8,11 @@ export const useDraftStyles = makeStyles((theme) => ({
     flex: 1,
   },
   cardMedia: {
-    width: 160,
   },
   mainGrid: {
     marginTop: theme.spacing(7),
     marginBottom: theme.spacing(3),
+    marginLeft: theme.spacing(15),
     display: 'flex',
   },
   cardGrid: {
@@ -44,7 +44,9 @@ export const useDraftStyles = makeStyles((theme) => ({
 }));
 
 export const useEditDraftStyles = makeStyles((theme) => ({
-  containerForEditDraftsComponent: {},
+  containerForDraftsEditing: {
+    marginLeft: theme.spacing(15)
+  },
 
   form: {
     padding: theme.spacing(4),
