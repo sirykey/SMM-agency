@@ -26,7 +26,7 @@ function DraftsList() {
 
   return (
     <>
-      <Container className={classes.mainGrid}>
+      <Container className={classes.mainGrid} fixed>
         <Grid item xs={12}>
           <Typography component="h2" variant="h6" color="primary" gutterBottom>
             <PageTitle />
