@@ -1,5 +1,5 @@
 import Auth from '../features/auth/Auth';
-import { CssBaseline } from '@material-ui/core';
+import { Container, CssBaseline } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -57,10 +57,10 @@ function App() {
   }
 
   return (
-    <div>
+    <Container fixed>
       {routes}
       <CssBaseline />
-    </div>
+    </Container>
   );
 }
 
