@@ -17,7 +17,7 @@ function Profile() {
   const classes = useProfileStyles();
 
   return (
-    <Container maxWidth="lg" className={classes.root}>
+    <Container fixed className={classes.root}>
       <Grid
         container
         spacing={10}
