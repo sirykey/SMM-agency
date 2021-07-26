@@ -4,7 +4,7 @@ export const useProfileStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     paddingTop: theme.spacing(12),
-    paddingLeft: theme.spacing(1),
+    paddingLeft: theme.spacing(20),
     justifyContent: 'center',
   },
 

@@ -65,7 +65,7 @@ function EditDrafts() {
   }
 
   return (
-    <Container maxWidth="lg" direction="column">
+    <Container fixed direction="column" className={classes.containerForDraftsEditing}>
       <Grid container>
         <Grid item>
           <Typography  className={classes.EditingTitle}  variant="h4" color="primary" gutterBottom>
