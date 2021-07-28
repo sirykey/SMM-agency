@@ -8,7 +8,6 @@ import Main from './Main';
 
 function App() {
   const token = useSelector((state) => state.authSlice.token);
-
   const [autologinning, setAutologinning] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
