@@ -59,7 +59,7 @@ export const setCompleted = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       await api.patch(`/posts/${id}`, {
-        draft: false,
+        draft: true,
       });
       return id;
     } catch (e) {
