@@ -19,7 +19,7 @@ function Badge({id, isItDraft}) {
   };
 
   const handleSetCompleted = () => {
-     dispatch(setCompleted(id))
+     dispatch(setCompleted({ id, isItDraft }))
        .then(() => setOpenMenu(false))
 
 
