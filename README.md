@@ -4,8 +4,8 @@
 
 
 Посмотреть демо версию приложения вы можете тут  [smm-agency](http://aqueous-hamlet-92956.herokuapp.com/).
-
 ## Функционал приложения:
+
 <h3>Для всех пользователей:</h3>
 <ul>
 <li>Авторизация</li>
@@ -14,6 +14,7 @@
 </ul>
 
 <h3>Для администратора:</h3>
+<h4>Используйте для входа: <br> логин: <b>admin</b> <br> пароль:<b>admin</b></h4>
 <ul>
 <li>Добавление/удаление нового редактора</li>
 <li>Добавление/удаление задач редакторам</li>
@@ -24,12 +25,13 @@
 </ul>
 
 <h3>Для редактора:</h3>
+<h4>Используйте для входа: <br> логин: <b>test</b> <br> пароль:<b>test</b></h4>
 <ul>
 <li>Добавление/удаление нового черновика</li>
 <li>Редактирование черновика (только автор черновика может вносить изменения)</li>
 <li>Возможность изменять состояне черновика на готовый пост</li>
 <li>Просмотр своих задач</li>
-<li>Просмотр коментариев к посту</li>
+<li>Просмотр комментариев, оставленных под постом</li>
 </ul>
 
 <br>
@@ -59,18 +61,18 @@
 ## Команда проекта:
 
  <h3>
-  <a href="https://github.com/Khalimov-Z">
-    <img alt="Badurgov" src="https://img.shields.io/badge/-Ramzan Badurgov-black?style=for-the-badge&logo=github&logoColor=white" />
+  <a href="https://github.com/sirykey">
+    <img alt="Badurgov" src="https://img.shields.io/badge/-Ramzan Badurgov (front--end)-black?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </h3>
 <h3>
-  <a href="https://github.com/KasumovW">
-    <img alt="Islamov" src="https://img.shields.io/badge/-Magomed--Emin Islamov-black?style=for-the-badge&logo=github&logoColor=white" />
+  <a href="https://github.com/EminIslamov">
+    <img alt="Islamov" src="https://img.shields.io/badge/-Magomed--Emin Islamov (front--end)-black?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </h3>
 <h3>
-  <a href="https://github.com/Kharsaeva">
-    <img alt="Timurkaev" src="https://img.shields.io/badge/-Muhammad Timurkaev-black?style=for-the-badge&logo=github&logoColor=white" />
+  <a href="https://github.com/TimurkaevM">
+    <img alt="Timurkaev" src="https://img.shields.io/badge/-Muhammad Timurkaev (back--end)-black?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </h3>
 
